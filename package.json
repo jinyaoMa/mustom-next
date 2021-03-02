@@ -3,8 +3,9 @@
   "version": "0.0.1-20210207.0013",
   "description": "",
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build:icons": "node icons/index.js",
+    "build:docs": "vue-cli-service build",
+    "serve:docs": "vue-cli-service serve"
   },
   "repository": {
     "type": "git",
