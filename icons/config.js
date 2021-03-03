@@ -6,6 +6,5 @@ module.exports = {
   fontName: "mustom-next-icons", // font family name, default: iconfont
   cssPrefix: "mi", // css class prefix, default: icon
   className: "mi", // common class name, default: iconfont
-  fontFileName: "mustom-next-icons", // output file name, default: iconfont
-  fontHeight: 1024
+  fontFileName: "mustom-next-icons" // output file name, default: iconfont
 };
