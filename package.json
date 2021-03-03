@@ -1,12 +1,15 @@
 {
   "name": "@jinyaoma/mustom-next",
-  "version": "0.0.1-20210207.0013",
+  "version": "0.0.1-20210303.0200",
   "description": "",
   "scripts": {
     "build:icons": "node icons/index.js",
-    "build:docs": "vue-cli-service build",
-    "serve:docs": "vue-cli-service serve"
+    "build:style-default": "gulp build",
+    "build:packages": "vue-cli-service build --target lib --name mustom-next --dest build/packages packages/index.js",
+    "build:docs": "vuepress build docs",
+    "serve:docs": "vuepress dev docs"
   },
+  "main": "build/packages/mustom-next.umd.min.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jinyaoMa/mustom-next.git"
@@ -23,11 +26,16 @@
   "browserslist": [
     "> 1%",
     "last 2 versions",
+    "not ie < 11",
     "not dead"
   ],
   "devDependencies": {
     "@vue/cli-service": "^4.5.11",
     "@vuepress/plugin-blog": "^1.9.4",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-stylus": "^2.7.0",
     "svgs2font": "jinyaoMa/svgs2font#master",
     "vuepress": "^1.8.0"
   },

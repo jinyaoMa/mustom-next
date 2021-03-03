@@ -1,5 +1,5 @@
-import Components from "../components";
+import Packages from "../packages";
 
 export default ({ Vue, options, router, siteData }) => {
-  Vue.use(Components);
+  Vue.use(Packages);
 };

@@ -1,8 +1,5 @@
-import Container from "./Container";
-
-const components = {
-  Container
-};
+import "./style-default/index.styl";
+import components from "./components";
 
 const install = function(Vue) {
   if (install.installed) return;

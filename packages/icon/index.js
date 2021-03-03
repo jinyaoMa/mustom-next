@@ -1,4 +1,5 @@
-import Component from "./Container.vue";
+import "../../build/icons/mustom-next-icons.css";
+import Component from "./src/main.vue";
 
 Component.install = function(Vue) {
   Vue.component(Component.name, Component);

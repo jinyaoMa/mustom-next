@@ -1,6 +1,7 @@
 <template>
   <div id="GlobalLayout">
     <component :is="layout" :key="layout" />
+    <mn-icon />
   </div>
 </template>
 
