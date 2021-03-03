@@ -1,3 +1,4 @@
+import "./theme-default/index.styl";
 import "./style-default/index.styl";
 import components from "./components";
 
