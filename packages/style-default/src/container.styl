@@ -2,8 +2,44 @@
 
 .mn-container
   position relative
+  .mn-scrollbar
+    position absolute
+    right 0
+    user-select none
+    box-sizing border-box
+    transition opacity 0.2s
+    overflow hidden
+    opacity 0
+    &:hover, &.show
+      opacity 1
+    &.hide
+      pointer-events none
+      opacity 0 !important
+    &.vertical
+      top 0
+      height 100%
+      padding 2px 3px 2px 1px
+      .mn-scrollbar-thumb
+        width $scrollbar
+        height 100%
+    &.horizontal
+      bottom 0
+      width 100%
+      padding 1px 2px 3px
+      .mn-scrollbar-thumb
+        height $scrollbar
+        width 100%
+    .mn-scrollbar-thumb
+      background-color var(--color-text-placeholder)
+      transition opacity 0.2s
+      opacity 0.5
+      &:hover
+        opacity 1
+      &.round
+        border-radius $scrollbarRadius
 
 .mn-container-inner
+  display flex
   height 100%
   width 100%
   overflow auto
@@ -12,3 +48,7 @@
   &::-webkit-scrollbar
     width 0 !important
     height 0 !important
+  &.vertical
+    flex-direction column
+  &.horizontal
+    flex-direction row

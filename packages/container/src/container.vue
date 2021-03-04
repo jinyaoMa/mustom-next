@@ -1,15 +1,9 @@
 <template>
   <div class="mn-container" :style="containerStyle">
-    <div class="mn-container-inner" ref="inner">
-      <slot>
-        <div style="height: 200vh; width: 200vw; background: #eee">
-          1<br />
-          2<br />
-          3
-        </div>
-      </slot>
+    <div class="mn-container-inner" :class="innerClass" ref="inner">
+      <slot></slot>
     </div>
-    <scrollbar ref="scrollbar"></scrollbar>
+    <scrollbar v-if="!disableScrollbar" ref="scrollbar"></scrollbar>
   </div>
 </template>
 
@@ -25,17 +19,35 @@ export default {
     height: {
       type: String,
       default() {
-        return "100vh";
+        return "100%";
       },
     },
     width: {
       type: String,
       default() {
-        return "100vw";
+        return "100%";
+      },
+    },
+    horizontal: {
+      type: Boolean,
+      default() {
+        return false;
+      },
+    },
+    disableScrollbar: {
+      type: Boolean,
+      default() {
+        return false;
       },
     },
   },
   computed: {
+    innerClass() {
+      return {
+        vertical: !this.horizontal,
+        horizontal: this.horizontal,
+      };
+    },
     containerStyle() {
       return {
         height: this.height,
@@ -43,11 +55,18 @@ export default {
       };
     },
   },
+  methods: {
+    initScrollbar() {
+      if (!this.disableScrollbar) {
+        this.$refs.scrollbar.bind(this.$refs.inner);
+      }
+    },
+  },
   mounted() {
-    this.$refs.scrollbar.bind(this.$refs.inner);
+    this.initScrollbar();
   },
   updated() {
-    this.$refs.scrollbar.bind(this.$refs.inner);
+    this.initScrollbar();
   },
 };
 </script>

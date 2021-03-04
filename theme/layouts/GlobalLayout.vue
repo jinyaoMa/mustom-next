@@ -1,7 +1,10 @@
 <template>
   <div id="GlobalLayout">
     <component :is="layout" :key="layout" />
-    <mn-container />
+    <mn-container height="100vh" width="100vw" disable-scrollbar>
+      <mn-header></mn-header>
+      <mn-container horizontal></mn-container>
+    </mn-container>
   </div>
 </template>
 
