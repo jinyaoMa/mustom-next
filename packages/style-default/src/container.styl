@@ -2,6 +2,7 @@
 
 .mn-container
   position relative
+  box-sizing border-box
   .mn-scrollbar
     position absolute
     right 0
@@ -12,9 +13,6 @@
     opacity 0
     &:hover, &.show
       opacity 1
-    &.hide
-      pointer-events none
-      opacity 0 !important
     &.vertical
       top 0
       height 100%
@@ -31,7 +29,7 @@
         width 100%
     .mn-scrollbar-thumb
       background-color var(--color-text-placeholder)
-      transition opacity 0.2s
+      transition opacity 0.2s, height 0.2s, width 0.2s
       opacity 0.5
       &:hover
         opacity 1
@@ -39,6 +37,7 @@
         border-radius $scrollbarRadius
 
 .mn-container-inner
+  position relative
   display flex
   height 100%
   width 100%

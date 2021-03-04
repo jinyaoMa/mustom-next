@@ -1,9 +1,15 @@
 import icon from "./icon";
 import container from "./container";
 import header from "./header";
+import aside from "./aside";
+import main from "./main";
+import footer from "./footer";
 
 export default {
   icon,
   container,
-  header
+  header,
+  aside,
+  main,
+  footer
 };

@@ -1,26 +1,26 @@
 <template>
-  <header class="mn-header" :style="headerStyle">
-    <div class="mn-header-inner">
+  <aside class="mn-aside">
+    <div class="mn-aside-inner" :style="innerStyle">
       <slot></slot>
     </div>
-  </header>
+  </aside>
 </template>
 
 <script>
 export default {
-  name: "mn-header",
+  name: "mn-aside",
   props: {
-    height: {
+    width: {
       type: String,
       default() {
-        return "80px";
+        return "320px";
       },
     },
   },
   computed: {
-    headerStyle() {
+    innerStyle() {
       return {
-        height: this.height,
+        width: this.width,
       };
     },
   },

@@ -3,7 +3,11 @@
     <div class="mn-container-inner" :class="innerClass" ref="inner">
       <slot></slot>
     </div>
-    <scrollbar v-if="!disableScrollbar" ref="scrollbar"></scrollbar>
+    <scrollbar
+      v-if="scrollbar"
+      @scrollUpdate="scrollUpdate"
+      ref="scrollbar"
+    ></scrollbar>
   </div>
 </template>
 
@@ -19,7 +23,7 @@ export default {
     height: {
       type: String,
       default() {
-        return "100%";
+        return "auto";
       },
     },
     width: {
@@ -34,7 +38,7 @@ export default {
         return false;
       },
     },
-    disableScrollbar: {
+    scrollbar: {
       type: Boolean,
       default() {
         return false;
@@ -56,8 +60,11 @@ export default {
     },
   },
   methods: {
+    scrollUpdate(offset, isHorizontal) {
+      this.$emit("scroll", offset, isHorizontal);
+    },
     initScrollbar() {
-      if (!this.disableScrollbar) {
+      if (this.scrollbar) {
         this.$refs.scrollbar.bind(this.$refs.inner);
       }
     },

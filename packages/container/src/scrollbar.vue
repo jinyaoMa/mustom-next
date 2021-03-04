@@ -32,7 +32,6 @@ export default {
         vertical: !this.horizontal,
         horizontal: this.horizontal,
         show: this.thumbStart != 0,
-        hide: this.hide,
       };
     },
     thumbClass() {
@@ -62,7 +61,6 @@ export default {
       thumbTranslateXLimit: 0,
       scrollbarBorder: 4, // minus 4 px for border
       thumbStart: 0,
-      hide: false,
     };
   },
   methods: {
@@ -82,6 +80,11 @@ export default {
             ((this.bindElement.scrollWidth - this.bindElement.offsetWidth) /
               this.bindElement.scrollWidth) *
             this.scrollbarLength;
+          this.$emit(
+            "scrollUpdate",
+            this.bindElement.scrollLeft,
+            this.horizontal
+          );
         } else {
           this.scrollbarLength =
             this.$refs.scrollbar.offsetHeight - this.scrollbarBorder;
@@ -96,36 +99,26 @@ export default {
             ((this.bindElement.scrollHeight - this.bindElement.offsetHeight) /
               this.bindElement.scrollHeight) *
             this.scrollbarLength;
+          this.$emit(
+            "scrollUpdate",
+            this.bindElement.scrollTop,
+            this.horizontal
+          );
         }
       }
-    },
-    noNeedScroll(element) {
-      let result = false;
-      if (this.horizontal) {
-        if (element.scrollWidth === element.offsetWidth) {
-          result = true;
-        }
-      } else {
-        if (element.scrollHeight === element.offsetHeight) {
-          result = true;
-        }
-      }
-      return result;
     },
     bind(element) {
       if (this.bindElement) {
         this.bindElement.removeEventListener("scroll", this.scrollUpdate);
       }
-      if (this.noNeedScroll(element)) {
-        this.hide = true;
-        return;
-      } else {
-        this.hide = false;
-      }
       this.thumbStart = 0;
       this.bindElement = element;
-      this.bindElement.addEventListener("scroll", this.scrollUpdate);
       this.scrollUpdate();
+      this.bindElement.addEventListener("scroll", this.scrollUpdate);
+      this.$refs.scrollbar.addEventListener("mouseenter", this.scrollUpdate);
+      this.$refs.thumb.addEventListener("mousedown", this.thumbDown);
+      window.addEventListener("mousemove", this.thumbMove);
+      window.addEventListener("mouseup", this.thumbUp);
     },
     thumbDown(e) {
       if (this.horizontal) {
@@ -148,6 +141,11 @@ export default {
             (this.thumbTranslateX / this.scrollbarLength) *
             this.bindElement.scrollWidth;
           this.thumbStart = e.clientX;
+          this.$emit(
+            "scrollUpdate",
+            this.bindElement.scrollLeft,
+            this.horizontal
+          );
         } else {
           this.thumbTranslateY =
             this.thumbTranslateY + e.clientY - this.thumbStart;
@@ -160,6 +158,11 @@ export default {
             (this.thumbTranslateY / this.scrollbarLength) *
             this.bindElement.scrollHeight;
           this.thumbStart = e.clientY;
+          this.$emit(
+            "scrollUpdate",
+            this.bindElement.scrollTop,
+            this.horizontal
+          );
         }
       }
     },
@@ -167,15 +170,12 @@ export default {
       this.thumbStart = 0;
     },
   },
-  mounted() {
-    this.$refs.thumb.addEventListener("mousedown", this.thumbDown);
-    window.addEventListener("mousemove", this.thumbMove);
-    window.addEventListener("mouseup", this.thumbUp);
-  },
   destroyed() {
     if (this.bindElement) {
       this.bindElement.removeEventListener("scroll", this.scrollUpdate);
     }
+    this.$refs.scrollbar &&
+      this.$refs.scrollbar.removeEventListener("mouseenter", this.scrollUpdate);
     this.$refs.thumb &&
       this.$refs.thumb.removeEventListener("mousedown", this.thumbDown);
     window.removeEventListener("mousemove", this.thumbMove);
