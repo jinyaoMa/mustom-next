@@ -1,9 +1,15 @@
 <template>
   <div class="mn-container" :style="containerStyle">
-    <div class="mn-container-inner">
-      <slot></slot>
+    <div class="mn-container-inner" ref="inner">
+      <slot>
+        <div style="height: 200vh; width: 200vw; background: #eee">
+          1<br />
+          2<br />
+          3
+        </div>
+      </slot>
     </div>
-    <scrollbar></scrollbar>
+    <scrollbar ref="scrollbar"></scrollbar>
   </div>
 </template>
 
@@ -22,13 +28,26 @@ export default {
         return "100vh";
       },
     },
+    width: {
+      type: String,
+      default() {
+        return "100vw";
+      },
+    },
   },
   computed: {
     containerStyle() {
       return {
         height: this.height,
+        width: this.width,
       };
     },
+  },
+  mounted() {
+    this.$refs.scrollbar.bind(this.$refs.inner);
+  },
+  updated() {
+    this.$refs.scrollbar.bind(this.$refs.inner);
   },
 };
 </script>

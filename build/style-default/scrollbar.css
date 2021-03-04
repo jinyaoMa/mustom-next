@@ -1,1 +1,1 @@
-.mn-scrollbar{position:absolute;right:0;top:0;height:100%;width:var(--ruler-scrollbar);box-sizing:border-box;padding:2px 3px 2px 1px}.mn-scrollbar-thumb{width:100%;height:100%;background-color:#d3d3d3}
+.mn-scrollbar{position:absolute;right:0;top:0;height:100%;box-sizing:border-box;padding:2px 3px 2px 1px;opacity:0}.mn-scrollbar:hover{opacity:1}.mn-scrollbar-thumb{width:6px;height:100%;background-color:var(--color-text-placeholder);opacity:.5}.mn-scrollbar-thumb:hover{opacity:1}.mn-scrollbar-thumb.round{border-radius:3px}
