@@ -4,6 +4,7 @@ import header from "./header";
 import aside from "./aside";
 import main from "./main";
 import footer from "./footer";
+import block from "./block";
 
 export default {
   icon,
@@ -11,5 +12,6 @@ export default {
   header,
   aside,
   main,
-  footer
+  footer,
+  block
 };

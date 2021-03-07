@@ -68,6 +68,9 @@ export default {
         this.$refs.scrollbar.bind(this.$refs.inner);
       }
     },
+    scrollHeight() {
+      return this.$refs.inner.scrollHeight || 0;
+    },
   },
   mounted() {
     this.initScrollbar();
