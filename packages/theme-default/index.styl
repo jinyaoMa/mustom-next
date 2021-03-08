@@ -1,13 +1,13 @@
 :root
   /* brand */
-  for num in 0 .. 9
-    --color-primary-{num} lighten(#409eff, unit(num * 10, '%'))
+  for $num in 0 .. 9
+    --color-primary-{$num} lighten(#409eff, unit($num * 10, '%'))
   /* functional */
-  for num in 0 .. 9
-    --color-success-{num} lighten(#67c23a, unit(num * 10, '%'))
-    --color-warning-{num} lighten(#e6a23c, unit(num * 10, '%'))
-    --color-danger-{num} lighten(#f56c6c, unit(num * 10, '%'))
-    --color-info-{num} lighten(#909399, unit(num * 10, '%'))
+  for $num in 0 .. 9
+    --color-success-{$num} lighten(#67c23a, unit($num * 10, '%'))
+    --color-warning-{$num} lighten(#e6a23c, unit($num * 10, '%'))
+    --color-danger-{$num} lighten(#f56c6c, unit($num * 10, '%'))
+    --color-info-{$num} lighten(#909399, unit($num * 10, '%'))
   /* text */
   --color-text-primary #303133
   --color-text-regular #606266
@@ -23,3 +23,6 @@
   --color-black #000000
   --color-white #ffffff
   --color-transparent transparent
+  /* box-shadow */
+  --shadow-base 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04)
+  --shadow-light 0 2px 12px 0 rgba(0, 0, 0, 0.1)

@@ -1,0 +1,95 @@
+@import '../define.styl'
+
+.mn-button
+  display inline-block
+  user-select none
+  appearance none
+  line-height $lineHeightNone
+  white-space nowrap
+  cursor pointer
+  text-align center
+  box-sizing border-box
+  outline none
+  margin 0
+  transition 0.2s
+  font-weight 500
+  padding $fontExtraSmall $fontExtraLarge
+  font-size $fontBase
+  border-radius $borderRadiusLarge
+  .mn-icon
+    font-size $fontBase
+    margin-left: $fontBase * -0.35
+
+.mn-button.filled
+  height 100%
+  width 100%
+  display flex
+  flex-direction row
+  flex-wrap nowrap
+  align-items center
+  justify-content center
+  border none !important
+  .mn-icon
+    margin-left 0
+
+.mn-button.square
+  border-radius 0
+
+.mn-button.round
+  border-radius ($fontBase + $fontExtraSmall * 2) * 0.5
+
+.mn-button.circle
+  .mn-icon
+    font-size $fontLarge
+    margin-left 0
+  padding 8px 0
+  text-align center
+  width: $fontBase + 22px + $borderSolidWidth * 2
+  border-radius 50%
+
+for $type in $types
+  .mn-button.{$type}
+    if ($type == 'default')
+      background var(--color-white)
+      border $borderSolid var(--color-border-base)
+      color var(--color-text-regular)
+      &:hover, &:focus
+        background var(--color-primary-9)
+        border $borderSolid var(--color-primary-1)
+        color var(--color-primary-1)
+      &:active
+        background var(--color-primary-7)
+        border $borderSolid var(--color-primary-0)
+        color var(--color-primary-0)
+    else if ($type == 'text')
+      padding-left 0
+      padding-right 0
+      border none
+      background none
+      color var(--color-primary-1)
+      text-shadow 0 0 var(--color-primary-1)
+      &:hover, &:focus
+        color var(--color-primary-3)
+      &:active
+        color var(--color-primary-0)
+    else
+      background var(replace('type', $type, --color-type-1))
+      border $borderSolid var(replace('type', $type, --color-type-1))
+      color var(--color-white)
+      &:hover, &:focus
+        background var(replace('type', $type, --color-type-3))
+        border $borderSolid var(replace('type', $type, --color-type-3))
+      &:active
+        background var(replace('type', $type, --color-type-0))
+        border $borderSolid var(replace('type', $type, --color-type-0))
+      &.plain
+        background var(--color-primary-9)
+        border $borderSolid var(--color-primary-1)
+        color var(--color-primary-1)
+        &:hover, &:focus
+          background var(replace('type', $type, --color-type-1))
+          border $borderSolid var(replace('type', $type, --color-type-1))
+          color var(--color-white)
+        &:active
+          background var(replace('type', $type, --color-type-0))
+          border $borderSolid var(replace('type', $type, --color-type-0))

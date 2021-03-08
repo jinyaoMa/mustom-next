@@ -6,16 +6,22 @@
 export default {
   name: "mn-icon",
   props: {
-    icon: {
+    name: {
       type: String,
       default() {
         return "ma-jinyao";
       },
     },
+    fixWidth: {
+      type: Boolean,
+      default() {
+        return false;
+      },
+    },
   },
   computed: {
     iconClass() {
-      return `mn-icon mn-icon-${this.icon}`;
+      return `mn-icon mn-icon-${this.name}${this.fixWidth ? " fixWidth" : ""}`;
     },
   },
 };

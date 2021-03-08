@@ -3,7 +3,7 @@
     <component :is="layout" :key="layout" />
     <mn-container height="100vh" width="100vw">
       <mn-header height="80px">
-        <div style="height: 100%; background: lightcyan">header</div>
+        <Header></Header>
       </mn-header>
       <mn-container
         height="calc(100vh - 80px)"
