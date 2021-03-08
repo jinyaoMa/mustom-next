@@ -3,7 +3,7 @@
     <component :is="layout" :key="layout" />
     <mn-container height="100vh" width="100vw">
       <mn-header height="80px">
-        <span>header</span>
+        <div style="height: 100%; background: lightcyan">header</div>
       </mn-header>
       <mn-container
         height="calc(100vh - 80px)"
@@ -11,44 +11,71 @@
         @scroll="handleContainerScroll"
       >
         <mn-container
-          horizontal
+          :horizontal="isLeftFixed"
+          gap="80px"
+          :enable-gap="hasBodyGap"
           :style="{
-            padding: '0 80px',
+            maxWidth: '1680px',
           }"
         >
-          <mn-aside width="320px">
+          <mn-aside
+            :width="isLeftFixed ? asideWidth : 'auto'"
+            :gap="isLeftFixed ? 'auto' : gap"
+          >
             <mn-block
-              fixed
+              :fixed="isLeftFixed"
               height="calc(100vh - 80px)"
-              width="320px"
-              ref="block1"
+              width="280px"
+              ref="blockLeft"
             >
-              aside1
+              <div style="height: 120vh; background: yellow">
+                aside1
+                <div style="margin-top: 100vh">1</div>
+              </div>
             </mn-block>
           </mn-aside>
-          <mn-container horizontal>
+          <mn-container :horizontal="isRightFixed">
             <mn-container
               :style="{
                 minHeight: 'calc(100vh - 80px)',
               }"
             >
-              <mn-main>
-                <div style="height: 150vh">main</div>
+              <mn-main
+                :gap="gap"
+                :left-gap="isLeftFixed"
+                :right-gap="isRightFixed"
+              >
+                <div style="height: 150vh; background: lightcoral">main</div>
               </mn-main>
-              <mn-footer>
-                <span>footer</span>
+              <mn-footer
+                v-if="isLeftFixed && isRightFixed"
+                :gap="gap"
+                left-gap
+                right-gap
+              >
+                <div style="background: lightblue">footer</div>
               </mn-footer>
             </mn-container>
-            <mn-aside width="320px">
+            <mn-aside
+              :width="isRightFixed ? asideWidth : 'auto'"
+              :gap="isRightFixed ? 'auto' : gap"
+              :left-gap="!isRightFixed && isLeftFixed"
+            >
               <mn-block
-                fixed
+                :fixed="isRightFixed"
                 height="calc(100vh - 80px)"
-                width="320px"
-                ref="block2"
+                width="280px"
+                ref="blockRight"
               >
-                aside2
+                <div style="height: 150vh; background: lightgreen">
+                  aside2
+                  <div style="margin-top: 100vh">2</div>
+                </div>
               </mn-block>
             </mn-aside>
+            <mn-footer v-if="!isRightFixed" :gap="gap" :left-gap="isLeftFixed">
+              <div style="background: lightblue">footer</div>
+            </mn-footer>
           </mn-container>
         </mn-container>
       </mn-container>
@@ -77,13 +104,48 @@ export default {
   },
   methods: {
     handleContainerScroll(offset, isHorizontal) {
-      if (isHorizontal) {
+      if (!isHorizontal) {
+        this.$refs.blockLeft.setScrollTop(offset);
+        this.$refs.blockRight.setScrollTop(offset);
+      }
+    },
+    resizeUpdate() {
+      if (window.innerWidth > 1280) {
+        this.hasBodyGap = true;
+        this.isLeftFixed = true;
+        this.isRightFixed = true;
+      } else if (window.innerWidth > 1024) {
+        this.hasBodyGap = true;
+        this.isLeftFixed = true;
+        this.isRightFixed = false;
+      } else if (window.innerWidth > 768) {
+        this.hasBodyGap = true;
+        this.isLeftFixed = false;
+        this.isRightFixed = false;
+      } else {
+        this.hasBodyGap = false;
+        this.isLeftFixed = false;
+        this.isRightFixed = false;
       }
     },
   },
+  data() {
+    return {
+      isLeftFixed: true,
+      isRightFixed: true,
+      hasBodyGap: true,
+      asideWidth: "280px",
+      gap: "32px",
+    };
+  },
   mounted() {
-    console.log(this.$refs.block1.scrollHeight());
-    console.log(this.$refs.block2.scrollHeight());
+    console.log(this.$refs.blockLeft.scrollHeight());
+    console.log(this.$refs.blockRight.scrollHeight());
+    window.addEventListener("resize", this.resizeUpdate);
+    this.resizeUpdate();
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.resizeUpdate);
   },
 };
 </script>

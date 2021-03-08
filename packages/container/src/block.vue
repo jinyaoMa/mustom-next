@@ -30,8 +30,8 @@ export default {
   computed: {
     blockStyle() {
       return {
-        height: this.height,
-        width: this.width,
+        height: this.fixed ? this.height : "auto",
+        width: this.fixed ? this.width : "auto",
         position: this.fixed ? "fixed" : "relative",
       };
     },
@@ -39,6 +39,9 @@ export default {
   methods: {
     scrollHeight() {
       return this.$el.scrollHeight;
+    },
+    setScrollTop(scrollTop) {
+      this.$el.scrollTop = scrollTop;
     },
   },
 };

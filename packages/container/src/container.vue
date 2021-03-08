@@ -44,6 +44,18 @@ export default {
         return false;
       },
     },
+    gap: {
+      type: String,
+      default() {
+        return "auto";
+      },
+    },
+    enableGap: {
+      type: Boolean,
+      default() {
+        return true;
+      },
+    },
   },
   computed: {
     innerClass() {
@@ -56,6 +68,8 @@ export default {
       return {
         height: this.height,
         width: this.width,
+        paddingLeft: this.enableGap ? this.gap : 0,
+        paddingRight: this.enableGap ? this.gap : 0,
       };
     },
   },

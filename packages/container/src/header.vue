@@ -16,11 +16,19 @@ export default {
         return "80px";
       },
     },
+    gap: {
+      type: String,
+      default() {
+        return "auto";
+      },
+    },
   },
   computed: {
     headerStyle() {
       return {
         height: this.height,
+        paddingLeft: this.gap,
+        paddingRight: this.gap,
       };
     },
   },
