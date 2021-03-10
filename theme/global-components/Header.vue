@@ -5,7 +5,12 @@
         <mn-icon></mn-icon>
       </mn-button>
     </div>
-    <div class="sitetop"></div>
+    <div class="sitetop">
+      <mn-sitename font-size="25px">
+        <span>{{ $localeConfig.sitename }}</span>
+        <span slot="append">{{ $localeConfig.sitenameAppend }}</span>
+      </mn-sitename>
+    </div>
     <div class="corner">
       <mn-button square plain filled>
         <mn-icon></mn-icon>
@@ -32,6 +37,10 @@ export default {
 
 .sitetop
   flex-grow 1
+  display flex
+  flex-direction row
+  justify-content center
+  align-items center
 
 >>> .mn-icon
   font-size 32px

@@ -6,6 +6,7 @@ import main from "./main";
 import footer from "./footer";
 import block from "./block";
 import button from "./button";
+import sitename from "./sitename";
 
 export default {
   icon,
@@ -15,5 +16,6 @@ export default {
   main,
   footer,
   block,
-  button
+  button,
+  sitename
 };

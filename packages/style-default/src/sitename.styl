@@ -1,0 +1,32 @@
+@import '../define.styl'
+
+.mn-sitename
+  display inline-block
+  font-size $fontExtraLarge
+  line-height $lineHeightNormal
+  padding $borderRadiusLarge
+  font-weight bold
+
+.mn-sitename-text
+  position relative
+  z-index 1
+  color var(--color-white)
+
+.mn-sitename-prepend
+  margin-right: $borderRadiusLarge * 2
+
+.mn-sitename-append
+  margin-left: $borderRadiusLarge * 2
+
+.mn-sitename-prepend, .mn-sitename-append
+  position relative
+  display inline-block
+  &:after
+    content ''
+    position absolute
+    top: $borderRadiusLarge * -1
+    left: $borderRadiusLarge * -2
+    height s('calc(100% + %s)', $borderRadiusLarge * 2)
+    width s('calc(100% + %s)', $borderRadiusLarge * 4)
+    background var(--color-primary-0)
+    border-radius $borderRadiusLarge

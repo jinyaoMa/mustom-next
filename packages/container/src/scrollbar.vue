@@ -61,6 +61,7 @@ export default {
       thumbTranslateXLimit: 0,
       scrollbarBorder: 4, // minus 4 px for border
       thumbStart: 0,
+      scrollStart: 0,
     };
   },
   methods: {
@@ -83,8 +84,10 @@ export default {
           this.$emit(
             "scrollUpdate",
             this.bindElement.scrollLeft,
-            this.horizontal
+            this.horizontal,
+            this.bindElement.scrollLeft - this.scrollStart
           );
+          this.scrollStart = this.bindElement.scrollLeft;
         } else {
           this.scrollbarLength =
             this.$refs.scrollbar.offsetHeight - this.scrollbarBorder;
@@ -102,8 +105,10 @@ export default {
           this.$emit(
             "scrollUpdate",
             this.bindElement.scrollTop,
-            this.horizontal
+            this.horizontal,
+            this.bindElement.scrollTop - this.scrollStart
           );
+          this.scrollStart = this.bindElement.scrollTop;
         }
       }
     },
@@ -144,7 +149,8 @@ export default {
           this.$emit(
             "scrollUpdate",
             this.bindElement.scrollLeft,
-            this.horizontal
+            this.horizontal,
+            e.clientX - this.thumbStart
           );
         } else {
           this.thumbTranslateY =
@@ -161,7 +167,8 @@ export default {
           this.$emit(
             "scrollUpdate",
             this.bindElement.scrollTop,
-            this.horizontal
+            this.horizontal,
+            e.clientY - this.thumbStart
           );
         }
       }

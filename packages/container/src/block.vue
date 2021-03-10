@@ -40,8 +40,20 @@ export default {
     scrollHeight() {
       return this.$el.scrollHeight;
     },
+    scrollWidth() {
+      return this.$el.scrollHeight;
+    },
     setScrollTop(scrollTop) {
       this.$el.scrollTop = scrollTop;
+    },
+    setScrollLeft(scrollLeft) {
+      this.$el.scrollLeft = scrollLeft;
+    },
+    scrollTopDelta(delta) {
+      this.$el.scrollTop = this.$el.scrollTop + delta;
+    },
+    scrollLeftDelta(delta) {
+      this.$el.scrollLeft = this.$el.scrollLeft + delta;
     },
   },
 };

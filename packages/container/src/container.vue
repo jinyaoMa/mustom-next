@@ -74,8 +74,8 @@ export default {
     },
   },
   methods: {
-    scrollUpdate(offset, isHorizontal) {
-      this.$emit("scroll", offset, isHorizontal);
+    scrollUpdate(offset, isHorizontal, delta) {
+      this.$emit("scroll", offset, isHorizontal, delta);
     },
     initScrollbar() {
       if (this.scrollbar) {
@@ -84,6 +84,9 @@ export default {
     },
     scrollHeight() {
       return this.$refs.inner.scrollHeight || 0;
+    },
+    scrollWidth() {
+      return this.$refs.inner.scrollWidth || 0;
     },
   },
   mounted() {

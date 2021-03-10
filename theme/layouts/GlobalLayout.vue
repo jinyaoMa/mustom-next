@@ -9,6 +9,7 @@
         height="calc(100vh - 80px)"
         scrollbar
         @scroll="handleContainerScroll"
+        ref="scrollableContainer"
       >
         <mn-container
           :horizontal="isLeftFixed"
@@ -103,10 +104,10 @@ export default {
     },
   },
   methods: {
-    handleContainerScroll(offset, isHorizontal) {
+    handleContainerScroll(offset, isHorizontal, delta) {
       if (!isHorizontal) {
-        this.$refs.blockLeft.setScrollTop(offset);
-        this.$refs.blockRight.setScrollTop(offset);
+        this.$refs.blockLeft.scrollTopDelta(delta);
+        this.$refs.blockRight.scrollTopDelta(delta);
       }
     },
     resizeUpdate() {
@@ -139,8 +140,7 @@ export default {
     };
   },
   mounted() {
-    console.log(this.$refs.blockLeft.scrollHeight());
-    console.log(this.$refs.blockRight.scrollHeight());
+    console.log(this);
     window.addEventListener("resize", this.resizeUpdate);
     this.resizeUpdate();
   },

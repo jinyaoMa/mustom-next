@@ -2,4 +2,9 @@
 
 .mn-block
   display block
-  overflow hidden
+  overflow auto
+  overflow -moz-scrollbars-none
+  -ms-overflow-style none
+  &::-webkit-scrollbar
+    width 0 !important
+    height 0 !important

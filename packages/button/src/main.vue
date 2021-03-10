@@ -76,5 +76,16 @@ export default {
       };
     },
   },
+  methods: {
+    clickUpdate(e) {
+      this.$emit("click", e);
+    },
+  },
+  mounted() {
+    this.$el.addEventListener("click", this.clickUpdate);
+  },
+  destroyed() {
+    this.$el.removeEventListener("click", this.clickUpdate);
+  },
 };
 </script>
