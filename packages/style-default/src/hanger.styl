@@ -1,1 +1,10 @@
 @import '../define.styl'
+
+.mn-hanger
+  border $borderSolid var(--color-border-extra-light)
+  &.shadow
+    box-shadow var(--shadow-light)
+  &.round
+    border-radius $borderRadiusLarge
+    .mn-hanger-inner
+      margin $borderRadiusLarge 0

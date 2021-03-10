@@ -1,5 +1,9 @@
 <template>
-  <div class="AsideLeft"></div>
+  <div class="AsideLeft">
+    <mn-hanger>
+      <div style="background: white; height: 100px"></div>
+    </mn-hanger>
+  </div>
 </template>
 
 <script>
@@ -8,4 +12,7 @@ export default {
 };
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+.mn-hanger
+  margin 36px 0
+</style>

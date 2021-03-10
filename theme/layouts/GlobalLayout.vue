@@ -2,7 +2,7 @@
   <div id="GlobalLayout">
     <component :is="layout" :key="layout" />
     <mn-container height="100vh" width="100vw">
-      <mn-header height="80px">
+      <mn-header height="80px" style="z-index: 1">
         <Header></Header>
       </mn-header>
       <mn-container
