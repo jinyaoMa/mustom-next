@@ -29,10 +29,7 @@
               width="280px"
               ref="blockLeft"
             >
-              <div style="height: 120vh; background: yellow">
-                aside1
-                <div style="margin-top: 100vh">1</div>
-              </div>
+              <AsideLeft></AsideLeft>
             </mn-block>
           </mn-aside>
           <mn-container :horizontal="isRightFixed">
