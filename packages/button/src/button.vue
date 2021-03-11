@@ -57,6 +57,18 @@ export default {
         return false;
       },
     },
+    fixIcon: {
+      type: Boolean,
+      default() {
+        return false;
+      },
+    },
+    fixPadding: {
+      type: Boolean,
+      default() {
+        return false;
+      },
+    },
   },
   computed: {
     buttonClass() {
@@ -73,6 +85,8 @@ export default {
         square: this.square,
         round: this.round,
         circle: this.circle,
+        fixIcon: this.fixIcon,
+        fixPadding: this.fixPadding,
       };
     },
   },

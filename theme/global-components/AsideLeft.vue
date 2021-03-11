@@ -14,8 +14,3 @@ export default {
   },
 };
 </script>
-
-<style lang="stylus" scoped>
-.mn-hanger
-  margin 36px 0
-</style>

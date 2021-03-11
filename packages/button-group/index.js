@@ -1,4 +1,4 @@
-import Component from "./src/button.vue";
+import Component from "../button/src/button-group.vue";
 
 Component.install = function(Vue) {
   Vue.component(Component.name, Component);

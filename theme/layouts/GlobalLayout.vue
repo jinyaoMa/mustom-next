@@ -2,11 +2,11 @@
   <div id="GlobalLayout">
     <component :is="layout" :key="layout" />
     <mn-container height="100vh" width="100vw">
-      <mn-header height="80px" style="z-index: 1">
+      <mn-header :height="hasBodyGap ? '80px' : '64px'" style="z-index: 1">
         <Header></Header>
       </mn-header>
       <mn-container
-        height="calc(100vh - 80px)"
+        :height="hasBodyGap ? 'calc(100vh - 80px)' : 'calc(100vh - 64px)'"
         scrollbar
         @scroll="handleContainerScroll"
         ref="scrollableContainer"
@@ -16,8 +16,8 @@
       >
         <mn-container
           :horizontal="isLeftFixed"
-          gap="80px"
-          :enable-gap="hasBodyGap"
+          :gap="hasBodyGap ? '80px' : '4px'"
+          enable-gap
           :style="{
             maxWidth: '1680px',
           }"

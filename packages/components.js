@@ -6,6 +6,7 @@ import main from "./main";
 import footer from "./footer";
 import block from "./block";
 import button from "./button";
+import buttonGroup from "./button-group";
 import sitename from "./sitename";
 import hanger from "./hanger";
 import avatar from "./avatar";
@@ -19,6 +20,7 @@ export default {
   footer,
   block,
   button,
+  buttonGroup,
   sitename,
   hanger,
   avatar

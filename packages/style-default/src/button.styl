@@ -20,6 +20,11 @@
   .mn-icon
     font-size $fontBase
     margin-left: $fontBase * -0.35
+  &.fixIcon, &.filled
+    .mn-icon
+      margin-left 0
+  &.fixPadding
+    padding $fontExtraSmall
 
 .mn-button.filled
   height 100%
@@ -30,8 +35,6 @@
   align-items center
   justify-content center
   border none !important
-  .mn-icon
-    margin-left 0
 
 .mn-button.square
   border-radius 0
@@ -84,9 +87,9 @@ for $type in $types
         background var(replace('type', $type, --color-type-0))
         border $borderSolid var(replace('type', $type, --color-type-0))
       &.plain
-        background var(--color-primary-9)
-        border $borderSolid var(--color-primary-1)
-        color var(--color-primary-1)
+        background var(replace('type', $type, --color-type-9))
+        border $borderSolid var(replace('type', $type, --color-type-1))
+        color var(replace('type', $type, --color-type-1))
         &:hover, &:focus
           background var(replace('type', $type, --color-type-1))
           border $borderSolid var(replace('type', $type, --color-type-1))

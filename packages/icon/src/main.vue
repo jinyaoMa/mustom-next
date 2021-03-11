@@ -18,10 +18,18 @@ export default {
         return false;
       },
     },
+    fontawesome: {
+      type: Boolean,
+      default() {
+        return false;
+      },
+    },
   },
   computed: {
     iconClass() {
-      return `mn-icon mn-icon-${this.name}${this.fixWidth ? " fixWidth" : ""}`;
+      return this.fontawesome
+        ? this.name
+        : `mn-icon mn-icon-${this.name}${this.fixWidth ? " fixWidth" : ""}`;
     },
   },
 };

@@ -1,0 +1,17 @@
+@import '../define.styl'
+
+.mn-button-group
+  display flex
+  flex-direction row
+  .mn-button
+    &:first-child
+      border-top-right-radius $borderRadiusNone
+      border-bottom-right-radius $borderRadiusNone
+    &:last-child
+      border-top-left-radius $borderRadiusNone
+      border-bottom-left-radius $borderRadiusNone
+    &:not(:first-child):not(:last-child)
+      border-radius $borderRadiusNone
+      margin 0 $borderSolidWidth * -1
+    &:hover
+      z-index 1
