@@ -2,7 +2,7 @@
   <div class="Header">
     <div class="corner">
       <mn-button square plain filled>
-        <mn-icon></mn-icon>
+        <mn-icon name="cube"></mn-icon>
       </mn-button>
     </div>
     <div class="sitetop">
@@ -13,7 +13,7 @@
     </div>
     <div class="corner">
       <mn-button square plain filled>
-        <mn-icon></mn-icon>
+        <mn-icon name="search"></mn-icon>
       </mn-button>
     </div>
   </div>
@@ -43,5 +43,5 @@ export default {
   align-items center
 
 >>> .mn-icon
-  font-size 32px
+  font-size 20px
 </style>

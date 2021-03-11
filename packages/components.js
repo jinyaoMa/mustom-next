@@ -8,6 +8,7 @@ import block from "./block";
 import button from "./button";
 import sitename from "./sitename";
 import hanger from "./hanger";
+import avatar from "./avatar";
 
 export default {
   icon,
@@ -19,5 +20,6 @@ export default {
   block,
   button,
   sitename,
-  hanger
+  hanger,
+  avatar
 };

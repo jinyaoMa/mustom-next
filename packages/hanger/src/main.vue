@@ -8,7 +8,8 @@
         :style="captionStyle"
         ref="caption"
       >
-        <div class="mn-hanger-caption__title">
+        <div class="mn-hanger-caption__title" :style="titleStyle">
+          <icon v-if="icon" :name="icon" fix-width></icon>
           {{ caption }}
         </div>
         <div v-if="!disableSwitch" class="mn-hanger-caption__switch">
@@ -49,6 +50,9 @@ export default {
           ].indexOf(value) !== -1
         );
       },
+    },
+    icon: {
+      type: String,
     },
     plain: {
       type: Boolean,
@@ -122,6 +126,11 @@ export default {
         cursor: this.disableSwitch ? "default" : "pointer",
       };
     },
+    titleStyle() {
+      return {
+        paddingRight: this.gap,
+      };
+    },
   },
   methods: {
     clickUpdate() {
@@ -155,7 +164,8 @@ export default {
     }
   },
   destroyed() {
-    this.$refs.caption.removeEventListener("click", this.clickUpdate);
+    this.$refs.caption &&
+      this.$refs.caption.removeEventListener("click", this.clickUpdate);
   },
 };
 </script>
