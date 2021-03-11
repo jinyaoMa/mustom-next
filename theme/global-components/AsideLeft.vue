@@ -1,6 +1,6 @@
 <template>
   <div class="AsideLeft">
-    <mn-hanger>
+    <mn-hanger caption="测试" type="primary" plain>
       <div style="background: white; height: 100px"></div>
     </mn-hanger>
   </div>
