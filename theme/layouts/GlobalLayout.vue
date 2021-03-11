@@ -10,6 +10,9 @@
         scrollbar
         @scroll="handleContainerScroll"
         ref="scrollableContainer"
+        :style="{
+          background: '', //'linear-gradient(120deg,#f30,#c6f,#0cf)',
+        }"
       >
         <mn-container
           :horizontal="isLeftFixed"
