@@ -3,6 +3,8 @@
 .mn-button-group
   display flex
   flex-direction row
+  flex-wrap nowrap
+  overflow auto
   .mn-button
     &:first-child
       border-top-right-radius $borderRadiusNone
@@ -13,5 +15,5 @@
     &:not(:first-child):not(:last-child)
       border-radius $borderRadiusNone
       margin 0 $borderSolidWidth * -1
-    &:hover
+    &:hover, &:focus
       z-index 1

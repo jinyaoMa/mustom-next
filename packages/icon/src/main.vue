@@ -27,8 +27,8 @@ export default {
   },
   computed: {
     iconClass() {
-      return this.fontawesome
-        ? this.name
+      return this.fontawesome || /^fa[srldb]?\s/i.test(this.name.trim())
+        ? `mn-icon__fontawesome ${this.name}`
         : `mn-icon mn-icon-${this.name}${this.fixWidth ? " fixWidth" : ""}`;
     },
   },

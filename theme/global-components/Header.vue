@@ -1,19 +1,26 @@
 <template>
   <div class="Header">
     <div class="corner">
-      <mn-button square plain filled>
-        <mn-icon name="cube"></mn-icon>
+      <mn-button square plain filled :title="$localeConfig.settings.title">
+        <mn-icon :name="$localeConfig.settings.icon"></mn-icon>
       </mn-button>
     </div>
     <div class="sitetop">
       <mn-sitename>
-        <span>{{ $localeConfig.sitename }}</span>
-        <span slot="append">{{ $localeConfig.sitenameAppend }}</span>
+        <span v-if="$localeConfig.sitename.prepend" slot="prepend">
+          {{ $localeConfig.sitename.prepend }}
+        </span>
+        <span v-if="$localeConfig.sitename.text">
+          {{ $localeConfig.sitename.text }}
+        </span>
+        <span v-if="$localeConfig.sitename.append" slot="append">
+          {{ $localeConfig.sitename.append }}
+        </span>
       </mn-sitename>
     </div>
     <div class="corner">
-      <mn-button square plain filled>
-        <mn-icon name="search"></mn-icon>
+      <mn-button square plain filled :title="$localeConfig.search.title">
+        <mn-icon :name="$localeConfig.search.icon"></mn-icon>
       </mn-button>
     </div>
   </div>
@@ -44,14 +51,14 @@ export default {
   justify-content center
   align-items center
 
-.mn-icon
+[class*='mn-icon']
   font-size 20px
 
 .mn-sitename
   font-size 25px
 
 @media (max-width 768px)
-  .mn-icon
+  [class*='mn-icon']
     font-size 16px
   .mn-sitename
     font-size 20px

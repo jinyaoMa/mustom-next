@@ -17,11 +17,11 @@
   font-size $fontBase
   border-radius $borderRadiusLarge
   color var(--color-text-primary)
-  .mn-icon
+  [class*='mn-icon']
     font-size $fontBase
     margin-left: $fontBase * -0.35
   &.fixIcon, &.filled
-    .mn-icon
+    [class*='mn-icon']
       margin-left 0
   &.fixPadding
     padding $fontExtraSmall
@@ -43,7 +43,7 @@
   border-radius ($fontBase + $fontExtraSmall * 2) * 0.5
 
 .mn-button.circle
-  .mn-icon
+  [class*='mn-icon']
     font-size $fontLarge
     margin-left 0
   padding 8px 0
