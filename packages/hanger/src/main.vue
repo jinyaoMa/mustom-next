@@ -63,13 +63,13 @@ export default {
     shadow: {
       type: Boolean,
       default() {
-        return true;
+        return false;
       },
     },
     round: {
       type: Boolean,
       default() {
-        return true;
+        return false;
       },
     },
     defaultClose: {

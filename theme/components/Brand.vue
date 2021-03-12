@@ -5,6 +5,8 @@
     :icon="$localeConfig.brand.icon"
     type="primary"
     plain
+    round
+    shadow
   >
     <div class="inner">
       <mn-avatar size="128px" src="/assets/img/avatar.png" fit="contain" circle>

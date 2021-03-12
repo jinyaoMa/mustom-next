@@ -1,3 +1,5 @@
+const pkg = require("../../package.json");
+
 module.exports = {
   "/": {
     lang: "zh-CN",
@@ -76,6 +78,31 @@ module.exports = {
     tag: {
       icon: "fas fa-tags",
       caption: "标签"
+    },
+    footer: {
+      copyright: `© 2019 - ${new Date().getFullYear()} jinyaoMa`,
+      addition: [
+        `由 <a target="_blank" href="//vuepress.vuejs.org/" title="VuePress v${pkg.dependencies.vuepress.replace(
+          /[^\.0-9]/g,
+          ""
+        )}">VuePress</a> 强力驱动`,
+        `主题 <a target="_blank" href="//github.com/jinyaoMa/mustom-next" title="mustom-next">Mustom<sup>next</sup></a> By <a target="_blank" href="//github.com/jinyaoMa" title="jinyaoMa">jinyaoMa</a>`
+      ],
+      counter: {
+        pv: {
+          icon: "fas fa-eye",
+          text: "本站总点击量"
+        },
+        uv: {
+          icon: "fas fa-user",
+          text: "本站总访客量"
+        },
+        wd: {
+          icon: "fas fa-file-word",
+          text: "本站总词汇量"
+        }
+      },
+      license: `<a target="_blank" href="//creativecommons.org/licenses/by-nc-sa/4.0/" title="知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议"><img src="/assets/img/by-nc-sa.svg"></a>`
     }
   },
   "/en/": {
@@ -155,6 +182,31 @@ module.exports = {
     tag: {
       icon: "fas fa-tags",
       caption: "Tags"
+    },
+    footer: {
+      copyright: `© 2019 - ${new Date().getFullYear()} jinyaoMa`,
+      addition: [
+        `Powered by <a target="_blank" href="//vuepress.vuejs.org/" title="VuePress v${pkg.dependencies.vuepress.replace(
+          /[^\.0-9]/g,
+          ""
+        )}">VuePress</a>`,
+        `Theme <a target="_blank" href="//github.com/jinyaoMa/mustom-next" title="mustom-next">Mustom<sup>next</sup></a> By <a target="_blank" href="//github.com/jinyaoMa" title="jinyaoMa">jinyaoMa</a>`
+      ],
+      counter: {
+        pv: {
+          icon: "fas fa-eye",
+          text: "Site total page view"
+        },
+        uv: {
+          icon: "fas fa-user",
+          text: "Site total visitors"
+        },
+        wd: {
+          icon: "fas fa-file-word",
+          text: "Site total word count"
+        }
+      },
+      license: `<a target="_blank" href="//creativecommons.org/licenses/by-nc-sa/4.0/" title="Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License"><img src="/assets/img/by-nc-sa.svg"></a>`
     }
   }
 };

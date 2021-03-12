@@ -1,6 +1,18 @@
 export default (Vuex) => {
   return {
     computed: {
+      $siteWordsTotal() {
+        let result = 0;
+        this.$site.pages
+          .filter((p) => !!p.title)
+          .forEach((page) => {
+            result += page.frontmatter.wordcount;
+          });
+        if (result >= 1000) {
+          result = Math.round(result / 100) / 10 + "k";
+        }
+        return result;
+      },
       $sitePostsTotal() {
         return this.$site.pages.filter((p) => p.id === "post").length;
       },

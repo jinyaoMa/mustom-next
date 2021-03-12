@@ -5,6 +5,8 @@
     :icon="$localeConfig.tag.icon"
     type="primary"
     plain
+    round
+    shadow
   >
     <mn-cloud :cloud-data="$siteTagsForCloud"></mn-cloud>
   </mn-hanger>

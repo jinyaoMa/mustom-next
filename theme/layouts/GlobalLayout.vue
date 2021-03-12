@@ -46,7 +46,6 @@
                 :left-gap="isLeftFixed"
                 :right-gap="isRightFixed"
               >
-                <div style="height: 150vh">main</div>
               </mn-main>
               <mn-footer
                 v-if="isLeftFixed && isRightFixed"
@@ -54,7 +53,7 @@
                 left-gap
                 right-gap
               >
-                <div style="background: lightblue">footer</div>
+                <Footer></Footer>
               </mn-footer>
             </mn-container>
             <mn-aside
@@ -72,7 +71,7 @@
               </mn-block>
             </mn-aside>
             <mn-footer v-if="!isRightFixed" :gap="gap" :left-gap="isLeftFixed">
-              <div style="background: lightblue">footer</div>
+              <Footer></Footer>
             </mn-footer>
           </mn-container>
         </mn-container>
@@ -108,11 +107,11 @@ export default {
       }
     },
     resizeUpdate() {
-      if (window.innerWidth > 1280) {
+      if (window.innerWidth > 1440) {
         this.hasBodyGap = true;
         this.isLeftFixed = true;
         this.isRightFixed = true;
-      } else if (window.innerWidth > 1024) {
+      } else if (window.innerWidth > 1152) {
         this.hasBodyGap = true;
         this.isLeftFixed = true;
         this.isRightFixed = false;

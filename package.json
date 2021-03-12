@@ -1,6 +1,6 @@
 {
   "name": "@jinyaoma/mustom-next",
-  "version": "0.0.1-20210312.0217",
+  "version": "0.0.1-20210312.1531",
   "description": "",
   "scripts": {
     "build:icons": "node icons/index.js",
@@ -41,6 +41,7 @@
     "@fortawesome/fontawesome-free": "^5.15.2",
     "@vuepress/plugin-blog": "^1.9.4",
     "axios": "^0.21.1",
+    "vue-axios": "^3.2.4",
     "vuepress": "^1.8.0",
     "vuex": "^3.6.2"
   }

@@ -5,6 +5,8 @@
     :icon="$localeConfig.category.icon"
     type="primary"
     plain
+    round
+    shadow
   >
     <mn-cloud
       type="list"
