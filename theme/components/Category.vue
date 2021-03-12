@@ -10,7 +10,7 @@
   >
     <mn-cloud
       type="list"
-      font-size="16px"
+      font-size="15px"
       :cloud-data="$siteCategoriesForCloud"
     ></mn-cloud>
   </mn-hanger>

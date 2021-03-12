@@ -8,7 +8,7 @@
     round
     shadow
   >
-    <mn-cloud :cloud-data="$siteTagsForCloud"></mn-cloud>
+    <mn-cloud font-size="13px" :cloud-data="$siteTagsForCloud"></mn-cloud>
   </mn-hanger>
 </template>
 
