@@ -1,7 +1,7 @@
 module.exports = {
   "/": {
     lang: "zh-CN",
-    title: "耀の部落阁",
+    title: "耀的部落阁",
     archive: "归档",
     categories: "分类",
     tags: "标签",
@@ -54,17 +54,17 @@ module.exports = {
       contacts: [
         {
           icon: "fab fa-qq fa-fw",
-          hint: "通过 QQ 联系我",
+          tooltip: "通过 QQ 联系我",
           url: "tencent://Message/?uin=907881445"
         },
         {
           icon: "fas fa-envelope fa-fw",
-          hint: "通过 Email 联系我",
+          tooltip: "通过 Email 联系我",
           url: "mailto://jinyao.ma@outlook.com"
         },
         {
           icon: "fab fa-github fa-fw",
-          hint: "通过 Github 关注我",
+          tooltip: "通过 Github 关注我",
           url: "https://github.com/jinyaoMa"
         }
       ]
@@ -125,17 +125,17 @@ module.exports = {
       contacts: [
         {
           icon: "fab fa-qq fa-fw",
-          hint: "Contact me via QQ",
+          tooltip: "Contact me via QQ",
           url: "tencent://Message/?uin=907881445"
         },
         {
           icon: "fas fa-envelope fa-fw",
-          hint: "Contact me via Email",
+          tooltip: "Contact me via Email",
           url: "mailto://jinyao.ma@outlook.com"
         },
         {
           icon: "fab fa-github fa-fw",
-          hint: "Follow me via Github",
+          tooltip: "Follow me via Github",
           url: "https://github.com/jinyaoMa"
         }
       ]

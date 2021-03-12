@@ -30,12 +30,28 @@
           </div>
         </div>
         <div>
-          <div class="count">10</div>
-          <div>分类</div>
+          <div class="count">
+            {{ $siteCategoriesTotal }}
+          </div>
+          <div>
+            {{
+              $siteCategoriesTotal === 1
+                ? $localeConfig.unit.category.one
+                : $localeConfig.unit.category.more
+            }}
+          </div>
         </div>
         <div>
-          <div class="count">25</div>
-          <div>标签</div>
+          <div class="count">
+            {{ $siteTagsTotal }}
+          </div>
+          <div>
+            {{
+              $siteTagsTotal === 1
+                ? $localeConfig.unit.tag.one
+                : $localeConfig.unit.tag.more
+            }}
+          </div>
         </div>
       </div>
       <mn-button-group class="contact">
@@ -44,7 +60,7 @@
           :key="i"
           fix-icon
           fix-padding
-          :title="contact.hint"
+          :title="contact.tooltip"
         >
           <mn-icon :name="contact.icon"></mn-icon>
         </mn-button>
@@ -68,9 +84,12 @@ export default {
   padding 1.5em
 
 .name
-  margin-top 1em
-  font-size 1.25em
+  margin-top 0.75em
+  font-size 1.5em
   font-weight bold
+
+.signature
+  color var(--color-text-regular)
 
 .signature, .overview
   margin-top 0.5em
@@ -88,6 +107,7 @@ export default {
     display flex
     flex-direction column
     cursor pointer
+    color var(--color-text-regular)
     &:hover
       .count
         color var(--color-primary-0)
@@ -96,4 +116,5 @@ export default {
   margin-bottom 0.25em
   transition 0.2s
   font-weight bold
+  color var(--color-text-primary)
 </style>

@@ -1,6 +1,6 @@
 {
   "name": "@jinyaoma/mustom-next",
-  "version": "0.0.1-20210311.0058",
+  "version": "0.0.1-20210311.2203",
   "description": "",
   "scripts": {
     "build:icons": "node icons/index.js",

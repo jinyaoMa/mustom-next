@@ -2,8 +2,8 @@ function getDirectoriesByLocales(locales = {}) {
   const result = [];
   Object.keys(locales).forEach((locale) => {
     result.push({
-      id: locale.replace(/\//g, "") + "_post",
-      dirname: locale.replace("/", "") + "_posts",
+      id: "post",
+      dirname: "_posts",
       path: locale + "posts/",
       title: locales[locale].archive,
       layout: "Archive",
@@ -17,14 +17,14 @@ function getfrontmattersByLocales(locales = {}) {
   const result = [];
   Object.keys(locales).forEach((locale) => {
     result.push({
-      id: locale.replace(/\//g, "") + "_category",
+      id: "category",
       keys: ["category", "categories"],
       path: locale + "categories/",
       title: locales[locale].categories,
       scopeLayout: "Archive"
     });
     result.push({
-      id: locale.replace(/\//g, "") + "_tag",
+      id: "tag",
       keys: ["tag", "tags"],
       path: locale + "tags/",
       title: locales[locale].tags,
