@@ -68,6 +68,14 @@ module.exports = {
           url: "https://github.com/jinyaoMa"
         }
       ]
+    },
+    category: {
+      icon: "fas fa-folder-open",
+      caption: "分类"
+    },
+    tag: {
+      icon: "fas fa-tags",
+      caption: "标签"
     }
   },
   "/en/": {
@@ -139,6 +147,14 @@ module.exports = {
           url: "https://github.com/jinyaoMa"
         }
       ]
+    },
+    category: {
+      icon: "fas fa-folder-open",
+      caption: "Categories"
+    },
+    tag: {
+      icon: "fas fa-tags",
+      caption: "Tags"
     }
   }
 };

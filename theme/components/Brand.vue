@@ -61,6 +61,8 @@
           fix-icon
           fix-padding
           :title="contact.tooltip"
+          :to="contact.url"
+          external-link
         >
           <mn-icon :name="contact.icon"></mn-icon>
         </mn-button>

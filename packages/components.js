@@ -10,6 +10,7 @@ import buttonGroup from "./button-group";
 import sitename from "./sitename";
 import hanger from "./hanger";
 import avatar from "./avatar";
+import cloud from "./cloud";
 
 export default {
   icon,
@@ -23,5 +24,6 @@ export default {
   buttonGroup,
   sitename,
   hanger,
-  avatar
+  avatar,
+  cloud
 };

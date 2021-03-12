@@ -1,0 +1,48 @@
+@import '../define.styl'
+
+.mn-cloud.cloud
+  display flex
+  flex-direction row
+  flex-wrap wrap
+  align-items center
+  .mn-cloud-item
+    height fit-content
+    &:not(:last-child)
+      margin 0.1em 0 0.1em 0.5em
+    &:last-child
+      margin 0.1em 0.5em
+
+.mn-cloud.list
+  display flex
+  flex-direction column
+  flex-wrap wrap
+  .mn-cloud-item
+    position relative
+    width fit-content
+    margin 0.2em 0
+    &:before
+      content ''
+      position absolute
+      bottom 0
+      right 0
+      height $borderSolidWidth
+      width 0
+      background var(--color-primary-1)
+      transition 0.2s
+    &:hover:before
+      left 0
+      width 100%
+  .mn-cloud-count
+    position absolute
+    right -0.8em
+    top -0.5em
+    font-size 0.8em
+    color var(--color-primary-0)
+
+.mn-cloud-item
+  transition 0.2s
+  text-decoration none
+  color var(--color-text-primary)
+  display inline-block
+  &:hover
+    opacity 1 !important

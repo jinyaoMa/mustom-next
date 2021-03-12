@@ -1,7 +1,20 @@
 <template>
-  <button class="mn-button" :class="buttonClass">
-    <slot></slot>
-  </button>
+  <router-link
+    class="mn-button"
+    :class="buttonClass"
+    :to="to"
+    v-slot="{ href, navigate }"
+  >
+    <a v-if="externalLink" :href="to" target="_blank">
+      <slot></slot>
+    </a>
+    <a v-else-if="isAnchor" :href="href" @click="navigate">
+      <slot></slot>
+    </a>
+    <button v-else>
+      <slot></slot>
+    </button>
+  </router-link>
 </template>
 
 <script>
@@ -69,8 +82,23 @@ export default {
         return false;
       },
     },
+    to: {
+      type: String,
+      default() {
+        return "";
+      },
+    },
+    externalLink: {
+      type: Boolean,
+      default() {
+        return false;
+      },
+    },
   },
   computed: {
+    isAnchor() {
+      return this.to !== "";
+    },
     buttonClass() {
       return {
         default: this.type === "default",

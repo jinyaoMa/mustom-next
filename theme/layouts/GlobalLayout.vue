@@ -46,7 +46,7 @@
                 :left-gap="isLeftFixed"
                 :right-gap="isRightFixed"
               >
-                <div style="height: 150vh; background: lightcoral">main</div>
+                <div style="height: 150vh">main</div>
               </mn-main>
               <mn-footer
                 v-if="isLeftFixed && isRightFixed"
@@ -68,10 +68,7 @@
                 width="280px"
                 ref="blockRight"
               >
-                <div style="height: 150vh; background: lightgreen">
-                  aside2
-                  <div style="margin-top: 100vh">2</div>
-                </div>
+                <AsideRight></AsideRight>
               </mn-block>
             </mn-aside>
             <mn-footer v-if="!isRightFixed" :gap="gap" :left-gap="isLeftFixed">
