@@ -50,7 +50,24 @@ module.exports = {
     },
     menu: {
       icon: "fas fa-route fa-fw",
-      caption: "菜单"
+      caption: "菜单",
+      list: [
+        {
+          icon: "fas fa-home fa-fw",
+          text: "首页",
+          url: "/"
+        },
+        {
+          icon: "fas fa-blog fa-fw",
+          text: "博客",
+          url: "/posts/"
+        },
+        {
+          icon: "fas fa-school fa-fw",
+          text: "B.Tech",
+          url: "/b.tech/"
+        }
+      ]
     },
     brand: {
       icon: "fas fa-info-circle fa-fw",
@@ -76,11 +93,11 @@ module.exports = {
       ]
     },
     category: {
-      icon: "fas fa-folder-open",
+      icon: "fas fa-folder-open fa-fw",
       caption: "分类"
     },
     tag: {
-      icon: "fas fa-tags",
+      icon: "fas fa-tags fa-fw",
       caption: "标签"
     },
     footer: {
@@ -107,6 +124,10 @@ module.exports = {
         }
       },
       license: `<a target="_blank" href="//creativecommons.org/licenses/by-nc-sa/4.0/" title="知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议"><img src="/assets/img/by-nc-sa.svg"></a>`
+    },
+    clustrmaps: {
+      icon: "fas fa-map fa-fw",
+      caption: "Clustrmaps"
     }
   },
   "/en/": {
@@ -158,7 +179,24 @@ module.exports = {
     },
     menu: {
       icon: "fas fa-route fa-fw",
-      caption: "Menu"
+      caption: "Menu",
+      list: [
+        {
+          icon: "fas fa-home fa-fw",
+          text: "Home",
+          url: "/"
+        },
+        {
+          icon: "fas fa-blog fa-fw",
+          text: "Blog",
+          url: "/posts/"
+        },
+        {
+          icon: "fas fa-school fa-fw",
+          text: "B.Tech",
+          url: "/b.tech/"
+        }
+      ]
     },
     brand: {
       icon: "fas fa-info-circle",
@@ -184,11 +222,11 @@ module.exports = {
       ]
     },
     category: {
-      icon: "fas fa-folder-open",
+      icon: "fas fa-folder-open fa-fw",
       caption: "Categories"
     },
     tag: {
-      icon: "fas fa-tags",
+      icon: "fas fa-tags fa-fw",
       caption: "Tags"
     },
     footer: {
@@ -215,6 +253,10 @@ module.exports = {
         }
       },
       license: `<a target="_blank" href="//creativecommons.org/licenses/by-nc-sa/4.0/" title="Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License"><img src="/assets/img/by-nc-sa.svg"></a>`
+    },
+    clustrmaps: {
+      icon: "fas fa-map fa-fw",
+      caption: "Clustrmaps"
     }
   }
 };
