@@ -118,6 +118,6 @@ export default {
 
 >>> sup
   line-height 0.5
-  color var(--color-danger-0)
+  color var(--color-secondary-1)
   margin 0 0.1em
 </style>

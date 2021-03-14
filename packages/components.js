@@ -11,6 +11,9 @@ import sitename from "./sitename";
 import hanger from "./hanger";
 import avatar from "./avatar";
 import cloud from "./cloud";
+import menu from "./menu";
+import menuItem from "./menu-item";
+import submenu from "./submenu";
 
 export default {
   icon,
@@ -25,5 +28,8 @@ export default {
   sitename,
   hanger,
   avatar,
-  cloud
+  cloud,
+  menu,
+  menuItem,
+  submenu
 };

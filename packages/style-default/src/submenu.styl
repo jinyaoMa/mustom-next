@@ -1,0 +1,72 @@
+@import '../define.styl'
+
+.mn-menu.horizontal
+  .mn-submenu
+    position relative
+    line-height $lineHeightNone
+    &:hover
+      > .mn-submenu-caption .mn-menu-item
+        opacity 1
+      > .mn-submenu-list
+        opacity 1
+        pointer-events auto
+  .mn-submenu-caption
+    cursor default
+    padding $fontExtraSmall $fontExtraLarge
+    .mn-menu-item
+      margin: $fontExtraSmall * -1 ($fontExtraLarge * -1)
+  .mn-submenu-list
+    position absolute
+    background var(--color-white)
+    border $borderSolid var(--color-primary-9)
+    border-radius $borderRadiusLarge
+    transition 0.2s
+    opacity 0
+    pointer-events none
+    top s('calc(100% - %s)', $fontExtraSmall)
+    .mn-submenu-list
+      top 0
+    .mn-menu-item
+      padding $fontExtraSmall $fontExtraLarge
+      &:before
+        width 0
+        height 100%
+      &.exactActive:before
+        width: $fontExtraLarge * 0.1
+
+.mn-menu.vertical
+  .mn-submenu
+    position relative
+    line-height $lineHeightNone
+    &:hover
+      > .mn-submenu-list
+        opacity 1
+        pointer-events auto
+  .mn-submenu-list
+    position absolute
+    background var(--color-white)
+    border $borderSolid var(--color-primary-9)
+    transition 0.2s
+    opacity 0
+    pointer-events none
+    left 100%
+    top 0
+  .mn-submenu-caption
+    cursor default
+    padding $fontExtraLarge
+    .mn-menu-item
+      margin: $fontExtraLarge * -1
+  &.mini
+    .mn-submenu-caption
+      padding $fontExtraSmall $fontExtraLarge
+      .mn-menu-item
+        margin: $fontExtraSmall * -1 ($fontExtraLarge * -1)
+  .mn-menu-item
+    opacity 1
+    &:before
+      display none
+    &:hover, &:focus
+      background var(--color-primary-9)
+    &.exactActive
+      color var(--color-white)
+      background var(--color-primary-1)

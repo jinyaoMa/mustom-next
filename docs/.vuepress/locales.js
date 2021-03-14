@@ -48,6 +48,10 @@ module.exports = {
       icon: "fas fa-search",
       title: "搜索"
     },
+    menu: {
+      icon: "fas fa-route fa-fw",
+      caption: "菜单"
+    },
     brand: {
       icon: "fas fa-info-circle fa-fw",
       caption: "简介",
@@ -151,6 +155,10 @@ module.exports = {
     search: {
       icon: "fas fa-search",
       title: "Search"
+    },
+    menu: {
+      icon: "fas fa-route fa-fw",
+      caption: "Menu"
     },
     brand: {
       icon: "fas fa-info-circle",

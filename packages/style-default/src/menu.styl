@@ -1,0 +1,36 @@
+@import '../define.styl'
+
+.mn-menu
+  display flex
+  flex-wrap nowrap
+  position relative
+  white-space nowrap
+  &.alignLeft
+    .mn-submenu-list
+      left 0
+      .mn-menu-item
+        &:before
+          left 0
+          right auto
+      .mn-submenu-list
+        left 100%
+  &.alignRight
+    .mn-submenu-list
+      right 0
+      .mn-menu-item
+        &:before
+          left auto
+          right 0
+      .mn-submenu-list
+        right 100%
+
+.mn-menu.horizontal
+  flex-direction row
+  align-items center
+
+.mn-menu.vertical
+  flex-direction column
+  &.mini
+    .mn-menu-item
+      padding-top $fontExtraSmall
+      padding-bottom $fontExtraSmall

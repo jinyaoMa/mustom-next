@@ -2,6 +2,7 @@
   /* brand */
   for $num in 0 .. 9
     --color-primary-{$num} lighten(#409eff, unit($num * 10, '%'))
+    --color-secondary-{$num} lighten(#ff3300, unit($num * 10, '%'))
   /* functional */
   for $num in 0 .. 9
     --color-success-{$num} lighten(#67c23a, unit($num * 10, '%'))
