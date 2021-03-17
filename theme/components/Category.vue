@@ -29,6 +29,9 @@ export default {
     >>> .mn-cloud-count
       color var(--color-secondary-0)
       font-weight bold
+      right -1em
+  >>> .mn-cloud-item:before
+    height 2px
 
 >>> .router-link-exact-active
   color var(--color-primary-0)

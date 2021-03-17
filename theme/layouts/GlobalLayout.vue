@@ -32,7 +32,7 @@
               width="280px"
               ref="blockLeft"
             >
-              <AsideLeft></AsideLeft>
+              <AsideLeft :layout="layout"></AsideLeft>
             </mn-block>
           </mn-aside>
           <mn-container :horizontal="isRightFixed">
@@ -67,7 +67,7 @@
                 width="280px"
                 ref="blockRight"
               >
-                <AsideRight></AsideRight>
+                <AsideRight :layout="layout"></AsideRight>
               </mn-block>
             </mn-aside>
             <mn-footer v-if="!isRightFixed" :gap="gap" :left-gap="isLeftFixed">

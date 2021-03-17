@@ -1,6 +1,5 @@
 <template>
   <mn-hanger
-    class="Clustrmaps"
     :caption="$localeConfig.clustrmaps.caption"
     :icon="$localeConfig.clustrmaps.icon"
     type="primary"
