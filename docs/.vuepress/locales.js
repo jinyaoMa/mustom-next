@@ -184,17 +184,17 @@ module.exports = {
         {
           icon: "fas fa-home fa-fw",
           text: "Home",
-          url: "/"
+          url: "/en/"
         },
         {
           icon: "fas fa-blog fa-fw",
           text: "Blog",
-          url: "/posts/"
+          url: "/en/posts/"
         },
         {
           icon: "fas fa-school fa-fw",
           text: "B.Tech",
-          url: "/b.tech/"
+          url: "/en/b.tech/"
         }
       ]
     },

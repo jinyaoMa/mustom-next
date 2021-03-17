@@ -12,8 +12,8 @@
       <mn-menu-item
         v-for="(item, i) in $localeConfig.menu.list"
         :key="i"
-        :to="item.url"
-        :exact="item.url === '/'"
+        :to="encodeURI(item.url)"
+        :exact="item.url === $localePath"
       >
         <mn-icon :name="item.icon"></mn-icon>
         <span v-html="item.text"></span>
@@ -33,15 +33,16 @@ export default {
   margin 0.5em 0
 
 .mn-menu-item
+  padding 16px 20px
   &:after
     content ''
     position absolute
     right 20px
-    top 20px
-    width 1em
-    height 1em
+    top 17px
+    width 14px
+    height 14px
     border-radius 50%
-    box-shadow 0 0 0 0.1em var(--color-white)
+    box-shadow 0 0 0 3px var(--color-white)
     background var(--color-secondary-3)
     opacity 0
     transition 0.2s

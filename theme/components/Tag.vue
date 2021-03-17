@@ -21,4 +21,9 @@ export default {
 <style lang="stylus" scoped>
 .mn-cloud
   margin 12px
+
+>>> .router-link-exact-active
+  color var(--color-primary-0)
+  font-weight bold
+  opacity 1 !important
 </style>

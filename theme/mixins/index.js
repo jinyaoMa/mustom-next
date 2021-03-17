@@ -29,7 +29,8 @@ export default (Vuex) => {
           });
       },
       $siteCategoriesTotal() {
-        return this.$category.length;
+        const target = `$${this.$localePath.replace(/\//g, "")}_category`;
+        return this[target].length;
       },
       $siteCategoriesForCloud() {
         const result = [];
@@ -37,7 +38,7 @@ export default (Vuex) => {
           if (typeof key === "string") {
             children.push({
               text: key,
-              url: item.path,
+              url: encodeURI(item.path),
               count: item.pages.length,
               children: []
             });
@@ -48,7 +49,8 @@ export default (Vuex) => {
             }
           }
         };
-        Object.values(this.$category.map)
+        const target = `$${this.$localePath.replace(/\//g, "")}_category`;
+        Object.values(this[target].map)
           .sort((a, b) => {
             const keyA = a.key instanceof Array ? a.key.join() : a.key;
             const keyB = b.key instanceof Array ? b.key.join() : b.key;
@@ -60,7 +62,8 @@ export default (Vuex) => {
         return result;
       },
       $siteTagsTotal() {
-        return this.$tag.length;
+        const target = `$${this.$localePath.replace(/\//g, "")}_tag`;
+        return this[target].length;
       },
       $siteTagsForCloud() {
         const result = [];
@@ -68,7 +71,7 @@ export default (Vuex) => {
           if (typeof key === "string") {
             children.push({
               text: key,
-              url: item.path,
+              url: encodeURI(item.path),
               count: item.pages.length,
               children: []
             });
@@ -79,7 +82,8 @@ export default (Vuex) => {
             }
           }
         };
-        Object.values(this.$tag.map)
+        const target = `$${this.$localePath.replace(/\//g, "")}_tag`;
+        Object.values(this[target].map)
           .sort((a, b) => {
             const keyA = a.key instanceof Array ? a.key.join() : a.key;
             const keyB = b.key instanceof Array ? b.key.join() : b.key;

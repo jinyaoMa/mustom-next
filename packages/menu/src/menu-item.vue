@@ -3,6 +3,7 @@
     class="mn-menu-item"
     :to="to"
     v-slot="{ href, navigate, isActive, isExactActive }"
+    custom
   >
     <div v-if="to === ''">
       <slot></slot>

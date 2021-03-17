@@ -107,11 +107,11 @@ export default {
       }
     },
     resizeUpdate() {
-      if (window.innerWidth > 1440) {
+      if (window.innerWidth > 1366) {
         this.hasBodyGap = true;
         this.isLeftFixed = true;
         this.isRightFixed = true;
-      } else if (window.innerWidth > 1152) {
+      } else if (window.innerWidth > 1024) {
         this.hasBodyGap = true;
         this.isLeftFixed = true;
         this.isRightFixed = false;

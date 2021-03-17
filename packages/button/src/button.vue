@@ -4,6 +4,7 @@
     :class="buttonClass"
     :to="to"
     v-slot="{ href, navigate }"
+    custom
   >
     <a v-if="externalLink" :href="to" target="_blank">
       <slot></slot>
