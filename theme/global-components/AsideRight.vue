@@ -1,8 +1,5 @@
 <template>
   <div class="AsideRight">
-    <Brand
-      v-if="layout.toLowerCase() != 'archive' && layout.toLowerCase() != 'post'"
-    ></Brand>
     <Category v-if="layout.toLowerCase() === 'archive'"></Category>
     <Tag v-if="layout.toLowerCase() === 'archive'"></Tag>
     <Clustrmaps v-if="enableClustrmaps"></Clustrmaps>
@@ -10,7 +7,6 @@
 </template>
 
 <script>
-import Brand from "../components/Brand";
 import Category from "../components/Category";
 import Tag from "../components/Tag";
 import Clustrmaps from "../components/Clustrmaps";
@@ -23,7 +19,6 @@ export default {
     },
   },
   components: {
-    Brand,
     Category,
     Tag,
     Clustrmaps,

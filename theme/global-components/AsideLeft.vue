@@ -1,11 +1,7 @@
 <template>
   <div class="AsideLeft">
     <Menu></Menu>
-    <Brand
-      v-if="
-        layout.toLowerCase() === 'archive' || layout.toLowerCase() === 'post'
-      "
-    ></Brand>
+    <Brand></Brand>
   </div>
 </template>
 
