@@ -10,7 +10,7 @@
     <div class="Clustrmaps">
       <script
         v-if="isIt"
-        :id="$themeConfig.clustrmaps.id"
+        :id="$localeConfig.clustrmaps.id"
         ref="script"
       ></script>
     </div>
@@ -23,15 +23,15 @@ export default {
   computed: {
     isIt() {
       return (
-        this.$themeConfig.clustrmaps &&
-        this.$themeConfig.clustrmaps.id &&
-        this.$themeConfig.clustrmaps.src
+        this.$localeConfig.clustrmaps &&
+        this.$localeConfig.clustrmaps.id &&
+        this.$localeConfig.clustrmaps.src
       );
     },
   },
   mounted() {
     if (this.isIt) {
-      this.$refs.script.src = this.$themeConfig.clustrmaps.src;
+      this.$refs.script.src = this.$localeConfig.clustrmaps.src;
     }
   },
 };

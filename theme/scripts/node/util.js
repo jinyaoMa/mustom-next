@@ -2,12 +2,16 @@ function getDirectoriesByLocales(locales = {}) {
   const result = [];
   Object.keys(locales).forEach((locale) => {
     result.push({
-      id: "post",
-      dirname: "_posts",
+      id: locale.replace(/\//g, "") + "_post",
+      dirname: locale.replace(/\//, "") + "_posts",
       path: locale + "posts/",
       title: locales[locale].archive,
       layout: "Archive",
-      itemLayout: "Post"
+      itemLayout: "Post",
+      itemPermalink: "posts/:slug",
+      frontmatter: {
+        _auto_generated: true
+      }
     });
   });
   return result;
@@ -16,16 +20,18 @@ function getDirectoriesByLocales(locales = {}) {
 function getfrontmattersByLocales(locales = {}) {
   const result = [];
   Object.keys(locales).forEach((locale) => {
+    const lang = locale.replace(/\//g, "");
+    const prefix = lang === "" ? lang : lang + "_";
     result.push({
-      id: locale.replace(/\//g, "") + "_category",
-      keys: ["category", "categories"],
+      id: lang + "_category",
+      keys: [prefix + "category", prefix + "categories"],
       path: locale + "categories/",
       title: locales[locale].categories,
       scopeLayout: "Archive"
     });
     result.push({
-      id: locale.replace(/\//g, "") + "_tag",
-      keys: ["tag", "tags"],
+      id: lang + "_tag",
+      keys: [prefix + "tag", prefix + "tags"],
       path: locale + "tags/",
       title: locales[locale].tags,
       scopeLayout: "Archive"

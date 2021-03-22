@@ -3,22 +3,47 @@ export default (Vuex) => {
     computed: {
       $siteWordsTotal() {
         let result = 0;
-        this.$site.pages
-          .filter((p) => !!p.title)
-          .forEach((page) => {
-            result += page.frontmatter.wordcount;
-          });
+        this.$site.pages.forEach((page) => {
+          result += page.frontmatter.wordcount;
+        });
         if (result >= 1000) {
           result = Math.round(result / 100) / 10 + "k";
         }
         return result;
       },
+      $siteDocsTotal() {
+        return this.$site.pages.filter(
+          (p) =>
+            !p.id &&
+            p.frontmatter._locale === this.$localePath &&
+            !p.frontmatter._auto_generated
+        ).length;
+      },
+      $siteDocs() {
+        return this.$site.pages
+          .filter(
+            (p) =>
+              !p.id &&
+              p.frontmatter._locale === this.$localePath &&
+              !p.frontmatter._auto_generated
+          )
+          .sort((a, b) => {
+            if (a.frontmatter.updated < b.frontmatter.updated) {
+              return 1;
+            } else if (a.frontmatter.updated > b.frontmatter.updated) {
+              return -1;
+            }
+            return 0;
+          });
+      },
       $sitePostsTotal() {
-        return this.$site.pages.filter((p) => p.id === "post").length;
+        return this.$site.pages.filter(
+          (p) => p.id === this.$localePath.replace(/\//g, "") + "_post"
+        ).length;
       },
       $sitePosts() {
         return this.$site.pages
-          .filter((p) => p.id === "post")
+          .filter((p) => p.id === this.$localePath.replace(/\//g, "") + "_post")
           .sort((a, b) => {
             if (a.frontmatter.updated < b.frontmatter.updated) {
               return 1;

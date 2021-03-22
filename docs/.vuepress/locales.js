@@ -7,6 +7,9 @@ module.exports = {
     archive: "归档",
     categories: "分类",
     tags: "标签",
+    audioplayer: {
+      enable: true
+    },
     pagination: {
       title: {
         directory: "第 ? 页 | ?",
@@ -94,11 +97,28 @@ module.exports = {
     },
     category: {
       icon: "fas fa-folder-open fa-fw",
-      caption: "分类"
+      caption: "分类",
+      placeholder: "分类呢？我的分类呢？谁把我分类吃啦？"
     },
     tag: {
       icon: "fas fa-tags fa-fw",
-      caption: "标签"
+      caption: "标签",
+      placeholder:
+        "标签是不可能有标签了，这辈子都不会有标签了，只能看看分类这样子。"
+    },
+    recent: {
+      post: {
+        icon: "fas fa-paragraph fa-fw",
+        caption: "近期文章",
+        placeholder: "文章呢？我的文章呢？谁把我文章吃啦？（饱嗝.gif）",
+        limit: 5
+      },
+      doc: {
+        icon: "fas fa-align-left fa-fw",
+        caption: "近期文档",
+        placeholder: "文档呢？我的文档呢？谁把我文档吃啦？（饱嗝.gif）",
+        limit: 5
+      }
     },
     footer: {
       copyright: `© 2019 - ${new Date().getFullYear()} jinyaoMa`,
@@ -126,8 +146,12 @@ module.exports = {
       license: `<a target="_blank" href="//creativecommons.org/licenses/by-nc-sa/4.0/" title="知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议"><img src="/assets/img/by-nc-sa.svg"></a>`
     },
     clustrmaps: {
+      enable: true,
       icon: "fas fa-map fa-fw",
-      caption: "Clustrmaps"
+      caption: "Clustrmaps",
+      id: "clustrmaps", // clstr_globe / clustrmaps
+      src:
+        "//cdn.clustrmaps.com/map_v2.js?cl=333333&w=a&t=t&d=kuCCiVvtASTqmAMxPSTLcjxs-p8j6ht3LUi9z9Q-OKc&co=ffffff&cmo=3acc3a&cmn=ff5353&ct=333333"
     }
   },
   "/en/": {
@@ -136,6 +160,9 @@ module.exports = {
     archive: "Archive",
     categories: "Categories",
     tags: "Tags",
+    audioplayer: {
+      enable: true
+    },
     pagination: {
       title: {
         directory: "Page ? | ?",
@@ -190,11 +217,6 @@ module.exports = {
           icon: "fas fa-blog fa-fw",
           text: "Blog",
           url: "/en/posts/"
-        },
-        {
-          icon: "fas fa-school fa-fw",
-          text: "B.Tech",
-          url: "/en/b.tech/"
         }
       ]
     },
@@ -223,11 +245,27 @@ module.exports = {
     },
     category: {
       icon: "fas fa-folder-open fa-fw",
-      caption: "Categories"
+      caption: "Categories",
+      placeholder: "[Empty]"
     },
     tag: {
       icon: "fas fa-tags fa-fw",
-      caption: "Tags"
+      caption: "Tags",
+      placeholder: "[Empty]"
+    },
+    recent: {
+      post: {
+        icon: "fas fa-paragraph fa-fw",
+        caption: "Recent Posts",
+        placeholder: "[Empty]",
+        limit: 5
+      },
+      doc: {
+        icon: "fas fa-align-left fa-fw",
+        caption: "Recent Docs",
+        placeholder: "[Empty]",
+        limit: 5
+      }
     },
     footer: {
       copyright: `© 2019 - ${new Date().getFullYear()} jinyaoMa`,
@@ -255,8 +293,12 @@ module.exports = {
       license: `<a target="_blank" href="//creativecommons.org/licenses/by-nc-sa/4.0/" title="Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License"><img src="/assets/img/by-nc-sa.svg"></a>`
     },
     clustrmaps: {
+      enable: true,
       icon: "fas fa-map fa-fw",
-      caption: "Clustrmaps"
+      caption: "Clustrmaps",
+      id: "clustrmaps", // clstr_globe / clustrmaps
+      src:
+        "//cdn.clustrmaps.com/map_v2.js?cl=333333&w=a&t=t&d=kuCCiVvtASTqmAMxPSTLcjxs-p8j6ht3LUi9z9Q-OKc&co=ffffff&cmo=3acc3a&cmn=ff5353&ct=333333"
     }
   }
 };

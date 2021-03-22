@@ -2,6 +2,8 @@
   <div class="AsideRight">
     <Category v-if="layout.toLowerCase() === 'archive'"></Category>
     <Tag v-if="layout.toLowerCase() === 'archive'"></Tag>
+    <Recent v-if="$route.path === $localePath" type="post"></Recent>
+    <Recent v-if="$route.path === $localePath" type="doc"></Recent>
     <Clustrmaps v-if="enableClustrmaps"></Clustrmaps>
   </div>
 </template>
@@ -10,6 +12,7 @@
 import Category from "../components/Category";
 import Tag from "../components/Tag";
 import Clustrmaps from "../components/Clustrmaps";
+import Recent from "../components/Recent";
 
 export default {
   name: "AsideRight",
@@ -22,11 +25,12 @@ export default {
     Category,
     Tag,
     Clustrmaps,
+    Recent,
   },
   computed: {
     enableClustrmaps() {
       return (
-        this.$themeConfig.clustrmaps && this.$themeConfig.clustrmaps.enable
+        this.$localeConfig.clustrmaps && this.$localeConfig.clustrmaps.enable
       );
     },
   },

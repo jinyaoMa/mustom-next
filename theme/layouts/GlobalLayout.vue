@@ -1,7 +1,7 @@
 <template>
   <div id="GlobalLayout">
-    <component :is="layout" :key="layout" />
-    <mn-container height="100vh" width="100vw">
+    <component v-if="layout === 'NotFound'" :is="layout" :key="layout" />
+    <mn-container v-else height="100vh" width="100vw">
       <mn-header :height="hasBodyGap ? '80px' : '64px'" style="z-index: 1">
         <Header></Header>
       </mn-header>
@@ -46,6 +46,7 @@
                 :left-gap="isLeftFixed"
                 :right-gap="isRightFixed"
               >
+                <component :is="layout" :key="layout" />
               </mn-main>
               <mn-footer
                 v-if="isLeftFixed && isRightFixed"

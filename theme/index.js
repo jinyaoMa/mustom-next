@@ -28,7 +28,7 @@ module.exports = (_, context) => {
       path // current page's real link (use regularPath when permalink does not exist)
     } = $page;
 
-    // word count && read time
+    // word count & read time
     if (_strippedContent) {
       const zh = (_strippedContent.match(/[\u4E00-\u9FA5]/g) || []).length;
       const en = (
@@ -45,6 +45,25 @@ module.exports = (_, context) => {
       frontmatter.wordcount = 0;
       frontmatter.min2read = 0;
     }
+
+    // for classifying docs
+    Object.keys(locales)
+      .sort((a, b) => {
+        return a.localeCompare(b);
+      })
+      .forEach((prefix) => {
+        // split by locale
+        if (regularPath.startsWith(prefix)) {
+          frontmatter._locale = prefix;
+        }
+        // pick out auto-generated page
+        if (
+          regularPath.startsWith(prefix + "categories/") ||
+          regularPath.startsWith(prefix + "tags/")
+        ) {
+          frontmatter._auto_generated = true;
+        }
+      });
   };
 
   return {

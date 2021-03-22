@@ -8,7 +8,16 @@
     round
     shadow
   >
-    <mn-cloud font-size="13px" :cloud-data="$siteTagsForCloud"></mn-cloud>
+    <mn-cloud
+      v-if="$siteTagsTotal > 0"
+      font-size="13px"
+      :cloud-data="$siteTagsForCloud"
+    ></mn-cloud>
+    <div
+      v-else
+      class="placeholder"
+      v-html="$localeConfig.tag.placeholder"
+    ></div>
   </mn-hanger>
 </template>
 
@@ -19,6 +28,10 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.placeholder
+  margin 12px 20px
+  color var(--color-text-placeholder)
+
 .mn-cloud
   margin 12px
 
