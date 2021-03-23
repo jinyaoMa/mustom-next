@@ -11,6 +11,7 @@ module.exports = {
       enable: true
     },
     pagination: {
+      lengthPerPage: 9,
       title: {
         directory: "第 ? 页 | ?",
         frontmatter: "第 ? 页 - ? | ?"
@@ -168,6 +169,7 @@ module.exports = {
       enable: true
     },
     pagination: {
+      lengthPerPage: 9,
       title: {
         directory: "Page ? | ?",
         frontmatter: "Page ? - ? | ?"

@@ -11,6 +11,22 @@ function getDirectoriesByLocales(locales = {}) {
       itemPermalink: "posts/:slug",
       frontmatter: {
         _auto_generated: true
+      },
+      pagination: {
+        sorter(prev, next) {
+          const dayjs = require("dayjs");
+          const prevTime = dayjs(prev.frontmatter.updated);
+          const nextTime = dayjs(next.frontmatter.updated);
+          return prevTime - nextTime > 0 ? -1 : 1;
+        },
+        prevText: locales[locale].pagination.prev.page,
+        nextText: locales[locale].pagination.next.page,
+        lengthPerPage: locales[locale].pagination.lengthPerPage,
+        getPaginationPageTitle(pageNumber) {
+          return locales[locale].pagination.title.directory
+            .replace("?", pageNumber)
+            .replace("?", locales[locale].archive);
+        }
       }
     });
   });
@@ -27,14 +43,48 @@ function getfrontmattersByLocales(locales = {}) {
       keys: [prefix + "category", prefix + "categories"],
       path: locale + "categories/",
       title: locales[locale].categories,
-      scopeLayout: "Archive"
+      scopeLayout: "Archive",
+      pagination: {
+        sorter(prev, next) {
+          const dayjs = require("dayjs");
+          const prevTime = dayjs(prev.frontmatter.updated);
+          const nextTime = dayjs(next.frontmatter.updated);
+          return prevTime - nextTime > 0 ? -1 : 1;
+        },
+        prevText: locales[locale].pagination.prev.page,
+        nextText: locales[locale].pagination.next.page,
+        lengthPerPage: locales[locale].pagination.lengthPerPage,
+        getPaginationPageTitle(pageNumber, key) {
+          return locales[locale].pagination.title.frontmatter
+            .replace("?", pageNumber)
+            .replace("?", key)
+            .replace("?", locales[locale].categories);
+        }
+      }
     });
     result.push({
       id: lang + "_tag",
       keys: [prefix + "tag", prefix + "tags"],
       path: locale + "tags/",
       title: locales[locale].tags,
-      scopeLayout: "Archive"
+      scopeLayout: "Archive",
+      pagination: {
+        sorter(prev, next) {
+          const dayjs = require("dayjs");
+          const prevTime = dayjs(prev.frontmatter.updated);
+          const nextTime = dayjs(next.frontmatter.updated);
+          return prevTime - nextTime > 0 ? -1 : 1;
+        },
+        prevText: locales[locale].pagination.prev.page,
+        nextText: locales[locale].pagination.next.page,
+        lengthPerPage: locales[locale].pagination.lengthPerPage,
+        getPaginationPageTitle(pageNumber, key) {
+          return locales[locale].pagination.title.frontmatter
+            .replace("?", pageNumber)
+            .replace("?", key)
+            .replace("?", locales[locale].tags);
+        }
+      }
     });
   });
   return result;
