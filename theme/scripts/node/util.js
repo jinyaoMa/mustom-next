@@ -13,7 +13,7 @@ function getDirectoriesByLocales(locales = {}) {
         _auto_generated: true
       },
       pagination: {
-        sorter(prev, next) {
+        sorter: (prev, next) => {
           const dayjs = require("dayjs");
           const prevTime = dayjs(prev.frontmatter.updated);
           const nextTime = dayjs(next.frontmatter.updated);
@@ -22,6 +22,7 @@ function getDirectoriesByLocales(locales = {}) {
         prevText: locales[locale].pagination.prev.page,
         nextText: locales[locale].pagination.next.page,
         lengthPerPage: locales[locale].pagination.lengthPerPage,
+        layout: "Archive",
         getPaginationPageTitle(pageNumber) {
           return locales[locale].pagination.title.directory
             .replace("?", pageNumber)
@@ -45,7 +46,7 @@ function getfrontmattersByLocales(locales = {}) {
       title: locales[locale].categories,
       scopeLayout: "Archive",
       pagination: {
-        sorter(prev, next) {
+        sorter: (prev, next) => {
           const dayjs = require("dayjs");
           const prevTime = dayjs(prev.frontmatter.updated);
           const nextTime = dayjs(next.frontmatter.updated);
@@ -54,6 +55,7 @@ function getfrontmattersByLocales(locales = {}) {
         prevText: locales[locale].pagination.prev.page,
         nextText: locales[locale].pagination.next.page,
         lengthPerPage: locales[locale].pagination.lengthPerPage,
+        layout: "Archive",
         getPaginationPageTitle(pageNumber, key) {
           return locales[locale].pagination.title.frontmatter
             .replace("?", pageNumber)
@@ -69,7 +71,7 @@ function getfrontmattersByLocales(locales = {}) {
       title: locales[locale].tags,
       scopeLayout: "Archive",
       pagination: {
-        sorter(prev, next) {
+        sorter: (prev, next) => {
           const dayjs = require("dayjs");
           const prevTime = dayjs(prev.frontmatter.updated);
           const nextTime = dayjs(next.frontmatter.updated);
@@ -78,6 +80,7 @@ function getfrontmattersByLocales(locales = {}) {
         prevText: locales[locale].pagination.prev.page,
         nextText: locales[locale].pagination.next.page,
         lengthPerPage: locales[locale].pagination.lengthPerPage,
+        layout: "Archive",
         getPaginationPageTitle(pageNumber, key) {
           return locales[locale].pagination.title.frontmatter
             .replace("?", pageNumber)

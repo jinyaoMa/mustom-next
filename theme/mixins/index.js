@@ -65,7 +65,7 @@ export default (Vuex) => {
           if (typeof key === "string") {
             children.push({
               text: key,
-              url: encodeURI(item.path),
+              url: item.path,
               count: item.pages.length,
               children: []
             });
@@ -99,7 +99,7 @@ export default (Vuex) => {
           if (typeof key === "string") {
             children.push({
               text: key,
-              url: encodeURI(item.path),
+              url: item.path,
               count: item.pages.length,
               children: []
             });

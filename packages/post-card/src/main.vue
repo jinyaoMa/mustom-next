@@ -32,7 +32,10 @@
       </div>
       <div class="mn-post-card-last">
         <div class="mn-post-card-categories">
-          <Icon :name="icons[2]"></Icon>
+          <Icon
+            v-if="postData.categories && postData.categories.length"
+            :name="icons[2]"
+          ></Icon>
           <span v-for="(item, i) in postData.categories" :key="i">
             <span v-if="i !== 0">, </span>
             <router-link :to="item.path">
