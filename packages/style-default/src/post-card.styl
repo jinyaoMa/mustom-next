@@ -1,0 +1,118 @@
+@import '../define.styl'
+
+.mn-post-card
+  display flex
+  font-size $fontBase
+  overflow hidden
+  background var(--color-white)
+  border $borderDashed var(--color-border-extra-light)
+  border-radius $borderRadiusLarge
+  p
+    margin: $fontExtraSmall * 0.5 0
+  &.noBorder
+    border-width 0
+    border-radius $borderRadiusNone
+  &.vertical
+    flex-direction column
+  &.horizontal
+    flex-direction row
+    &.reverse
+      flex-direction row-reverse
+    .mn-post-card-cover
+      max-width 50%
+    .mn-post-card-inner
+      width 100%
+
+.mn-post-card-inner
+  padding $fontExtraSmall
+  display flex
+  flex-direction column
+
+.mn-post-card-cover
+  display flex
+  flex-direction column
+  text-align center
+  justify-content center
+  background-color var(--color-border-extra-light)
+  > img
+    max-width 100%
+    display block
+    object-fit cover
+    object-position center
+    margin 0 auto
+
+.mn-post-card-title
+  display inline-block
+  text-decoration none
+  font-size $fontExtraLarge
+  font-weight bold
+  cursor pointer
+  color var(--color-secondary-0)
+  transition 0.2s
+  width fit-content
+  &:hover, &:focus
+    color var(--color-primary-0)
+
+.mn-post-card-meta
+  margin-top $fontExtraSmall
+
+.mn-post-card-meta, .mn-post-card-last
+  display flex
+  flex-direction row
+  flex-wrap wrap
+  font-size $fontSmall
+
+.mn-post-card-date, .mn-post-card-updated
+  margin-right $fontExtraSmall
+  white-space nowrap
+  transition 0.2s
+  color var(--color-text-secondary)
+  &:hover
+    color var(--color-text-regular)
+
+.mn-post-card-except
+  margin-top $fontExtraSmall
+  color var(--color-text-primary)
+  flex-grow 1
+  a
+    display inline-block
+    text-decoration none
+    color var(--color-primary-0)
+    position relative
+    &:before
+      content ''
+      position absolute
+      bottom 0
+      left 0
+      height 1px
+      width 0
+      background var(--color-primary-0)
+      transition 0.2s
+    &:hover:before, &:focus:before
+      width 100%
+
+.mn-post-card-last
+  justify-content space-between
+  color var(--color-text-secondary)
+
+.mn-post-card-categories
+  margin-top $fontExtraSmall
+  a
+    display inline-block
+    text-decoration none
+    color var(--color-secondary-4)
+    transition 0.2s
+    &:hover, &:focus
+      font-weight bold
+      color var(--color-secondary-0)
+
+.mn-post-card-more
+  margin-top $fontExtraSmall
+  font-size $fontExtraSmall
+  display inline-block
+  text-decoration none
+  color var(--color-primary-4)
+  transition 0.2s
+  &:hover, &:focus
+    font-weight bold
+    color var(--color-primary-0)

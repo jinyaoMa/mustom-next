@@ -14,6 +14,7 @@ import cloud from "./cloud";
 import menu from "./menu";
 import menuItem from "./menu-item";
 import submenu from "./submenu";
+import postCard from "./post-card";
 
 export default {
   icon,
@@ -31,5 +32,6 @@ export default {
   cloud,
   menu,
   menuItem,
-  submenu
+  submenu,
+  postCard
 };

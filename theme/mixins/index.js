@@ -53,9 +53,11 @@ export default (Vuex) => {
             return 0;
           });
       },
+      $siteCategories() {
+        return this[`$${this.$localePath.replace(/\//g, "")}_category`];
+      },
       $siteCategoriesTotal() {
-        const target = `$${this.$localePath.replace(/\//g, "")}_category`;
-        return this[target].length;
+        return this.$siteCategories.length;
       },
       $siteCategoriesForCloud() {
         const result = [];
@@ -74,8 +76,7 @@ export default (Vuex) => {
             }
           }
         };
-        const target = `$${this.$localePath.replace(/\//g, "")}_category`;
-        Object.values(this[target].map)
+        Object.values(this.$siteCategories.map)
           .sort((a, b) => {
             const keyA = a.key instanceof Array ? a.key.join() : a.key;
             const keyB = b.key instanceof Array ? b.key.join() : b.key;
@@ -86,9 +87,11 @@ export default (Vuex) => {
           });
         return result;
       },
+      $siteTags() {
+        return this[`$${this.$localePath.replace(/\//g, "")}_tag`];
+      },
       $siteTagsTotal() {
-        const target = `$${this.$localePath.replace(/\//g, "")}_tag`;
-        return this[target].length;
+        return this.$siteTags.length;
       },
       $siteTagsForCloud() {
         const result = [];
@@ -107,8 +110,7 @@ export default (Vuex) => {
             }
           }
         };
-        const target = `$${this.$localePath.replace(/\//g, "")}_tag`;
-        Object.values(this[target].map)
+        Object.values(this.$siteTags.map)
           .sort((a, b) => {
             const keyA = a.key instanceof Array ? a.key.join() : a.key;
             const keyB = b.key instanceof Array ? b.key.join() : b.key;

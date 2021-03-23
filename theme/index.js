@@ -39,11 +39,17 @@ module.exports = (_, context) => {
           ) || []
       ).length;
       const min2read = zh / 150 + en / 100;
-      frontmatter.wordcount = zh + en;
-      $page.frontmatter.min2read = min2read < 1 ? "1" : parseInt(min2read, 10);
+      frontmatter._wordcount = zh + en;
+      frontmatter._min2read = min2read < 1 ? "1" : parseInt(min2read, 10);
     } else {
-      frontmatter.wordcount = 0;
-      frontmatter.min2read = 0;
+      frontmatter._wordcount = 0;
+      frontmatter._min2read = 0;
+    }
+    if (typeof frontmatter.wordcount === "undefined") {
+      frontmatter.wordcount = frontmatter._wordcount;
+    }
+    if (typeof frontmatter.min2read === "undefined") {
+      frontmatter.min2read = frontmatter._min2read;
     }
 
     // for classifying docs
@@ -64,6 +70,17 @@ module.exports = (_, context) => {
           frontmatter._auto_generated = true;
         }
       });
+
+    // extract cover
+    if (_strippedContent && typeof frontmatter.cover === "undefined") {
+      const matches =
+        _strippedContent.match(/\!\[[^\]]*\]\(\s*([^\)]+)\s*\)/) || [];
+      if (matches.length > 1) {
+        frontmatter.cover = matches[1].replace(/\s+['"][^'"]+['"]$/, "");
+      } else {
+        frontmatter.cover = false;
+      }
+    }
   };
 
   return {

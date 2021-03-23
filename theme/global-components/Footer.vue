@@ -64,6 +64,7 @@ export default {
 
 <style lang="stylus" scoped>
 .Footer
+  margin-top 18px
   margin-bottom 0
   border-radius 4px 4px 0 0
 

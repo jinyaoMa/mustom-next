@@ -4,7 +4,7 @@ module.exports = {
   "/": {
     lang: "zh-CN",
     title: "耀的部落阁",
-    archive: "归档",
+    archive: "博客",
     categories: "分类",
     tags: "标签",
     audioplayer: {
@@ -152,12 +152,16 @@ module.exports = {
       id: "clustrmaps", // clstr_globe / clustrmaps
       src:
         "//cdn.clustrmaps.com/map_v2.js?cl=333333&w=a&t=t&d=kuCCiVvtASTqmAMxPSTLcjxs-p8j6ht3LUi9z9Q-OKc&co=ffffff&cmo=3acc3a&cmn=ff5353&ct=333333"
+    },
+    content: {
+      icon: "ma-jinyao",
+      caption: "页面内容"
     }
   },
   "/en/": {
     lang: "en-US",
     title: "Mark's bloG",
-    archive: "Archive",
+    archive: "Blog",
     categories: "Categories",
     tags: "Tags",
     audioplayer: {
@@ -299,6 +303,10 @@ module.exports = {
       id: "clustrmaps", // clstr_globe / clustrmaps
       src:
         "//cdn.clustrmaps.com/map_v2.js?cl=333333&w=a&t=t&d=kuCCiVvtASTqmAMxPSTLcjxs-p8j6ht3LUi9z9Q-OKc&co=ffffff&cmo=3acc3a&cmn=ff5353&ct=333333"
+    },
+    content: {
+      icon: "ma-jinyao",
+      caption: "Page Content"
     }
   }
 };
