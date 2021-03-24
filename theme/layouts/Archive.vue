@@ -9,7 +9,7 @@
     shadow
     disableSwitch
   >
-    <div class="inner">
+    <div class="inner" ref="inner">
       <div v-for="(post, i) in posts" :key="i">
         <mn-post-card
           :post-data="post"
@@ -25,7 +25,7 @@
             $localeConfig.meta.categories.text,
           ]"
           :textMore="$localeConfig.meta.more.text"
-          horizontal
+          :horizontal="horizontal"
           no-border
           reverse
         ></mn-post-card>
@@ -82,6 +82,21 @@ export default {
         this.setCate(cates, map, key[1], _parent);
       }
     },
+    resizeUpdate() {
+      this.horizontal = !(this.$refs.inner.offsetWidth < 758);
+    },
+  },
+  data() {
+    return {
+      horizontal: true,
+    };
+  },
+  mounted() {
+    window.addEventListener("resize", this.resizeUpdate);
+    this.resizeUpdate();
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.resizeUpdate);
   },
 };
 </script>
@@ -101,7 +116,7 @@ export default {
   display block
   clear both
   margin 20px -20px
-  border-top 4px dashed var(--color-primary-9)
+  border-top 4px dashed var(--color-primary-8)
 
 >>> .pagination
   margin 0 auto

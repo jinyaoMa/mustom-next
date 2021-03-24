@@ -1,9 +1,8 @@
 ---
 title: 网易云音乐歌单JS音乐播放器JS代码
 categories:
-  - - Blog
-    - - Plugin
-      - Test
+  - - Plugin
+    - Test
 tags:
   - 音乐播放器
   - JavaScript
