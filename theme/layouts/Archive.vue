@@ -68,15 +68,16 @@ export default {
   methods: {
     setCate(cates, map, key, parent = "") {
       if (typeof key === "string") {
+        const _parent = parent === "" ? key : `${parent},${key}`;
         cates.push({
           name: key,
-          path: map[parent === "" ? key : `${parent},${key}`].path,
+          path: map[_parent] ? map[_parent].path : "",
         });
       } else if (key instanceof Array && key.length > 0) {
         const _parent = parent === "" ? key[0] : `${parent},${key[0]}`;
         cates.push({
           name: key[0],
-          path: map[_parent].path,
+          path: map[_parent] ? map[_parent].path : "",
         });
         this.setCate(cates, map, key[1], _parent);
       }

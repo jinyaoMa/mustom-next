@@ -76,7 +76,7 @@ export default (Vuex) => {
             }
           }
         };
-        Object.values(this.$siteCategories || {})
+        Object.values(this.$siteCategories.map || {})
           .sort((a, b) => {
             const keyA = a.key instanceof Array ? a.key.join() : a.key;
             const keyB = b.key instanceof Array ? b.key.join() : b.key;

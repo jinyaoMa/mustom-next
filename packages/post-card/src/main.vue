@@ -38,9 +38,10 @@
           ></Icon>
           <span v-for="(item, i) in postData.categories" :key="i">
             <span v-if="i !== 0">, </span>
-            <router-link :to="item.path">
+            <router-link v-if="item.path" :to="item.path">
               {{ item.name }}
             </router-link>
+            <span v-else>{{ item.name }}</span>
           </span>
         </div>
         <div>
