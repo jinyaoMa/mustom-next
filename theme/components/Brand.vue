@@ -130,7 +130,7 @@ export default {
     padding 0.5em
     display flex
     flex-direction column
-    cursor pointer
+    cursor default
     color var(--color-text-regular)
     &:hover
       .count
