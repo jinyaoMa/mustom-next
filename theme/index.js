@@ -13,6 +13,14 @@ module.exports = (_, context) => {
         directories: util.getDirectoriesByLocales(locales),
         frontmatters: util.getfrontmattersByLocales(locales)
       }
+    ],
+    [
+      // https://vuepress.vuejs.org/plugin/official/plugin-nprogress.html#install
+      "@vuepress/nprogress"
+    ],
+    [
+      // https://vuepress.github.io/zh/plugins/mathjax/
+      "vuepress-plugin-mathjax"
     ]
   ];
 
@@ -83,9 +91,15 @@ module.exports = (_, context) => {
     }
   };
 
+  const extendMarkdown = (md) => {
+    md.set({ breaks: true });
+    md.use(require("markdown-it-footnote"));
+  };
+
   return {
     name: "@jinyaoma/mustom-next/theme",
     plugins,
-    extendPageData
+    extendPageData,
+    extendMarkdown
   };
 };

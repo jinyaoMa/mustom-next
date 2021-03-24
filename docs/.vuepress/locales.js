@@ -7,6 +7,32 @@ module.exports = {
     archive: "博客",
     categories: "分类",
     tags: "标签",
+    meta: {
+      date: {
+        icon: "fas fa-calendar-alt fa-fw",
+        text: "发布日期"
+      },
+      updated: {
+        icon: "fas fa-calendar-check fa-fw",
+        text: "更新日期"
+      },
+      categories: {
+        icon: "fas fa-folder-open fa-fw",
+        text: "文章分类"
+      },
+      more: {
+        icon: "fas fa-chevron-right fa-fw",
+        text: "更多"
+      },
+      word: {
+        icon: "fas fa-file-word fa-fw",
+        text: "文章词汇量"
+      },
+      time: {
+        icon: "fas fa-stopwatch fa-fw",
+        text: "预计阅读时间"
+      }
+    },
     audioplayer: {
       enable: true
     },
@@ -37,6 +63,10 @@ module.exports = {
       tag: {
         one: "标签",
         more: "标签"
+      },
+      minute: {
+        one: "分钟",
+        more: "分钟"
       }
     },
     sitename: {
@@ -165,6 +195,32 @@ module.exports = {
     archive: "Blog",
     categories: "Categories",
     tags: "Tags",
+    meta: {
+      date: {
+        icon: "fas fa-calendar-alt fa-fw",
+        text: "Date"
+      },
+      updated: {
+        icon: "fas fa-calendar-check fa-fw",
+        text: "Last Updated"
+      },
+      categories: {
+        icon: "fas fa-folder-open fa-fw",
+        text: "Post Categories"
+      },
+      more: {
+        icon: "fas fa-chevron-right",
+        text: "MORE"
+      },
+      word: {
+        icon: "fas fa-file-word fa-fw",
+        text: "Post word count"
+      },
+      time: {
+        icon: "fas fa-stopwatch fa-fw",
+        text: "Estimated reading time"
+      }
+    },
     audioplayer: {
       enable: true
     },
@@ -195,6 +251,10 @@ module.exports = {
       tag: {
         one: "tag",
         more: "tags"
+      },
+      minute: {
+        one: "min.",
+        more: "mins"
       }
     },
     sitename: {

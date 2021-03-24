@@ -2,11 +2,11 @@
   <div id="GlobalLayout">
     <component v-if="layout === 'NotFound'" :is="layout" :key="layout" />
     <mn-container v-else height="100vh" width="100vw">
-      <mn-header :height="hasBodyGap ? '80px' : '64px'" style="z-index: 1">
+      <mn-header :height="headerButtonWidth" style="z-index: 1">
         <Header></Header>
       </mn-header>
       <mn-container
-        :height="hasBodyGap ? 'calc(100vh - 80px)' : 'calc(100vh - 64px)'"
+        :height="`calc(100vh - ${headerButtonWidth})`"
         scrollbar
         @scroll="handleContainerScroll"
         ref="scrollableContainer"
@@ -14,22 +14,15 @@
           background: '', //'linear-gradient(120deg,#f30,#c6f,#0cf)',
         }"
       >
-        <mn-container
-          :horizontal="isLeftFixed"
-          :gap="hasBodyGap ? '80px' : '4px'"
-          enable-gap
-          :style="{
-            maxWidth: '1680px',
-          }"
-        >
+        <mn-container :horizontal="isLeftFixed" :gap="bodyGap" enable-gap>
           <mn-aside
             :width="isLeftFixed ? asideWidth : 'auto'"
             :gap="isLeftFixed ? 'auto' : gap"
           >
             <mn-block
               :fixed="isLeftFixed"
-              height="calc(100vh - 80px)"
-              width="280px"
+              :height="`calc(100vh - ${headerButtonWidth})`"
+              :width="asideWidth"
               ref="blockLeft"
             >
               <AsideLeft :layout="layout"></AsideLeft>
@@ -38,13 +31,17 @@
           <mn-container :horizontal="isRightFixed">
             <mn-container
               :style="{
-                minHeight: 'calc(100vh - 80px)',
+                minHeight: `calc(100vh - ${headerButtonWidth})`,
+                width: centerWidth,
               }"
             >
               <mn-main
                 :gap="gap"
                 :left-gap="isLeftFixed"
                 :right-gap="isRightFixed"
+                :class="{
+                  isRightLeftNotFixed: !isRightFixed && !isLeftFixed,
+                }"
               >
                 <component :is="layout" :key="layout" />
               </mn-main>
@@ -58,20 +55,30 @@
               </mn-footer>
             </mn-container>
             <mn-aside
-              :width="isRightFixed ? asideWidth : 'auto'"
+              :width="isRightFixed ? asideWidth : notFixedAsideRightWidth"
               :gap="isRightFixed ? 'auto' : gap"
               :left-gap="!isRightFixed && isLeftFixed"
             >
               <mn-block
                 :fixed="isRightFixed"
-                height="calc(100vh - 80px)"
-                width="280px"
+                :height="`calc(100vh - ${headerButtonWidth})`"
+                :width="asideWidth"
                 ref="blockRight"
               >
-                <AsideRight :layout="layout"></AsideRight>
+                <AsideRight
+                  :class="{
+                    isRightNotFixed: !isRightFixed,
+                  }"
+                  :layout="layout"
+                ></AsideRight>
               </mn-block>
             </mn-aside>
-            <mn-footer v-if="!isRightFixed" :gap="gap" :left-gap="isLeftFixed">
+            <mn-footer
+              v-if="!isRightFixed"
+              :gap="gap"
+              :left-gap="isLeftFixed"
+              class="endFooter"
+            >
               <Footer></Footer>
             </mn-footer>
           </mn-container>
@@ -99,6 +106,19 @@ export default {
       }
       return "NotFound";
     },
+    headerButtonWidth() {
+      return this.hasBodyGap ? "80px" : "64px";
+    },
+    bodyGap() {
+      return this.hasBodyGap ? "80px" : "4px";
+    },
+    notFixedAsideRightWidth() {
+      if (!this.isRightFixed && this.isLeftFixed) {
+        return `calc(100vw - ${this.bodyGap} - ${this.bodyGap} - ${this.asideWidth} - ${this.gap})`; // 100vw - bodyGap * 2 - asideWidth - gap
+      } else {
+        return this.centerWidth;
+      }
+    },
   },
   methods: {
     handleContainerScroll(offset, isHorizontal, delta) {
@@ -125,6 +145,14 @@ export default {
         this.isLeftFixed = false;
         this.isRightFixed = false;
       }
+
+      if (this.isRightFixed) {
+        this.centerWidth = `calc(100vw - ${this.bodyGap} - ${this.bodyGap} - ${this.asideWidth} - ${this.asideWidth})`; // 100vw - bodyGap * 2 - asideWidth * 2
+      } else if (this.isLeftFixed) {
+        this.centerWidth = `calc(100vw - ${this.bodyGap} - ${this.bodyGap} - ${this.asideWidth})`; // 100vw - bodyGap * 2 - asideWidth
+      } else {
+        this.centerWidth = `calc(100vw - ${this.bodyGap} - ${this.bodyGap})`; // 100vw - bodyGap * 2
+      }
     },
   },
   data() {
@@ -134,6 +162,7 @@ export default {
       hasBodyGap: true,
       asideWidth: "280px",
       gap: "32px",
+      centerWidth: "100%",
     };
   },
   mounted() {
@@ -146,3 +175,17 @@ export default {
   },
 };
 </script>
+
+<style lang="stylus" scoped>
+.isRightNotFixed
+  >>> .mn-hanger
+    &:first-child
+      margin-top 18px
+    &:last-child
+      margin-bottom 18px
+
+.isRightLeftNotFixed
+  >>> .mn-hanger
+    &:first-child
+      margin-top 0
+</style>

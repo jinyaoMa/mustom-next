@@ -18,11 +18,11 @@
         {{ postData.title }}
       </router-link>
       <div class="mn-post-card-meta">
-        <div class="mn-post-card-date">
+        <div class="mn-post-card-date" :title="tooltips[0]">
           <Icon :name="icons[0]"></Icon>
           {{ postData.date }}
         </div>
-        <div class="mn-post-card-updated">
+        <div class="mn-post-card-updated" :title="tooltips[1]">
           <Icon :name="icons[1]"></Icon>
           {{ postData.updated }}
         </div>
@@ -31,7 +31,7 @@
         <div v-html="postData.excerpt"></div>
       </div>
       <div class="mn-post-card-last">
-        <div class="mn-post-card-categories">
+        <div class="mn-post-card-categories" :title="tooltips[2]">
           <Icon
             v-if="postData.categories && postData.categories.length"
             :name="icons[2]"
@@ -45,6 +45,7 @@
         </div>
         <div>
           <router-link class="mn-post-card-more" :to="postData.path">
+            <Icon v-if="icons[3]" :name="icons[3]"></Icon>
             {{ textMore }}
           </router-link>
         </div>
@@ -97,13 +98,17 @@ export default {
       type: Array,
       default() {
         return [
-          "fas fa-calendar fa-fw",
+          "fas fa-calendar-alt fa-fw",
           "fas fa-calendar-check fa-fw",
           "fas fa-folder-open fa-fw",
+          "fas fa-chevron-right fa-fw",
         ];
       },
-      validator(value) {
-        return value.length === 3;
+    },
+    tooltips: {
+      type: Array,
+      default() {
+        return ["Date", "Last Updated", "Post Categories"];
       },
     },
   },

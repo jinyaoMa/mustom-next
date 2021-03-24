@@ -1,7 +1,7 @@
 <template>
   <mn-hanger
     id="Archive"
-    :caption="$localeConfig.content.caption"
+    :caption="$localeConfig.content.caption + ' - ' + $page.frontmatter.title"
     :icon="$localeConfig.content.icon"
     type="primary"
     plain
@@ -14,6 +14,18 @@
         <mn-post-card
           :post-data="post"
           :reverse="i % 2 === 1"
+          :icons="[
+            $localeConfig.meta.date.icon,
+            $localeConfig.meta.updated.icon,
+            $localeConfig.meta.categories.icon,
+            $localeConfig.meta.more.icon,
+          ]"
+          :tooltips="[
+            $localeConfig.meta.date.text,
+            $localeConfig.meta.updated.text,
+            $localeConfig.meta.categories.text,
+          ]"
+          :textMore="$localeConfig.meta.more.text"
           horizontal
           no-border
         ></mn-post-card>
@@ -42,8 +54,8 @@ export default {
           });
         }
         return {
-          date: post.frontmatter.date.substr(0, 10),
-          updated: post.frontmatter.updated.substr(0, 10),
+          date: new Date(post.frontmatter.date).toLocaleDateString(),
+          updated: new Date(post.frontmatter.updated).toLocaleDateString(),
           excerpt: post.excerpt,
           categories: categories,
           cover: post.frontmatter.cover,
