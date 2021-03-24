@@ -1,8 +1,8 @@
 ---
 title: Helpful Links
-categories:
+en_categories:
   - Note
-tags:
+en_tags:
   - Links
 date: 2018-12-05 13:00:00
 updated: 2019-12-05 13:00:00

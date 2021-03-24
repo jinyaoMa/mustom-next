@@ -1,9 +1,9 @@
 ---
 title: Markdown Basic Syntax
-categories:
+en_categories:
   - Markdown
   - Blog
-tags:
+en_tags:
   - Test
 date: 2019-12-02 08:00:00
 updated: 2020-02-18 08:00:00

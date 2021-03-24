@@ -1,8 +1,8 @@
 ---
 title: Hello Hexo!
-categories:
+en_categories:
   - Hexo
-tags:
+en_tags:
   - Command
 date: 2018-12-01 19:00:00
 updated: 2018-12-01 19:00:00

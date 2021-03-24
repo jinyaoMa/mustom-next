@@ -1,8 +1,8 @@
 ---
 title: Gallery Post Not Supported
-categories:
+en_categories:
   - Blog
-tags:
+en_tags:
   - Test
 date: 2020-02-22 00:16:18
 updated: 2020-02-22 00:16:18

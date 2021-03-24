@@ -13,7 +13,6 @@
       <div v-for="(post, i) in posts" :key="i">
         <mn-post-card
           :post-data="post"
-          :reverse="i % 2 === 1"
           :icons="[
             $localeConfig.meta.date.icon,
             $localeConfig.meta.updated.icon,
@@ -28,6 +27,7 @@
           :textMore="$localeConfig.meta.more.text"
           horizontal
           no-border
+          reverse
         ></mn-post-card>
         <div class="divider"></div>
       </div>

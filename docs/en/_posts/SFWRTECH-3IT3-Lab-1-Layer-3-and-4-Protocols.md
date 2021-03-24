@@ -1,8 +1,8 @@
 ---
 title: 'SFWRTECH 3IT3 Lab #1 Layer 3 and 4 Protocols'
-categories:
+en_categories:
   - Lab
-tags:
+en_tags:
   - SFWRTECH 3IT3
 date: 2020-05-28 18:05:40
 updated: 2020-05-28 18:05:40

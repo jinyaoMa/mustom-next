@@ -4,8 +4,8 @@ date:
 updated:
 categories:
 tags:
-# category:
-# tag:
+# i18n_categories:
+# i18n_tags:
 # cover:
 # wordcount:
 # min2read:
