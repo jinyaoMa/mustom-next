@@ -1,4 +1,5 @@
 const util = require("./scripts/node/util");
+const pangu = require("./scripts/node/pangu");
 
 module.exports = (_, context) => {
   const { themeConfig, siteConfig, isProd, sourceDir } = context;
@@ -21,6 +22,47 @@ module.exports = (_, context) => {
     [
       // https://vuepress.github.io/zh/plugins/mathjax/
       "vuepress-plugin-mathjax"
+    ],
+    [
+      "container",
+      {
+        type: "tip",
+        defaultTitle: {
+          "/": "提示",
+          "/en/": "TIP"
+        }
+      }
+    ],
+    [
+      "container",
+      {
+        type: "warning",
+        defaultTitle: {
+          "/": "注意",
+          "/en/": "WARNING"
+        }
+      }
+    ],
+    [
+      "container",
+      {
+        type: "danger",
+        defaultTitle: {
+          "/": "警告",
+          "/en/": "WARNING"
+        }
+      }
+    ],
+    [
+      "container",
+      {
+        type: "details",
+        before: (info) =>
+          `<details class="custom-block details">${
+            info ? `<summary>${info}</summary>` : ""
+          }\n`,
+        after: () => "</details>\n"
+      }
     ]
   ];
 
@@ -35,6 +77,25 @@ module.exports = (_, context) => {
       regularPath, // current page's default link (follow the file hierarchy)
       path // current page's real link (use regularPath when permalink does not exist)
     } = $page;
+
+    // pangu
+    if (_strippedContent) {
+      if ($page.title) {
+        $page.title = pangu($page.title);
+      }
+      if (frontmatter.title) {
+        frontmatter.title = pangu(frontmatter.title);
+      }
+      if ($page.excerpt) {
+        $page.excerpt = pangu($page.excerpt.replace(/<img[^>]*>/g, ""));
+      }
+    }
+
+    // change _posts link
+    const { isPost, localePath } = util.postState(locales, regularPath);
+    if (isPost) {
+      frontmatter.permalink = `/posts/${key.replace("v-", "")}/`;
+    }
 
     // word count & read time
     if (_strippedContent) {
@@ -94,6 +155,13 @@ module.exports = (_, context) => {
   const extendMarkdown = (md) => {
     md.set({ breaks: true });
     md.use(require("markdown-it-footnote"));
+
+    // override render to allow pangu
+    const _render = md.render;
+    md.render = function(...args) {
+      const html = _render.call(md, ...args);
+      return pangu(html);
+    };
   };
 
   return {

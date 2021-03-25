@@ -48,8 +48,15 @@ export default {
     posts() {
       return this.$pagination.pages.map((post) => {
         const categories = [];
-        if (post.frontmatter.categories) {
-          post.frontmatter.categories.forEach((cates) => {
+        const cate_prefix = this.$localePath.replace(/\//g, "");
+        if (
+          post.frontmatter[
+            cate_prefix === "" ? "categories" : cate_prefix + "_categories"
+          ]
+        ) {
+          post.frontmatter[
+            cate_prefix === "" ? "categories" : cate_prefix + "_categories"
+          ].forEach((cates) => {
             this.setCate(categories, this.$siteCategories.map, cates);
           });
         }

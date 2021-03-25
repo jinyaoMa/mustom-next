@@ -133,6 +133,8 @@ export default {
 
 .markdown-body
   margin-top 40px
+  >>> img
+    max-width 100%
   >>> a
     transition 0.2s
     color var(--color-primary-0)

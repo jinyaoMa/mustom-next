@@ -37,7 +37,7 @@ updated: 2020-04-15 13:56:45
 **注：使用本主题的你可以在上面添加变量和修改变量的值，但是最好不要删除某一个变量，你可以留个空字符串**
 **可以在复制粘贴以下配置之后，通过网站效果慢慢改**
 
-``` yml
+``` yml {1-3,127-128,131-132}
 # Hexo Configuration
 ## Docs: https://hexo.io/docs/configuration.html
 ## Source: https://github.com/hexojs/hexo/

@@ -22,7 +22,7 @@ module.exports = {
       },
       more: {
         icon: "fas fa-chevron-right fa-fw",
-        text: "更多"
+        text: "查看全文"
       },
       word: {
         icon: "fas fa-file-word fa-fw",

@@ -41,7 +41,7 @@ function getfrontmattersByLocales(locales = {}) {
     const prefix = lang === "" ? lang : lang + "_";
     result.push({
       id: lang + "_category",
-      keys: [prefix + "category", prefix + "categories"],
+      keys: [prefix + "categories"],
       path: locale + "categories/",
       title: locales[locale].categories,
       scopeLayout: "Archive",
@@ -66,7 +66,7 @@ function getfrontmattersByLocales(locales = {}) {
     });
     result.push({
       id: lang + "_tag",
-      keys: [prefix + "tag", prefix + "tags"],
+      keys: [prefix + "tags"],
       path: locale + "tags/",
       title: locales[locale].tags,
       scopeLayout: "Archive",
@@ -93,7 +93,31 @@ function getfrontmattersByLocales(locales = {}) {
   return result;
 }
 
+function postState(locales, regularPath) {
+  let isPost = false;
+  let localePath = "/";
+  if (typeof regularPath === "string") {
+    Object.keys(locales)
+      .sort((a, b) => {
+        return a.localeCompare(b);
+      })
+      .forEach((locale) => {
+        if (regularPath.startsWith(locale)) {
+          localePath = locale;
+        }
+      });
+    if (regularPath.startsWith(localePath + "_posts/")) {
+      isPost = true;
+    }
+  }
+  return {
+    isPost,
+    localePath
+  };
+}
+
 module.exports = {
   getDirectoriesByLocales,
-  getfrontmattersByLocales
+  getfrontmattersByLocales,
+  postState
 };
