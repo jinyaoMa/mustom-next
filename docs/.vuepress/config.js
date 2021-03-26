@@ -5,6 +5,10 @@ module.exports = (context) => {
     locales: require("./locales"),
 
     themeConfig: {
+      pangu: {
+        // enabling pangu will disable markdown-it-anchor permalink
+        enable: true
+      },
       sitemap: {
         enable: true,
         hostname: "https://ma-jinyao.cn"

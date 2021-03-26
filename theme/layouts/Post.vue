@@ -329,6 +329,8 @@ export default {
     content attr(data-label)
     display block
     color var(--color-text-placeholder)
+  > a
+    font-size 16px
 
 .next
   text-align right

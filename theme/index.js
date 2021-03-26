@@ -6,6 +6,23 @@ module.exports = (_, context) => {
 
   const locales = siteConfig.locales;
 
+  const panguOptions = util.getPangu(themeConfig);
+
+  if (siteConfig.markdown) {
+    if (typeof siteConfig.markdown.anchor === "undefined") {
+      siteConfig.markdown.anchor = {};
+    }
+    Object.assign(siteConfig.markdown.anchor, {
+      permalink: !panguOptions
+    });
+  } else {
+    siteConfig.markdown = {
+      anchor: {
+        permalink: !panguOptions
+      }
+    };
+  }
+
   const plugins = [
     [
       // https://vuepress-plugin-blog.ulivz.com/
@@ -90,7 +107,7 @@ module.exports = (_, context) => {
     } = $page;
 
     // pangu
-    if (_strippedContent) {
+    if (panguOptions && _strippedContent) {
       if ($page.title) {
         $page.title = pangu($page.title);
       }
@@ -99,6 +116,12 @@ module.exports = (_, context) => {
       }
       if ($page.excerpt) {
         $page.excerpt = pangu($page.excerpt.replace(/<img[^>]*>/g, ""));
+      }
+      if ($page.headers instanceof Array) {
+        $page.headers.forEach((header) => {
+          header.title = pangu(header.title);
+          header.slug = pangu(header.slug);
+        });
       }
     }
 
@@ -175,12 +198,14 @@ module.exports = (_, context) => {
     md.set({ breaks: true });
     md.use(require("markdown-it-footnote"));
 
-    // override render to allow pangu
-    const _render = md.render;
-    md.render = function(...args) {
-      const html = _render.call(md, ...args);
-      return pangu(html);
-    };
+    if (panguOptions) {
+      // override render to allow pangu
+      const _render = md.render;
+      md.render = function(...args) {
+        const html = _render.call(md, ...args);
+        return pangu(html);
+      };
+    }
   };
 
   return {

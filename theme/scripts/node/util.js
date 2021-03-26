@@ -140,11 +140,19 @@ function getSocialShare(themeConfig) {
   return null;
 }
 
+function getPangu(themeConfig) {
+  if (typeof themeConfig.pangu === "object" && themeConfig.pangu.enable) {
+    return themeConfig.pangu;
+  }
+  return null;
+}
+
 module.exports = {
   getDirectoriesByLocales,
   getfrontmattersByLocales,
   postState,
   getSitemap,
   getComment,
-  getSocialShare
+  getSocialShare,
+  getPangu
 };
