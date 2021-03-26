@@ -43,7 +43,7 @@
           {{ min2Read($page.frontmatter.min2read) }}
         </div>
       </div>
-      <Content class="markdown-body" />
+      <Content class="post-body" />
       <div class="ending">
         <div
           class="divider"
@@ -70,30 +70,44 @@
           </router-link>
         </div>
         <div class="pn">
-          <router-link
+          <div
             class="prev"
-            v-if="prevIndex >= 0"
-            :to="getPage(prevIndex).path || ''"
-            :title="
-              $localeConfig.pagination.prev.post +
-              ': ' +
-              getPage(prevIndex).title
+            :data-label="
+              prevIndex >= 0 ? $localeConfig.pagination.prev.post : ''
             "
           >
-            {{ getPage(prevIndex).title }}
-          </router-link>
-          <router-link
+            <router-link
+              v-if="prevIndex >= 0"
+              :to="getPage(prevIndex).path || ''"
+              :title="
+                $localeConfig.pagination.prev.post +
+                ': ' +
+                getPage(prevIndex).title
+              "
+            >
+              {{ getPage(prevIndex).title }}
+            </router-link>
+          </div>
+          <div
             class="next"
-            v-if="nextIndex < $sitePosts.length"
-            :to="getPage(nextIndex).path || ''"
-            :title="
-              $localeConfig.pagination.next.post +
-              ': ' +
-              getPage(nextIndex).title
+            :data-label="
+              nextIndex < $sitePosts.length
+                ? $localeConfig.pagination.next.post
+                : ''
             "
           >
-            {{ getPage(nextIndex).title }}
-          </router-link>
+            <router-link
+              v-if="nextIndex < $sitePosts.length"
+              :to="getPage(nextIndex).path || ''"
+              :title="
+                $localeConfig.pagination.next.post +
+                ': ' +
+                getPage(nextIndex).title
+              "
+            >
+              {{ getPage(nextIndex).title }}
+            </router-link>
+          </div>
         </div>
       </div>
     </div>
@@ -308,25 +322,21 @@ export default {
   flex-direction row
   justify-content space-between
   width 100%
-  > a
-    margin-top 20px
+
+.prev, .next
+  margin-top 20px
+  &:before
+    content attr(data-label)
+    display block
+    color var(--color-text-placeholder)
 
 .next
   text-align right
 
-@media (max-width 540px)
-  .ending
-    border-top-width 4px
-  .divider
-    font-size 14px
-  .pn
-    flex-direction column
-  .prev, .next
-    text-align center
-
-.markdown-body
+.post-body
   margin-top 40px
   margin-bottom 40px
+  font-size 16px
   >>> img
     max-width 100%
   >>> a
@@ -335,4 +345,25 @@ export default {
     color var(--color-primary-0)
     &:hover, &:focus
       color var(--color-secondary-1)
+
+@media (max-width 540px)
+  .inner
+    padding 10px
+  .ending
+    border-top-width 4px
+  .divider
+    font-size 14px
+  .share, .addition, .tags
+    margin-top 10px
+  .tags
+    line-height 1.5
+  .pn
+    flex-direction column
+    margin-bottom 4px
+  .prev, .next
+    text-align center
+    margin-top 10px
+  .post-body
+    margin-top 20px
+    margin-bottom 20px
 </style>
