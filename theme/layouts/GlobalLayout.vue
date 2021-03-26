@@ -42,6 +42,13 @@
                 }"
               >
                 <component :is="layout" :key="layout" />
+                <Comment
+                  v-if="
+                    $themeConfig.comment &&
+                    $themeConfig.comment.enable &&
+                    $frontmatter.comment
+                  "
+                ></Comment>
               </mn-main>
               <mn-footer
                 v-if="isLeftFixed && isRightFixed"

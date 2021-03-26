@@ -44,6 +44,13 @@
         </div>
       </div>
       <Content class="markdown-body" />
+      <div class="ending">
+        <div
+          class="divider"
+          v-if="$localeConfig.meta.ending.divider"
+          v-html="$localeConfig.meta.ending.divider"
+        ></div>
+      </div>
     </div>
   </mn-hanger>
 </template>
@@ -98,6 +105,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+#Post
+  margin-bottom 18px
+
 .inner
   padding 40px
 
@@ -131,8 +141,21 @@ export default {
     &:hover, &:focus
       color var(--color-secondary-1)
 
+.ending
+  border-top 4px dashed var(--color-primary-8)
+  margin 0 -40px
+  padding 0 40px
+  display flex
+  flex-direction column
+  align-items center
+  .divider
+    color var(--color-primary-8)
+    font-size 20px
+    line-height 1.7
+
 .markdown-body
   margin-top 40px
+  margin-bottom 40px
   >>> img
     max-width 100%
   >>> a

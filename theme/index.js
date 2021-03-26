@@ -12,7 +12,9 @@ module.exports = (_, context) => {
       "@vuepress/blog",
       {
         directories: util.getDirectoriesByLocales(locales),
-        frontmatters: util.getfrontmattersByLocales(locales)
+        frontmatters: util.getfrontmattersByLocales(locales),
+        sitemap: util.getSitemap(themeConfig),
+        comment: util.getComment(themeConfig)
       }
     ],
     [
@@ -149,6 +151,11 @@ module.exports = (_, context) => {
       } else {
         frontmatter.cover = false;
       }
+    }
+
+    // set frontmatter comment default true
+    if (typeof frontmatter.comment === "undefined") {
+      frontmatter.comment = true;
     }
   };
 

@@ -31,6 +31,14 @@ module.exports = {
       time: {
         icon: "fas fa-stopwatch fa-fw",
         text: "预计阅读时间"
+      },
+      ending: {
+        divider: `以上内容结束 <i class="far fa-dot-circle fa-fw"></i> 感谢您的阅读`,
+        addition: [
+          `<strong>本文作者：</strong><a target="_blank" href="/">jinyaoMa</a>`,
+          `<strong>本文链接：</strong><a target="_blank" href="{currentPath}">{currentPath}</a>`,
+          `<strong>版权声明：</strong>本站所有文章除特别声明外，均采用 <a target="_blank" href="//creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fab fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！`
+        ]
       }
     },
     audioplayer: {
@@ -39,8 +47,8 @@ module.exports = {
     pagination: {
       lengthPerPage: 9,
       title: {
-        directory: "第 ? 页 | ?",
-        frontmatter: "第 ? 页 - ? | ?"
+        directory: "第 {pageNumber} 页 | {title}",
+        frontmatter: "第 {pageNumber} 页 - {key} | {title}"
       },
       prev: {
         page: "上一页",
@@ -137,6 +145,15 @@ module.exports = {
       placeholder:
         "标签是不可能有标签了，这辈子都不会有标签了，只能看看分类这样子。"
     },
+    toc: {
+      icon: "fas fa-bookmark fa-fw",
+      caption: "目录",
+      placeholder: "文章没有目录好像也不要紧？"
+    },
+    comment: {
+      icon: "fas fa-comments fa-fw",
+      caption: "留言"
+    },
     recent: {
       post: {
         icon: "fas fa-paragraph fa-fw",
@@ -219,6 +236,14 @@ module.exports = {
       time: {
         icon: "fas fa-stopwatch fa-fw",
         text: "Estimated reading time"
+      },
+      ending: {
+        divider: `Content above ended <i class="far fa-dot-circle fa-fw"></i> Thanks for reading`,
+        addition: [
+          `<strong>Author:</strong> <a target="_blank" href="/">jinyaoMa</a>`,
+          `<strong>Link:</strong> <a target="_blank" href="{currentPath}">{currentPath}</a>`,
+          `<strong>Notice:</strong> All articles/posts in this website are licensed under <a target="_blank" href="//creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fab fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.`
+        ]
       }
     },
     audioplayer: {
@@ -227,8 +252,8 @@ module.exports = {
     pagination: {
       lengthPerPage: 9,
       title: {
-        directory: "Page ? | ?",
-        frontmatter: "Page ? - ? | ?"
+        directory: "Page {pageNumber} | {title}",
+        frontmatter: "Page {pageNumber} - {key} | {title}"
       },
       prev: {
         page: "Prev",
@@ -318,6 +343,15 @@ module.exports = {
       icon: "fas fa-tags fa-fw",
       caption: "Tags",
       placeholder: "[Empty]"
+    },
+    toc: {
+      icon: "fas fa-bookmark fa-fw",
+      caption: "Table of Contents",
+      placeholder: "[Empty]"
+    },
+    comment: {
+      icon: "fas fa-comments fa-fw",
+      caption: "Comments"
     },
     recent: {
       post: {

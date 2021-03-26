@@ -25,8 +25,8 @@ function getDirectoriesByLocales(locales = {}) {
         layout: "Archive",
         getPaginationPageTitle(pageNumber) {
           return locales[locale].pagination.title.directory
-            .replace("?", pageNumber)
-            .replace("?", locales[locale].archive);
+            .replace(/\{\s*pageNumber\s*\}/i, pageNumber)
+            .replace(/\{\s*title\s*\}/i, locales[locale].archive);
         }
       }
     });
@@ -58,9 +58,9 @@ function getfrontmattersByLocales(locales = {}) {
         layout: "Archive",
         getPaginationPageTitle(pageNumber, key) {
           return locales[locale].pagination.title.frontmatter
-            .replace("?", pageNumber)
-            .replace("?", key)
-            .replace("?", locales[locale].categories);
+            .replace(/\{\s*pageNumber\s*\}/i, pageNumber)
+            .replace(/\{\s*key\s*\}/i, key)
+            .replace(/\{\s*title\s*\}/i, locales[locale].categories);
         }
       }
     });
@@ -83,9 +83,9 @@ function getfrontmattersByLocales(locales = {}) {
         layout: "Archive",
         getPaginationPageTitle(pageNumber, key) {
           return locales[locale].pagination.title.frontmatter
-            .replace("?", pageNumber)
-            .replace("?", key)
-            .replace("?", locales[locale].tags);
+            .replace(/\{\s*pageNumber\s*\}/i, pageNumber)
+            .replace(/\{\s*key\s*\}/i, key)
+            .replace(/\{\s*title\s*\}/i, locales[locale].tags);
         }
       }
     });
@@ -116,8 +116,24 @@ function postState(locales, regularPath) {
   };
 }
 
+function getSitemap(themeConfig) {
+  if (typeof themeConfig.sitemap === "object" && themeConfig.sitemap.enable) {
+    return themeConfig.sitemap;
+  }
+  return false;
+}
+
+function getComment(themeConfig) {
+  if (typeof themeConfig.comment === "object" && themeConfig.comment.enable) {
+    return themeConfig.comment;
+  }
+  return false;
+}
+
 module.exports = {
   getDirectoriesByLocales,
   getfrontmattersByLocales,
-  postState
+  postState,
+  getSitemap,
+  getComment
 };
