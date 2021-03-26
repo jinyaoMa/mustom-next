@@ -50,6 +50,51 @@
           v-if="$localeConfig.meta.ending.divider"
           v-html="$localeConfig.meta.ending.divider"
         ></div>
+        <div v-if="hasSocialShare" class="share">
+          <SocialShare />
+        </div>
+        <div v-if="hasAddition !== false" class="addition">
+          <div
+            v-for="(item, i) in addition"
+            :key="i"
+            v-html="currentPathReplace(item)"
+          ></div>
+        </div>
+        <div class="tags" v-if="hasTags">
+          <router-link
+            v-for="(tag, i) in tags"
+            :key="i"
+            :to="$siteTags.map[tag].path"
+          >
+            # {{ tag }}
+          </router-link>
+        </div>
+        <div class="pn">
+          <router-link
+            class="prev"
+            v-if="prevIndex >= 0"
+            :to="getPage(prevIndex).path || ''"
+            :title="
+              $localeConfig.pagination.prev.post +
+              ': ' +
+              getPage(prevIndex).title
+            "
+          >
+            {{ getPage(prevIndex).title }}
+          </router-link>
+          <router-link
+            class="next"
+            v-if="nextIndex < $sitePosts.length"
+            :to="getPage(nextIndex).path || ''"
+            :title="
+              $localeConfig.pagination.next.post +
+              ': ' +
+              getPage(nextIndex).title
+            "
+          >
+            {{ getPage(nextIndex).title }}
+          </router-link>
+        </div>
       </div>
     </div>
   </mn-hanger>
@@ -59,6 +104,22 @@
 export default {
   name: "Post",
   methods: {
+    getPage(index) {
+      return this.$sitePosts[index] || {};
+    },
+    doPrevNext() {
+      for (let i = 0; i < this.$sitePosts.length; i++) {
+        const page = this.$sitePosts[i];
+        if (page.path === this.$page.path) {
+          this.prevIndex = i - 1;
+          this.nextIndex = i + 1;
+          break;
+        }
+      }
+    },
+    currentPathReplace(str) {
+      return str.replace(/\{\s*currentPath\s*\}/gi, window.location.href);
+    },
     min2Read(num) {
       return (
         num +
@@ -91,6 +152,43 @@ export default {
     },
   },
   computed: {
+    tags() {
+      return this.$page.frontmatter.tags.flat(Infinity);
+    },
+    hasTags() {
+      return (
+        this.$page.frontmatter.tags instanceof Array &&
+        this.$page.frontmatter.tags.length > 0
+      );
+    },
+    addition() {
+      if (this.hasAddition === "frontmatter") {
+        return this.$frontmatter.addition;
+      }
+      return this.$localeConfig.meta.ending.addition;
+    },
+    hasAddition() {
+      if (this.$frontmatter.addition === false) {
+        return false;
+      }
+      if (
+        this.$frontmatter.addition instanceof Array &&
+        this.$frontmatter.addition.length > 0
+      ) {
+        return "frontmatter";
+      }
+      return (
+        this.$localeConfig.meta.ending.addition instanceof Array &&
+        this.$localeConfig.meta.ending.addition.length > 0
+      );
+    },
+    hasSocialShare() {
+      return (
+        this.$frontmatter.share &&
+        this.$themeConfig.socialShare &&
+        this.$themeConfig.socialShare.enable
+      );
+    },
     categories() {
       const result = [];
       if (this.$page.frontmatter.categories) {
@@ -100,6 +198,18 @@ export default {
       }
       return result;
     },
+  },
+  data() {
+    return {
+      prevIndex: -1,
+      nextIndex: -1,
+    };
+  },
+  mounted() {
+    this.doPrevNext();
+  },
+  updated() {
+    this.doPrevNext();
   },
 };
 </script>
@@ -142,16 +252,77 @@ export default {
       color var(--color-secondary-1)
 
 .ending
-  border-top 4px dashed var(--color-primary-8)
+  border-top 6px dashed var(--color-primary-8)
   margin 0 -40px
   padding 0 40px
   display flex
   flex-direction column
   align-items center
+
+.divider
+  color var(--color-primary-7)
+  font-size 18px
+  font-weight 500
+  line-height 1.7
+  user-select none
+  text-align center
+
+.share, .addition, .tags
+  margin-top 20px
+
+.share, .tags
+  text-align center
+
+.addition
+  background-color var(--color-primary-9)
+  width 100%
+  box-sizing border-box
+  padding 10px
+  border-left 5px solid var(--color-primary-1)
+  white-space nowrap
+  overflow-y hidden
+  > div
+    line-height 1.25
+    &:not(:last-child)
+      margin-bottom 9px
+  >>> a
+    transition 0.2s
+    &:hover, &:focus
+      color var(--color-secondary-0)
+
+.tags, .pn
+  > a
+    transition 0.2s
+    &:hover, &:focus
+      color var(--color-secondary-0)
+
+.tags
+  font-size 16px
+  line-height 2
+  > a
+    margin 0 8px
+
+.pn
+  line-height 1.25
+  display flex
+  flex-direction row
+  justify-content space-between
+  width 100%
+  > a
+    margin-top 20px
+
+.next
+  text-align right
+
+@media (max-width 540px)
+  .ending
+    border-top-width 4px
   .divider
-    color var(--color-primary-8)
-    font-size 20px
-    line-height 1.7
+    font-size 14px
+  .pn
+    flex-direction column
+  .prev, .next
+    text-align center
 
 .markdown-body
   margin-top 40px
@@ -159,6 +330,7 @@ export default {
   >>> img
     max-width 100%
   >>> a
+    text-decoration none
     transition 0.2s
     color var(--color-primary-0)
     &:hover, &:focus

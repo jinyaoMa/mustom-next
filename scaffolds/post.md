@@ -9,5 +9,7 @@ tags:
 # cover:
 # wordcount:
 # min2read:
-# comment: true
+# comment: (default true)
+# share: (default true)
+# addition: [] || false
 ---

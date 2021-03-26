@@ -25,8 +25,8 @@ function getDirectoriesByLocales(locales = {}) {
         layout: "Archive",
         getPaginationPageTitle(pageNumber) {
           return locales[locale].pagination.title.directory
-            .replace(/\{\s*pageNumber\s*\}/i, pageNumber)
-            .replace(/\{\s*title\s*\}/i, locales[locale].archive);
+            .replace(/\{\s*pageNumber\s*\}/gi, pageNumber)
+            .replace(/\{\s*title\s*\}/gi, locales[locale].archive);
         }
       }
     });
@@ -58,9 +58,9 @@ function getfrontmattersByLocales(locales = {}) {
         layout: "Archive",
         getPaginationPageTitle(pageNumber, key) {
           return locales[locale].pagination.title.frontmatter
-            .replace(/\{\s*pageNumber\s*\}/i, pageNumber)
-            .replace(/\{\s*key\s*\}/i, key)
-            .replace(/\{\s*title\s*\}/i, locales[locale].categories);
+            .replace(/\{\s*pageNumber\s*\}/gi, pageNumber)
+            .replace(/\{\s*key\s*\}/gi, key)
+            .replace(/\{\s*title\s*\}/gi, locales[locale].categories);
         }
       }
     });
@@ -83,9 +83,9 @@ function getfrontmattersByLocales(locales = {}) {
         layout: "Archive",
         getPaginationPageTitle(pageNumber, key) {
           return locales[locale].pagination.title.frontmatter
-            .replace(/\{\s*pageNumber\s*\}/i, pageNumber)
-            .replace(/\{\s*key\s*\}/i, key)
-            .replace(/\{\s*title\s*\}/i, locales[locale].tags);
+            .replace(/\{\s*pageNumber\s*\}/gi, pageNumber)
+            .replace(/\{\s*key\s*\}/gi, key)
+            .replace(/\{\s*title\s*\}/gi, locales[locale].tags);
         }
       }
     });
@@ -120,14 +120,24 @@ function getSitemap(themeConfig) {
   if (typeof themeConfig.sitemap === "object" && themeConfig.sitemap.enable) {
     return themeConfig.sitemap;
   }
-  return false;
+  return null;
 }
 
 function getComment(themeConfig) {
   if (typeof themeConfig.comment === "object" && themeConfig.comment.enable) {
     return themeConfig.comment;
   }
-  return false;
+  return null;
+}
+
+function getSocialShare(themeConfig) {
+  if (
+    typeof themeConfig.socialShare === "object" &&
+    themeConfig.socialShare.enable
+  ) {
+    return themeConfig.socialShare;
+  }
+  return null;
 }
 
 module.exports = {
@@ -135,5 +145,6 @@ module.exports = {
   getfrontmattersByLocales,
   postState,
   getSitemap,
-  getComment
+  getComment,
+  getSocialShare
 };

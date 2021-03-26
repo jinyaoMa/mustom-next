@@ -39,6 +39,16 @@ export default {
 <style lang="stylus" scoped>
 .inner
   padding 20px
+  @media (max-width 540px)
+    padding 0
+
+>>> .vssue
+  font-size 14px
+  .vssue-button
+    font-size 12px
+  .vssue-new-comment
+    .vssue-new-comment-input
+      font-size 14px
 
 #Comment
   margin-bottom 18px

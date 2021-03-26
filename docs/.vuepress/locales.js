@@ -37,7 +37,7 @@ module.exports = {
         addition: [
           `<strong>本文作者：</strong><a target="_blank" href="/">jinyaoMa</a>`,
           `<strong>本文链接：</strong><a target="_blank" href="{currentPath}">{currentPath}</a>`,
-          `<strong>版权声明：</strong>本站所有文章除特别声明外，均采用 <a target="_blank" href="//creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fab fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！`
+          `<strong>版权声明：</strong>本站所有文章除特别声明外，均采用 <a target="_blank" href="//creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fab fa-creative-commons"></i> BY-NC-SA</a> 许可协议。转载请注明出处！`
         ]
       }
     },
@@ -240,9 +240,9 @@ module.exports = {
       ending: {
         divider: `Content above ended <i class="far fa-dot-circle fa-fw"></i> Thanks for reading`,
         addition: [
-          `<strong>Author:</strong> <a target="_blank" href="/">jinyaoMa</a>`,
-          `<strong>Link:</strong> <a target="_blank" href="{currentPath}">{currentPath}</a>`,
-          `<strong>Notice:</strong> All articles/posts in this website are licensed under <a target="_blank" href="//creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fab fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.`
+          `<strong>Post Author:</strong> <a target="_blank" href="/">jinyaoMa</a>`,
+          `<strong>Post Link:</strong> <a target="_blank" href="{currentPath}">{currentPath}</a>`,
+          `<strong>Copyright Notice:</strong> All articles/posts in this website are licensed under <a target="_blank" href="//creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fab fa-creative-commons"></i> BY-NC-SA</a> unless stating additionally.`
         ]
       }
     },

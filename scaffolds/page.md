@@ -6,5 +6,7 @@ updated:
 # wordcount:
 # min2read:
 # sidemenu:
-# comment: true
+# comment: (default true)
+# share: (default true)
+# addition: [] || false
 ---

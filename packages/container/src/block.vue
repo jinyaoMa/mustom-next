@@ -30,7 +30,7 @@ export default {
   computed: {
     blockStyle() {
       return {
-        maxHeight: this.fixed ? this.height : "auto",
+        maxHeight: this.fixed ? this.height : "initial",
         width: this.fixed ? this.width : "auto",
         position: this.fixed ? "fixed" : "relative",
       };

@@ -113,6 +113,8 @@ export default {
   display flex
   flex-direction column
   padding 20px
+  @media (max-width 540px)
+    padding 4px
   .mn-post-card
     margin-bottom 20px
 

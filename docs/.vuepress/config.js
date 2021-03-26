@@ -20,11 +20,29 @@ module.exports = (context) => {
         clientId: "2da9973c24e3d7e3430a",
         clientSecret: "050434610d8f2b9a907fdb1f9b97cb672b2a7b8a",
         locale: "zh"
+      },
+      socialShare: {
+        enable: true,
+        // https://sns.goyfe.com/guide/
+        networks: [
+          "qq",
+          "weibo",
+          "douban",
+          "email",
+          "whatsapp",
+          "facebook",
+          "reddit",
+          "telegram",
+          "line"
+        ],
+        email: "jinyao.ma@outlook.com",
+        fallbackImage: "/assets/img/avatar.png",
+        noGlobalSocialShare: true
       }
     },
 
     markdown: {
-      lineNumbers: false,
+      lineNumbers: true,
       extractHeaders: ["h1", "h2", "h3", "h4", "h5", "h6"]
     }
   };

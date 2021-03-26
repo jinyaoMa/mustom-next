@@ -68,6 +68,15 @@ module.exports = (_, context) => {
     ]
   ];
 
+  const socialShare = util.getSocialShare(themeConfig);
+  if (socialShare) {
+    plugins.push([
+      // https://sns.goyfe.com/guide/
+      "vuepress-plugin-social-share",
+      socialShare
+    ]);
+  }
+
   const extendPageData = ($page) => {
     const {
       _filePath, // file's absolute path
@@ -153,9 +162,12 @@ module.exports = (_, context) => {
       }
     }
 
-    // set frontmatter comment default true
+    // set frontmatter default values
     if (typeof frontmatter.comment === "undefined") {
       frontmatter.comment = true;
+    }
+    if (typeof frontmatter.share === "undefined") {
+      frontmatter.share = true;
     }
   };
 
