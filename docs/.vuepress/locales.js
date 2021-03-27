@@ -238,7 +238,7 @@ module.exports = {
         text: "Estimated reading time"
       },
       ending: {
-        divider: `Content above ended <i class="far fa-dot-circle fa-fw"></i> Thanks for reading`,
+        divider: `Content above ended <i class="far fa-dot-circle fa-fw"></i> Thank you for reading`,
         addition: [
           `<strong>Post Author:</strong> <a target="_blank" href="/">jinyaoMa</a>`,
           `<strong>Post Link:</strong> <a target="_blank" href="{currentPath}">{currentPath}</a>`,
