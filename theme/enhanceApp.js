@@ -33,6 +33,9 @@ export default ({ Vue, options, router, siteData }) => {
           behavior: "smooth"
         });
       } else if (to.hash) {
+        if (Vue.$vuepress.$get("disableScrollBehavior")) {
+          return false;
+        }
         const targetElement = document.querySelector(
           `[id='${to.hash.replace("#", "").trim()}']`
         );

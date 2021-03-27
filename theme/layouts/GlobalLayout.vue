@@ -41,7 +41,7 @@
                   isRightLeftNotFixed: !isRightFixed && !isLeftFixed,
                 }"
               >
-                <component :is="layout" :key="layout" />
+                <component :is="layout" :key="layout" ref="page" />
                 <Comment
                   v-if="
                     $themeConfig.comment &&
@@ -130,6 +130,33 @@ export default {
       if (!isHorizontal) {
         this.$refs.blockLeft.scrollTopDelta(delta);
         this.$refs.blockRight.scrollTopDelta(delta);
+
+        if (this.layout === "Post" || this.layout === "Layout") {
+          window.clearTimeout(this.scrollWaiter);
+          this.scrollWaiter = window.setTimeout(() => {
+            const targets = this.$refs.page.$el.querySelectorAll(
+              "h1, h2, h3, h4, h5, h6"
+            );
+            for (let i = 0; i < targets.length; i++) {
+              const el = targets[i];
+              if (
+                el.offsetTop >= offset &&
+                el.offsetTop < offset + window.innerHeight - 80 // 80px for header
+              ) {
+                const newHash = "#" + (el.id || "");
+                if (newHash !== this.$route.hash) {
+                  this.$vuepress.$set("disableScrollBehavior", true);
+                  this.$router.replace(newHash, () => {
+                    this.$nextTick(() => {
+                      this.$vuepress.$set("disableScrollBehavior", false);
+                    });
+                  });
+                }
+                break;
+              }
+            }
+          }, 1200);
+        }
       }
     },
     resizeUpdate() {
@@ -168,6 +195,7 @@ export default {
       asideWidth: "280px",
       gap: "32px",
       centerWidth: "100%",
+      scrollWaiter: null,
     };
   },
   mounted() {
