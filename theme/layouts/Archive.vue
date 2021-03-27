@@ -61,8 +61,10 @@ export default {
           });
         }
         return {
-          date: new Date(post.frontmatter.date).toLocaleDateString(),
-          updated: new Date(post.frontmatter.updated).toLocaleDateString(),
+          date: new Date(post.frontmatter.date).toLocaleDateString(this.$lang),
+          updated: new Date(post.frontmatter.updated).toLocaleDateString(
+            this.$lang
+          ),
           excerpt: post.excerpt,
           categories: categories,
           cover: post.frontmatter.cover,

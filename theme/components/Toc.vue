@@ -48,9 +48,9 @@ export default {
   margin 10px 0
   a
     display block
-    padding-left 20px
+    padding 6px 0 6px 20px
     font-size 15px
-    line-height 2
+    line-height 1.25
     transition 0.2s
     &:hover, &:focus
       background-color var(--color-primary-9)

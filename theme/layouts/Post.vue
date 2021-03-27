@@ -16,11 +16,11 @@
       <div class="meta">
         <div :title="$localeConfig.meta.date.text">
           <mn-icon :name="$localeConfig.meta.date.icon"></mn-icon>
-          {{ new Date($page.frontmatter.date).toLocaleDateString() }}
+          {{ new Date($page.frontmatter.date).toLocaleDateString($lang) }}
         </div>
         <div :title="$localeConfig.meta.updated.text">
           <mn-icon :name="$localeConfig.meta.updated.icon"></mn-icon>
-          {{ new Date($page.frontmatter.updated).toLocaleDateString() }}
+          {{ new Date($page.frontmatter.updated).toLocaleDateString($lang) }}
         </div>
         <div
           v-if="$page.frontmatter.categories"
@@ -132,7 +132,10 @@ export default {
       }
     },
     currentPathReplace(str) {
-      return str.replace(/\{\s*currentPath\s*\}/gi, window.location.href);
+      return str.replace(
+        /\{\s*currentPath\s*\}/gi,
+        window.location.href.replace(/#.*$/, "")
+      );
     },
     min2Read(num) {
       return (

@@ -13,12 +13,12 @@ module.exports = (_, context) => {
       siteConfig.markdown.anchor = {};
     }
     Object.assign(siteConfig.markdown.anchor, {
-      permalink: !panguOptions
+      permalink: panguOptions
     });
   } else {
     siteConfig.markdown = {
       anchor: {
-        permalink: !panguOptions
+        permalink: panguOptions
       }
     };
   }
@@ -41,6 +41,15 @@ module.exports = (_, context) => {
     [
       // https://vuepress.github.io/zh/plugins/mathjax/
       "vuepress-plugin-mathjax"
+    ],
+    [
+      // https://vuepress.vuejs.org/plugin/official/plugin-last-updated.html
+      "@vuepress/last-updated",
+      {
+        transformer: (timestamp, lang) => {
+          return new Date(timestamp).toLocaleDateString();
+        }
+      }
     ],
     [
       "container",

@@ -134,16 +134,27 @@ export default {
         if (this.layout === "Post" || this.layout === "Layout") {
           window.clearTimeout(this.scrollWaiter);
           this.scrollWaiter = window.setTimeout(() => {
+            let notDetected = true;
             const targets = this.$refs.page.$el.querySelectorAll(
               "h1, h2, h3, h4, h5, h6"
             );
-            for (let i = 0; i < targets.length; i++) {
-              const el = targets[i];
-              if (
-                el.offsetTop >= offset &&
-                el.offsetTop < offset + window.innerHeight - 80 // 80px for header
-              ) {
-                const newHash = "#" + (el.id || "");
+            const _run = (simple = false) => {
+              if (simple) {
+                let index = -1;
+                for (let i = 0; i < targets.length; i++) {
+                  const el = targets[i];
+                  if (offset > el.offsetTop) {
+                    index = i;
+                  }
+                }
+                if (index === -1) {
+                  if (targets.length > 0) {
+                    index = 0;
+                  } else {
+                    return;
+                  }
+                }
+                const newHash = "#" + (targets[index].id || "");
                 if (newHash !== this.$route.hash) {
                   this.$vuepress.$set("disableScrollBehavior", true);
                   this.$router.replace(newHash, () => {
@@ -152,8 +163,31 @@ export default {
                     });
                   });
                 }
-                break;
+              } else {
+                for (let i = 0; i < targets.length; i++) {
+                  const el = targets[i];
+                  if (
+                    el.offsetTop >= offset &&
+                    el.offsetTop < offset + window.innerHeight - 80 // 80px for header
+                  ) {
+                    const newHash = "#" + (el.id || "");
+                    if (newHash !== this.$route.hash) {
+                      this.$vuepress.$set("disableScrollBehavior", true);
+                      this.$router.replace(newHash, () => {
+                        this.$nextTick(() => {
+                          this.$vuepress.$set("disableScrollBehavior", false);
+                        });
+                      });
+                    }
+                    notDetected = false;
+                    break;
+                  }
+                }
               }
+            };
+            _run();
+            if (notDetected) {
+              _run(true);
             }
           }, 1200);
         }

@@ -17,7 +17,7 @@
         :key="i"
         :to="item.path"
         v-html="item.title"
-        :data-date="getDate(item.frontmatter.updated)"
+        :data-date="getDate(item.frontmatter.updated, item.lastUpdated)"
       ></router-link>
     </div>
     <div v-else-if="type === 'doc' && $siteDocsTotal > 0" class="list">
@@ -29,7 +29,7 @@
         :key="i"
         :to="item.path"
         v-html="item.title"
-        :data-date="getDate(item.frontmatter.updated)"
+        :data-date="getDate(item.frontmatter.updated, item.lastUpdated)"
       ></router-link>
     </div>
     <div
@@ -55,10 +55,12 @@ export default {
     },
   },
   methods: {
-    getDate(str) {
+    getDate(str, lastUpdated) {
       let result = "";
       if (str) {
-        result = new Date(str).toLocaleDateString();
+        result = new Date(str).toLocaleDateString(this.$lang);
+      } else if (lastUpdated) {
+        result = new Date(lastUpdated).toLocaleDateString(this.$lang);
       }
       return result;
     },
