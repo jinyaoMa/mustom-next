@@ -16,11 +16,11 @@
       <div class="meta">
         <div :title="$localeConfig.meta.date.text">
           <mn-icon :name="$localeConfig.meta.date.icon"></mn-icon>
-          {{ new Date($page.frontmatter.date).toLocaleDateString($lang) }}
+          {{ getDate($page.frontmatter.date, $page.lastUpdated) }}
         </div>
         <div :title="$localeConfig.meta.updated.text">
           <mn-icon :name="$localeConfig.meta.updated.icon"></mn-icon>
-          {{ new Date($page.frontmatter.updated).toLocaleDateString($lang) }}
+          {{ getDate($page.frontmatter.updated, $page.lastUpdated) }}
         </div>
         <div
           v-if="$page.frontmatter.categories"
@@ -91,16 +91,16 @@
           <div
             class="next"
             :data-label="
-              nextIndex < $sitePosts.length
-                ? $localeConfig.pagination.next.post
+              nextIndex < $siteDocs.length
+                ? $localeConfig.pagination.next.page
                 : ''
             "
           >
             <router-link
-              v-if="nextIndex < $sitePosts.length"
+              v-if="nextIndex < $siteDocs.length"
               :to="getPage(nextIndex).path || ''"
               :title="
-                $localeConfig.pagination.next.post +
+                $localeConfig.pagination.next.page +
                 ': ' +
                 getPage(nextIndex).title
               "
@@ -118,12 +118,21 @@
 export default {
   name: "Layout",
   methods: {
+    getDate(str, lastUpdated) {
+      let result = "";
+      if (str) {
+        result = new Date(str).toLocaleDateString(this.$lang);
+      } else if (lastUpdated) {
+        result = new Date(lastUpdated).toLocaleDateString(this.$lang);
+      }
+      return result;
+    },
     getPage(index) {
-      return this.$sitePosts[index] || {};
+      return this.$siteDocs[index] || {};
     },
     doPrevNext() {
-      for (let i = 0; i < this.$sitePosts.length; i++) {
-        const page = this.$sitePosts[i];
+      for (let i = 0; i < this.$siteDocs.length; i++) {
+        const page = this.$siteDocs[i];
         if (page.path === this.$page.path) {
           this.prevIndex = i - 1;
           this.nextIndex = i + 1;

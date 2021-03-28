@@ -5,11 +5,13 @@
     <Toc v-if="layout.toLowerCase() === 'post'"></Toc>
     <Recent v-if="$route.path === $localePath" type="post"></Recent>
     <Recent v-if="$route.path === $localePath" type="doc"></Recent>
+    <Brand v-if="showBrand"></Brand>
     <Clustrmaps v-if="enableClustrmaps"></Clustrmaps>
   </div>
 </template>
 
 <script>
+import Brand from "../components/Brand";
 import Category from "../components/Category";
 import Tag from "../components/Tag";
 import Clustrmaps from "../components/Clustrmaps";
@@ -22,8 +24,12 @@ export default {
     layout: {
       type: String,
     },
+    showBrand: {
+      type: Boolean,
+    },
   },
   components: {
+    Brand,
     Category,
     Tag,
     Clustrmaps,

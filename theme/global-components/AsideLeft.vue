@@ -1,7 +1,7 @@
 <template>
   <div class="AsideLeft">
     <Menu></Menu>
-    <Brand></Brand>
+    <Brand v-if="showBrand"></Brand>
   </div>
 </template>
 
@@ -14,6 +14,9 @@ export default {
   props: {
     layout: {
       type: String,
+    },
+    showBrand: {
+      type: Boolean,
     },
   },
   components: {

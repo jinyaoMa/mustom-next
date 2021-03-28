@@ -4,6 +4,8 @@ const pangu = require("./scripts/node/pangu");
 module.exports = (_, context) => {
   const { themeConfig, siteConfig, isProd, sourceDir } = context;
 
+  console.log(sourceDir);
+
   const locales = siteConfig.locales;
 
   const panguOptions = util.getPangu(themeConfig);

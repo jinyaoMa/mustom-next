@@ -16,11 +16,11 @@
       <div class="meta">
         <div :title="$localeConfig.meta.date.text">
           <mn-icon :name="$localeConfig.meta.date.icon"></mn-icon>
-          {{ new Date($page.frontmatter.date).toLocaleDateString($lang) }}
+          {{ getDate($page.frontmatter.date, $page.lastUpdated) }}
         </div>
         <div :title="$localeConfig.meta.updated.text">
           <mn-icon :name="$localeConfig.meta.updated.icon"></mn-icon>
-          {{ new Date($page.frontmatter.updated).toLocaleDateString($lang) }}
+          {{ getDate($page.frontmatter.updated, $page.lastUpdated) }}
         </div>
         <div
           v-if="$page.frontmatter.categories"
@@ -118,6 +118,15 @@
 export default {
   name: "Post",
   methods: {
+    getDate(str, lastUpdated) {
+      let result = "";
+      if (str) {
+        result = new Date(str).toLocaleDateString(this.$lang);
+      } else if (lastUpdated) {
+        result = new Date(lastUpdated).toLocaleDateString(this.$lang);
+      }
+      return result;
+    },
     getPage(index) {
       return this.$sitePosts[index] || {};
     },
