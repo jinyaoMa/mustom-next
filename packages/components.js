@@ -15,6 +15,7 @@ import menu from "./menu";
 import menuItem from "./menu-item";
 import submenu from "./submenu";
 import postCard from "./post-card";
+import goingTo from "./going-to";
 
 export default {
   icon,
@@ -33,5 +34,6 @@ export default {
   menu,
   menuItem,
   submenu,
-  postCard
+  postCard,
+  goingTo
 };

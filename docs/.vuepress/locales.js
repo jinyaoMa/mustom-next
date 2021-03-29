@@ -7,6 +7,12 @@ module.exports = {
     archive: "博客",
     categories: "分类",
     tags: "标签",
+    icons: {
+      arrow: {
+        up: "fas fa-arrow-up",
+        down: "fas fa-arrow-down"
+      }
+    },
     meta: {
       date: {
         icon: "fas fa-calendar-alt fa-fw",
@@ -216,6 +222,12 @@ module.exports = {
     archive: "Blog",
     categories: "Categories",
     tags: "Tags",
+    icons: {
+      arrow: {
+        up: "fas fa-arrow-up",
+        down: "fas fa-arrow-down"
+      }
+    },
     meta: {
       date: {
         icon: "fas fa-calendar-alt fa-fw",

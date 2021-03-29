@@ -45,14 +45,18 @@
                   isRightLeftNotFixed: !isRightFixed && !isLeftFixed,
                 }"
               >
-                <component :is="layout" :key="layout" ref="page" />
-                <Comment
-                  v-if="
-                    $themeConfig.comment &&
-                    $themeConfig.comment.enable &&
-                    $frontmatter.comment
-                  "
-                ></Comment>
+                <transition name="fade" mode="out-in" appear>
+                  <component :is="layout" :key="layout" ref="page" />
+                </transition>
+                <transition name="fade" mode="out-in" appear>
+                  <Comment
+                    v-if="
+                      $themeConfig.comment &&
+                      $themeConfig.comment.enable &&
+                      $frontmatter.comment
+                    "
+                  ></Comment>
+                </transition>
               </mn-main>
               <mn-footer
                 v-if="isLeftFixed && isRightFixed"
@@ -95,6 +99,13 @@
           </mn-container>
         </mn-container>
       </mn-container>
+      <mn-going-to
+        gap="15px"
+        :width="bodyGap"
+        :icons="[$localeConfig.icons.arrow.up, $localeConfig.icons.arrow.down]"
+        @go-top="handleGoTop"
+        @go-bottom="handleGoBottom"
+      ></mn-going-to>
     </mn-container>
   </div>
 </template>
@@ -132,6 +143,12 @@ export default {
     },
   },
   methods: {
+    handleGoTop() {
+      this.$refs.scrollableContainer.scroll2Top();
+    },
+    handleGoBottom() {
+      this.$refs.scrollableContainer.scroll2Bottom();
+    },
     handleContainerScroll(offset, isHorizontal, delta) {
       if (!isHorizontal) {
         this.$refs.blockLeft.scrollTopDelta(delta);

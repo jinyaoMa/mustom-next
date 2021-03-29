@@ -1,7 +1,11 @@
 <template>
   <mn-hanger
     id="Post"
-    :caption="$localeConfig.content.caption + ' - ' + $page.frontmatter.title"
+    :caption="
+      $localeConfig.content.caption +
+      ' - ' +
+      ($page.title || $page.frontmatter.title)
+    "
     :icon="$localeConfig.content.icon"
     type="primary"
     plain

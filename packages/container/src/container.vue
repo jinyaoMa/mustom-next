@@ -88,6 +88,18 @@ export default {
     scrollWidth() {
       return this.$refs.inner.scrollWidth || 0;
     },
+    scroll2Top() {
+      this.$refs.inner.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    },
+    scroll2Bottom() {
+      this.$refs.inner.scrollTo({
+        top: this.$refs.inner.scrollHeight,
+        behavior: "smooth",
+      });
+    },
   },
   mounted() {
     this.initScrollbar();

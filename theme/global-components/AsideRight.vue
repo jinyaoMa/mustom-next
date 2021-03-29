@@ -1,19 +1,22 @@
 <template>
   <div class="AsideRight">
-    <Sidebar
-      v-if="
-        $docRoot !== $localePath &&
-        showSidebar &&
-        layout.toLowerCase() === 'layout'
-      "
-    ></Sidebar>
-    <Category v-if="layout.toLowerCase() === 'archive'"></Category>
-    <Tag v-if="layout.toLowerCase() === 'archive'"></Tag>
-    <Toc v-if="layout.toLowerCase() === 'post'"></Toc>
-    <Recent v-if="$route.path === $localePath" type="post"></Recent>
-    <Recent v-if="$route.path === $localePath" type="doc"></Recent>
-    <Brand v-if="showBrand"></Brand>
-    <Clustrmaps v-if="enableClustrmaps"></Clustrmaps>
+    <transition-group tag="div" name="fade" mode="out-in" appear>
+      <Sidebar
+        :key="0"
+        v-if="
+          $docRoot !== $localePath &&
+          showSidebar &&
+          layout.toLowerCase() === 'layout'
+        "
+      ></Sidebar>
+      <Category :key="1" v-if="layout.toLowerCase() === 'archive'"></Category>
+      <Tag :key="2" v-if="layout.toLowerCase() === 'archive'"></Tag>
+      <Toc :key="3" v-if="layout.toLowerCase() === 'post'"></Toc>
+      <Recent :key="4" v-if="$route.path === $localePath" type="post"></Recent>
+      <Recent :key="5" v-if="$route.path === $localePath" type="doc"></Recent>
+      <Brand :key="6" v-if="showBrand"></Brand>
+      <Clustrmaps :key="7" v-if="enableClustrmaps"></Clustrmaps>
+    </transition-group>
   </div>
 </template>
 

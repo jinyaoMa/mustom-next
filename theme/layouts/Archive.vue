@@ -32,17 +32,20 @@
         <div class="divider"></div>
       </div>
       <Pagination class="pagination"></Pagination>
+      <SimplePagination class="simple-pagination"></SimplePagination>
     </div>
   </mn-hanger>
 </template>
 
 <script>
 import Pagination from "@vuepress/plugin-blog/lib/client/components/Pagination";
+import SimplePagination from "@vuepress/plugin-blog/lib/client/components/SimplePagination";
 
 export default {
   name: "Archive",
   components: {
     Pagination,
+    SimplePagination,
   },
   computed: {
     posts() {
@@ -131,6 +134,8 @@ export default {
 
 >>> .pagination
   margin 0 auto
+  @media (max-width 1024px)
+    display none
   li:not(.disabled) > a, li:not(.disabled) > span
     color var(--color-primary-0)
     &:hover, &:focus
@@ -142,6 +147,20 @@ export default {
       &:hover, &:focus
         background-color var(--color-primary-1)
         border-color var(--color-primary-1)
+
+>>> .simple-pagination
+  display none
+  line-height 1
+  a
+    color var(--color-primary-0)
+    border-color var(--color-primary-0)
+    &:hover, &:focus
+      color var(--color-white)
+      background-color var(--color-primary-0)
+    &:last-child
+      margin-right 0
+  @media (max-width 1024px)
+    display inline-block
 
 >>> .mn-post-card-except
   img
