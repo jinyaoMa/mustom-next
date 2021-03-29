@@ -1,5 +1,12 @@
 <template>
   <div class="AsideRight">
+    <Sidebar
+      v-if="
+        $docRoot !== $localePath &&
+        showSidebar &&
+        layout.toLowerCase() === 'layout'
+      "
+    ></Sidebar>
     <Category v-if="layout.toLowerCase() === 'archive'"></Category>
     <Tag v-if="layout.toLowerCase() === 'archive'"></Tag>
     <Toc v-if="layout.toLowerCase() === 'post'"></Toc>
@@ -17,6 +24,7 @@ import Tag from "../components/Tag";
 import Clustrmaps from "../components/Clustrmaps";
 import Recent from "../components/Recent";
 import Toc from "../components/Toc";
+import Sidebar from "../components/Sidebar";
 
 export default {
   name: "AsideRight",
@@ -27,6 +35,9 @@ export default {
     showBrand: {
       type: Boolean,
     },
+    showSidebar: {
+      type: Boolean,
+    },
   },
   components: {
     Brand,
@@ -35,6 +46,7 @@ export default {
     Clustrmaps,
     Recent,
     Toc,
+    Sidebar,
   },
   computed: {
     enableClustrmaps() {

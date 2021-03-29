@@ -44,6 +44,7 @@ function getfrontmattersByLocales(locales = {}) {
       keys: [prefix + "categories"],
       path: locale + "categories/",
       title: locales[locale].categories,
+      layout: "Archive",
       scopeLayout: "Archive",
       pagination: {
         sorter: (prev, next) => {
@@ -69,6 +70,7 @@ function getfrontmattersByLocales(locales = {}) {
       keys: [prefix + "tags"],
       path: locale + "tags/",
       title: locales[locale].tags,
+      layout: "Archive",
       scopeLayout: "Archive",
       pagination: {
         sorter: (prev, next) => {
@@ -147,6 +149,31 @@ function getPangu(themeConfig) {
   return null;
 }
 
+function generateDocsStructure(sourceDir) {
+  const fs = require("fs");
+  const path = require("path");
+  const indexFileRegex = /(readme|index)\.(md|vue)$/i;
+  const ignoreFolderRegex = /(\.vuepress|_posts)/;
+
+  function walk(dir) {
+    var children = [];
+    fs.readdirSync(dir).forEach(function(filename) {
+      var _path = path.join(dir, filename);
+      var stat = fs.statSync(_path);
+      if (stat && stat.isDirectory()) {
+        if (!ignoreFolderRegex.test(_path)) {
+          children = children.concat(walk(_path));
+        }
+      } else {
+        children.push(_path);
+      }
+    });
+    return children;
+  }
+
+  return walk(sourceDir);
+}
+
 module.exports = {
   getDirectoriesByLocales,
   getfrontmattersByLocales,
@@ -154,5 +181,6 @@ module.exports = {
   getSitemap,
   getComment,
   getSocialShare,
-  getPangu
+  getPangu,
+  generateDocsStructure
 };

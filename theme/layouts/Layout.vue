@@ -73,14 +73,14 @@
           <div
             class="prev"
             :data-label="
-              prevIndex >= 0 ? $localeConfig.pagination.prev.post : ''
+              prevIndex >= 0 ? $localeConfig.pagination.prev.page : ''
             "
           >
             <router-link
               v-if="prevIndex >= 0"
               :to="getPage(prevIndex).path || ''"
               :title="
-                $localeConfig.pagination.prev.post +
+                $localeConfig.pagination.prev.page +
                 ': ' +
                 getPage(prevIndex).title
               "
@@ -91,13 +91,13 @@
           <div
             class="next"
             :data-label="
-              nextIndex < $siteDocs.length
+              nextIndex < $siteDocsList.length
                 ? $localeConfig.pagination.next.page
                 : ''
             "
           >
             <router-link
-              v-if="nextIndex < $siteDocs.length"
+              v-if="nextIndex < $siteDocsList.length"
               :to="getPage(nextIndex).path || ''"
               :title="
                 $localeConfig.pagination.next.page +
@@ -128,11 +128,11 @@ export default {
       return result;
     },
     getPage(index) {
-      return this.$siteDocs[index] || {};
+      return this.$siteDocsList[index] || {};
     },
     doPrevNext() {
-      for (let i = 0; i < this.$siteDocs.length; i++) {
-        const page = this.$siteDocs[i];
+      for (let i = 0; i < this.$siteDocsList.length; i++) {
+        const page = this.$siteDocsList[i];
         if (page.path === this.$page.path) {
           this.prevIndex = i - 1;
           this.nextIndex = i + 1;

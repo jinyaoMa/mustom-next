@@ -134,6 +134,10 @@ module.exports = {
         }
       ]
     },
+    sidebar: {
+      icon: "fas fa-sitemap fa-fw",
+      caption: "文档地图"
+    },
     category: {
       icon: "fas fa-folder-open fa-fw",
       caption: "分类",
@@ -333,6 +337,10 @@ module.exports = {
           url: "https://github.com/jinyaoMa"
         }
       ]
+    },
+    sidebar: {
+      icon: "fas fa-sitemap fa-fw",
+      caption: "Docs Map"
     },
     category: {
       icon: "fas fa-folder-open fa-fw",

@@ -4,8 +4,6 @@ const pangu = require("./scripts/node/pangu");
 module.exports = (_, context) => {
   const { themeConfig, siteConfig, isProd, sourceDir } = context;
 
-  console.log(sourceDir);
-
   const locales = siteConfig.locales;
 
   const panguOptions = util.getPangu(themeConfig);
@@ -15,12 +13,12 @@ module.exports = (_, context) => {
       siteConfig.markdown.anchor = {};
     }
     Object.assign(siteConfig.markdown.anchor, {
-      permalink: panguOptions
+      permalink: !panguOptions
     });
   } else {
     siteConfig.markdown = {
       anchor: {
-        permalink: panguOptions
+        permalink: !panguOptions
       }
     };
   }

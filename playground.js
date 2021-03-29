@@ -1,2 +1,7 @@
 const path = require("path");
-console.log(path.join(__dirname, "packages/theme-default/src/*.styl"));
+const sourceDir = path.join(__dirname, "docs");
+console.log(sourceDir);
+
+console.log(
+  require("./theme/scripts/node/util").generateDocsStructure(sourceDir)
+);

@@ -23,7 +23,11 @@
               :width="asideWidth"
               ref="blockLeft"
             >
-              <AsideLeft :layout="layout" :show-brand="isLeftFixed"></AsideLeft>
+              <AsideLeft
+                :layout="layout"
+                :show-brand="isLeftFixed"
+                :show-sidebar="!isRightFixed"
+              ></AsideLeft>
             </mn-block>
           </mn-aside>
           <mn-container :horizontal="isRightFixed">
@@ -76,6 +80,7 @@
                   }"
                   :layout="layout"
                   :show-brand="!isLeftFixed"
+                  :show-sidebar="isRightFixed"
                 ></AsideRight>
               </mn-block>
             </mn-aside>

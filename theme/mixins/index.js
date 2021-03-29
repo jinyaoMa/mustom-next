@@ -1,6 +1,15 @@
 export default (Vuex) => {
   return {
     computed: {
+      $docRoot() {
+        let result = this.$localePath;
+        const currentPath = this.$page.path.replace(this.$localePath, "/");
+        const matches = currentPath.match(/^\/([^\/]+\/)/);
+        if (matches && matches.length === 2) {
+          result += matches[1];
+        }
+        return result;
+      },
       $siteWordsTotal() {
         let result = 0;
         this.$site.pages.forEach((page) => {
@@ -11,12 +20,26 @@ export default (Vuex) => {
         }
         return result;
       },
+      $siteDocsList() {
+        return this.$site.pages
+          .filter(
+            (p) =>
+              !p.id &&
+              p.frontmatter._locale === this.$localePath &&
+              !p.frontmatter._auto_generated &&
+              p.frontmatter.layout !== "Archive"
+          )
+          .sort((a, b) => {
+            return a.path.localeCompare(b.path);
+          });
+      },
       $siteDocsTotal() {
         return this.$site.pages.filter(
           (p) =>
             !p.id &&
             p.frontmatter._locale === this.$localePath &&
-            !p.frontmatter._auto_generated
+            !p.frontmatter._auto_generated &&
+            p.frontmatter.layout !== "Archive"
         ).length;
       },
       $siteDocs() {
@@ -25,7 +48,8 @@ export default (Vuex) => {
             (p) =>
               !p.id &&
               p.frontmatter._locale === this.$localePath &&
-              !p.frontmatter._auto_generated
+              !p.frontmatter._auto_generated &&
+              p.frontmatter.layout !== "Archive"
           )
           .sort((a, b) => {
             if (a.frontmatter.updated < b.frontmatter.updated) {

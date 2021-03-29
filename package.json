@@ -1,8 +1,9 @@
 {
   "name": "@jinyaoma/mustom-next",
-  "version": "0.0.1-20210326.2140",
+  "version": "0.0.1-20210328.2134",
   "description": "",
   "scripts": {
+    "playground": "node playground.js",
     "build:icons": "node icons/index.js",
     "build:style-theme": "gulp build",
     "build:packages": "vue-cli-service build --target lib --name mustom-next --dest build/packages packages/index.js",
