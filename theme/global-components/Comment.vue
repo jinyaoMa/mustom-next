@@ -44,6 +44,10 @@ export default {
 
 >>> .vssue
   font-size 14px
+  a
+    transition 0.2s
+    &:hover, &:focus
+      color var(--color-secondary-1)
   .vssue-button
     font-size 12px
   .vssue-new-comment

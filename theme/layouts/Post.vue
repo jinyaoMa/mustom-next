@@ -347,6 +347,9 @@ export default {
     color var(--color-text-placeholder)
   > a
     font-size 16px
+    transition 0.2s
+    &:hover, &:focus
+      color var(--color-secondary-1)
 
 .next
   text-align right
