@@ -16,6 +16,7 @@ import menuItem from "./menu-item";
 import submenu from "./submenu";
 import postCard from "./post-card";
 import goingTo from "./going-to";
+import audio from "./audio";
 
 export default {
   icon,
@@ -35,5 +36,6 @@ export default {
   menuItem,
   submenu,
   postCard,
-  goingTo
+  goingTo,
+  audio
 };

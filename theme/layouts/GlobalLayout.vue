@@ -106,6 +106,7 @@
         @go-top="handleGoTop"
         @go-bottom="handleGoBottom"
       ></mn-going-to>
+      <Audio></Audio>
     </mn-container>
   </div>
 </template>
