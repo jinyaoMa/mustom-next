@@ -3,7 +3,7 @@
     <component v-if="layout === 'NotFound'" :is="layout" :key="layout" />
     <mn-container v-else height="100vh" width="100vw">
       <mn-header :height="headerButtonWidth" style="z-index: 1">
-        <Header></Header>
+        <Header @corner-click="handleCornerClick" :highlight="curtain"></Header>
       </mn-header>
       <mn-container
         :height="`calc(100vh - ${headerButtonWidth})`"
@@ -101,7 +101,7 @@
       </mn-container>
       <mn-going-to
         gap="15px"
-        :width="bodyGap"
+        width="80px"
         :icons="[$localeConfig.icons.arrow.up, $localeConfig.icons.arrow.down]"
         @go-top="handleGoTop"
         @go-bottom="handleGoBottom"
@@ -109,6 +109,14 @@
       <Audio
         v-if="$themeConfig.audioplayer && $themeConfig.audioplayer.enable"
       ></Audio>
+      <transition name="curtion">
+        <Curtain
+          v-if="curtain != ''"
+          :style="{
+            height: `calc(100vh - ${headerButtonWidth})`,
+          }"
+        ></Curtain>
+      </transition>
     </mn-container>
   </div>
 </template>
@@ -146,6 +154,13 @@ export default {
     },
   },
   methods: {
+    handleCornerClick(target) {
+      if (this.curtain === target) {
+        this.curtain = "";
+      } else {
+        this.curtain = target;
+      }
+    },
     handleGoTop() {
       this.$refs.scrollableContainer.scroll2Top();
     },
@@ -256,6 +271,7 @@ export default {
       gap: "32px",
       centerWidth: "100%",
       scrollWaiter: null,
+      curtain: "",
     };
   },
   mounted() {

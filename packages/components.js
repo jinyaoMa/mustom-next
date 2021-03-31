@@ -17,6 +17,8 @@ import submenu from "./submenu";
 import postCard from "./post-card";
 import goingTo from "./going-to";
 import audio from "./audio";
+import panel from "./panel";
+import panelItem from "./panel-item";
 
 export default {
   icon,
@@ -37,5 +39,7 @@ export default {
   submenu,
   postCard,
   goingTo,
-  audio
+  audio,
+  panel,
+  panelItem
 };

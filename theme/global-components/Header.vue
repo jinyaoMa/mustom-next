@@ -1,7 +1,16 @@
 <template>
   <div class="Header">
     <div class="corner">
-      <mn-button square plain filled :title="$localeConfig.settings.title">
+      <mn-button
+        square
+        plain
+        filled
+        :title="$localeConfig.settings.title"
+        @click="$emit('corner-click', 'settings')"
+        :class="{
+          highlight: highlight === 'settings',
+        }"
+      >
         <mn-icon :name="$localeConfig.settings.icon"></mn-icon>
       </mn-button>
     </div>
@@ -19,7 +28,16 @@
       </mn-sitename>
     </div>
     <div class="corner">
-      <mn-button square plain filled :title="$localeConfig.search.title">
+      <mn-button
+        square
+        plain
+        filled
+        :title="$localeConfig.search.title"
+        @click="$emit('corner-click', 'search')"
+        :class="{
+          highlight: highlight === 'search',
+        }"
+      >
         <mn-icon :name="$localeConfig.search.icon"></mn-icon>
       </mn-button>
     </div>
@@ -29,6 +47,11 @@
 <script>
 export default {
   name: "Header",
+  props: {
+    highlight: {
+      type: String,
+    },
+  },
 };
 </script>
 
@@ -43,6 +66,9 @@ export default {
   width 80px
   @media (max-width 768px)
     width 64px
+  .mn-button.highlight
+    color var(--color-secondary-0)
+    background-color var(--color-secondary-9)
 
 .sitetop
   flex-grow 1
