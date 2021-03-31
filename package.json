@@ -1,6 +1,6 @@
 {
   "name": "@jinyaoma/mustom-next",
-  "version": "0.0.1-20210328.2134",
+  "version": "0.0.1-20210331.1807",
   "description": "",
   "scripts": {
     "playground": "node playground.js",
@@ -45,6 +45,7 @@
     "markdown-it-footnote": "^3.0.2",
     "vue-axios": "^3.2.4",
     "vuepress": "^1.8.0",
+    "vuepress-plugin-helper-live2d": "^1.0.2",
     "vuepress-plugin-mathjax": "^1.2.8",
     "vuepress-plugin-social-share": "^1.0.0",
     "vuex": "^3.6.2"

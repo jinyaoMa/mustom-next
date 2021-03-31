@@ -1,9 +1,10 @@
 <template>
   <div class="mn-audio">
     <div
-      class="flex flex-horizontal"
+      class="mn-audio-inner"
       :class="{
-        'flex-horizontal-reverse': reverse,
+        reverse,
+        vertical,
       }"
     >
       <div
@@ -54,9 +55,10 @@
         v-if="isListOpen"
         class="mn-audio-list"
         :style="{
-          top: `calc(100% + ${size} * 0.1)`,
-          left: listAlign === 'left' && '0',
-          right: listAlign === 'right' && '0',
+          top: listAlign.includes('top') && `calc(100% + ${size} * 0.1)`,
+          bottom: listAlign.includes('bottom') && `calc(100% + ${size} * 0.1)`,
+          left: listAlign.includes('left') && '0',
+          right: listAlign.includes('right') && '0',
           maxHeight: listMaxHeight,
           width: listWidth,
           borderRadius: round && '4px',
@@ -64,7 +66,7 @@
         }"
       >
         <div
-          class="mn-audio-list-item flex flex-horizontal"
+          class="mn-audio-list-item"
           v-for="(song, i) in playlist"
           :key="i"
           :style="{
@@ -126,6 +128,12 @@ export default {
         ];
       },
     },
+    vertical: {
+      type: Boolean,
+      default() {
+        return false;
+      },
+    },
     reverse: {
       type: Boolean,
       default() {
@@ -147,7 +155,7 @@ export default {
     listAlign: {
       type: String,
       default() {
-        return "right";
+        return "left bottom";
       },
     },
     listMaxHeight: {

@@ -106,7 +106,9 @@
         @go-top="handleGoTop"
         @go-bottom="handleGoBottom"
       ></mn-going-to>
-      <Audio></Audio>
+      <Audio
+        v-if="$themeConfig.audioplayer && $themeConfig.audioplayer.enable"
+      ></Audio>
     </mn-container>
   </div>
 </template>

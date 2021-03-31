@@ -174,6 +174,16 @@ function generateDocsStructure(sourceDir) {
   return walk(sourceDir);
 }
 
+function getLive2d(themeConfig) {
+  if (
+    typeof themeConfig.live2dHelper === "object" &&
+    themeConfig.live2dHelper.enable
+  ) {
+    return themeConfig.live2dHelper;
+  }
+  return null;
+}
+
 module.exports = {
   getDirectoriesByLocales,
   getfrontmattersByLocales,
@@ -182,5 +192,6 @@ module.exports = {
   getComment,
   getSocialShare,
   getPangu,
-  generateDocsStructure
+  generateDocsStructure,
+  getLive2d
 };

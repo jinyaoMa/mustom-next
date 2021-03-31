@@ -103,6 +103,15 @@ module.exports = (_, context) => {
     ]);
   }
 
+  const live2d = util.getLive2d(themeConfig);
+  if (live2d) {
+    plugins.push([
+      // https://github.com/JoeyBling/vuepress-plugin-helper-live2d
+      "vuepress-plugin-helper-live2d",
+      live2d.options
+    ]);
+  }
+
   const extendPageData = ($page) => {
     const {
       _filePath, // file's absolute path

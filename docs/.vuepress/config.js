@@ -5,6 +5,33 @@ module.exports = (context) => {
     locales: require("./locales"),
 
     themeConfig: {
+      live2dHelper: {
+        enable: true,
+        options: {
+          log: false,
+          live2d: {
+            enable: true,
+            model: "haruto", // ==> .vuepress/public/live2d/haruto
+            display: {
+              position: "right",
+              width: 180,
+              height: 270,
+              hOffset: 48,
+              vOffset: 0
+            },
+            mobile: {
+              show: false
+            },
+            react: {
+              opacity: 1
+            }
+          }
+        }
+      },
+      audioplayer: {
+        enable: true,
+        api: `https://api.i-meto.com/meting/api?server=netease&type=playlist&id=4989572738&r=${Math.random()}`
+      },
       pangu: {
         // enabling pangu will disable markdown-it-anchor permalink
         enable: true

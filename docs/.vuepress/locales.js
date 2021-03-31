@@ -47,9 +47,6 @@ module.exports = {
         ]
       }
     },
-    audioplayer: {
-      enable: true
-    },
     pagination: {
       lengthPerPage: 9,
       title: {
@@ -261,9 +258,6 @@ module.exports = {
           `<strong>Copyright Notice:</strong> All articles/posts in this website are licensed under <a target="_blank" href="//creativecommons.org/licenses/by-nc-sa/4.0/"><i class="fab fa-creative-commons"></i> BY-NC-SA</a> unless stating additionally.`
         ]
       }
-    },
-    audioplayer: {
-      enable: true
     },
     pagination: {
       lengthPerPage: 9,
