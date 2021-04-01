@@ -87,7 +87,10 @@ module.exports = {
     },
     settings: {
       icon: "fas fa-sliders-h",
-      title: "设置"
+      title: "设置",
+      autoplay: "自动播放",
+      live2d: "Live2D Helper",
+      language: "Language"
     },
     search: {
       icon: "fas fa-search",
@@ -299,7 +302,10 @@ module.exports = {
     },
     settings: {
       icon: "fas fa-sliders-h",
-      title: "Settings"
+      title: "Settings",
+      autoplay: "Autoplay",
+      live2d: "Live2D Helper",
+      language: "Language"
     },
     search: {
       icon: "fas fa-search",

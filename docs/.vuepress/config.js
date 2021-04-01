@@ -5,6 +5,7 @@ module.exports = (context) => {
     locales: require("./locales"),
 
     themeConfig: {
+      wallpapers: [],
       live2dHelper: {
         enable: true,
         options: {

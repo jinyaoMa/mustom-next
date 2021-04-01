@@ -92,8 +92,12 @@ export default {
       border-style solid
       border-color var(--color-primary-2)
       color var(--color-primary-0)
+    .mn-audio-cover
+      opacity 0.5
     &.isPlayed
       color var(--color-primary-0)
+      .mn-audio-cover
+        opacity 1
       .mn-audio-icon
         i
           font-size 14px !important
@@ -101,8 +105,8 @@ export default {
           left 12px
           top 8px
   >>> .mn-audio-list
-    bottom 15px !important
-    left 100% !important
+    bottom 10px !important
+    left calc(100% - 5px) !important
     width auto !important
     max-width 50vw !important
 </style>

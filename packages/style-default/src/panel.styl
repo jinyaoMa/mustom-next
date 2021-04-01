@@ -1,1 +1,16 @@
 @import '../define.styl'
+
+.mn-panel
+  position relative
+  width 100%
+
+.mn-panel-caption
+  font-size $fontExtraLarge
+  line-height $lineHeightNone
+  padding 0.5em
+  border-left 0.5em solid var(--color-primary-0)
+  font-weight bold
+
+.mn-panel-inner
+  display grid
+  grid-auto-flow column dense

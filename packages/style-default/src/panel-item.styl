@@ -1,1 +1,49 @@
 @import '../define.styl'
+
+.mn-panel-item
+  font-size $fontMedium
+  line-height $lineHeightLoose
+  display flex
+  flex-direction row
+  justify-content space-between
+  align-items center
+
+.mn-panel-item__switch
+  height: $lineHeightNormal * $fontMedium
+  width: $lineHeightNormal * $fontMedium * 2
+  border-radius: $lineHeightNormal * $fontMedium * 0.5
+  overflow hidden
+  position relative
+  cursor pointer
+  &:before
+    content ''
+    position absolute
+    top 0
+    left 0
+    height: $lineHeightNormal * $fontMedium
+    width: $lineHeightNormal * $fontMedium
+    border-radius 50%
+    background var(--color-secondary-1)
+    transition transform 0.2s, background 0.6s
+    transform scale(0.5)
+    z-index 2
+  &:after
+    content ''
+    position absolute
+    top 0
+    right 0
+    height: $lineHeightNormal * $fontMedium
+    width: $lineHeightNormal * $fontMedium
+    border-radius 50%
+    background var(--color-secondary-9)
+    transition transform 0.2s, background 0.6s
+    transform scale(3)
+    z-index 1
+  &.active
+    &:before
+      background var(--color-primary-8)
+      transform scale(3)
+    &:after
+      background var(--color-primary-0)
+      transform scale(0.5)
+      z-index 2
