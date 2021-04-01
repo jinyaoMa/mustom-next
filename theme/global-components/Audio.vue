@@ -72,7 +72,7 @@ export default {
     box-sizing border-box
     border-radius 8px !important
     border 2px dashed var(--color-primary-8)
-    transition 0.2s
+    transition 0.2s !important
     i
       font-size 20px !important
     &:hover, &:focus
@@ -82,12 +82,12 @@ export default {
   >>> .mn-audio-icon
     i
       font-size 20px !important
-      transition 0.2s
+      transition 0.2s !important
   >>> .mn-audio-right
     box-sizing border-box
     border-radius 8px !important
     border 2px dashed var(--color-primary-8)
-    transition 0.2s
+    transition 0.2s !important
     &:hover, &:focus
       border-style solid
       border-color var(--color-primary-2)
