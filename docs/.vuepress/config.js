@@ -5,7 +5,7 @@ module.exports = (context) => {
     locales: require("./locales"),
 
     themeConfig: {
-      wallpapers: [],
+      wallpapers: ["linear-gradient(120deg, #ff3300, #cc66ff, #00ccff)"],
       live2dHelper: {
         enable: true,
         options: {

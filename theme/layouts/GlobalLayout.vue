@@ -115,6 +115,7 @@
           :style="{
             height: `calc(100vh - ${headerButtonWidth})`,
           }"
+          :which="curtain"
         ></Curtain>
       </transition>
     </mn-container>
@@ -154,6 +155,13 @@ export default {
     },
   },
   methods: {
+    getBackgroundImage() {
+      return this.currentBackgroundImage;
+    },
+    setBackgroundImage(image) {
+      this.$refs.scrollableContainer.$el.style.backgroundImage = image;
+      this.currentBackgroundImage = image;
+    },
     handleCornerClick(target) {
       if (this.curtain === target) {
         this.curtain = "";
@@ -272,6 +280,7 @@ export default {
       centerWidth: "100%",
       scrollWaiter: null,
       curtain: "",
+      currentBackgroundImage: "",
     };
   },
   mounted() {

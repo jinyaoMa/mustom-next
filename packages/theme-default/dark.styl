@@ -1,0 +1,29 @@
+:root.dark
+  /* brand */
+  for $num in 0 .. 9
+    --color-primary-{$num} darken(#62abff, unit($num * 10, '%'))
+    --color-secondary-{$num} darken(#cc1122, unit($num * 10, '%'))
+  /* functional */
+  for $num in 0 .. 9
+    --color-success-{$num} darken(#67c23a, unit($num * 10, '%'))
+    --color-warning-{$num} darken(#e6a23c, unit($num * 10, '%'))
+    --color-danger-{$num} darken(#f56c6c, unit($num * 10, '%'))
+    --color-info-{$num} darken(#909399, unit($num * 10, '%'))
+  /* text */
+  --color-text-primary #ffffff
+  --color-text-regular #f2f6fc
+  --color-text-secondary #e4e7ed
+  --color-text-placeholder #c0c4cc
+  /* border */
+  --color-border-base #a1a2a3
+  --color-border-light #909399
+  --color-border-lighter #666666
+  --color-border-extra-light #222222
+  /* background */
+  --color-base #202122
+  --color-black #ffffff
+  --color-white #000000
+  --color-transparent transparent
+  /* box-shadow */
+  --shadow-base 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04)
+  --shadow-light 0 2px 12px 0 rgba(0, 0, 0, 0.1)

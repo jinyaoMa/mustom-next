@@ -76,6 +76,7 @@ export default {
   flex-direction row
   justify-content center
   align-items center
+  background-color var(--color-white)
 
 [class*='mn-icon']
   font-size 20px

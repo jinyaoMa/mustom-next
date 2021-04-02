@@ -82,12 +82,12 @@ export default {
   >>> .mn-audio-icon
     i
       font-size 20px !important
-      transition 0.2s !important
   >>> .mn-audio-right
     box-sizing border-box
     border-radius 8px !important
     border 2px dashed var(--color-primary-8)
     transition 0.2s !important
+    background-color var(--color-white)
     &:hover, &:focus
       border-style solid
       border-color var(--color-primary-2)
@@ -105,8 +105,8 @@ export default {
           left 12px
           top 8px
   >>> .mn-audio-list
-    bottom 10px !important
-    left calc(100% - 5px) !important
+    bottom 15px !important
+    left 100% !important
     width auto !important
     max-width 50vw !important
 </style>

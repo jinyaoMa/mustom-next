@@ -19,6 +19,7 @@ import goingTo from "./going-to";
 import audio from "./audio";
 import panel from "./panel";
 import panelItem from "./panel-item";
+import panelPiece from "./panel-piece";
 
 export default {
   icon,
@@ -41,5 +42,6 @@ export default {
   goingTo,
   audio,
   panel,
-  panelItem
+  panelItem,
+  panelPiece
 };

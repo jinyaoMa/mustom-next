@@ -1,15 +1,15 @@
 <template>
   <div class="mn-panel-item" :style="customStyle">
     <div class="mn-panel-item-left">
-      {{ label }}
+      <slot></slot>
     </div>
     <div class="mn-panel-item-right">
       <div
         class="mn-panel-item__switch"
         :class="{
-          active: flag,
+          active: isActive,
         }"
-        @click="$emit('click', flag, value)"
+        @click="handleClick"
       ></div>
     </div>
   </div>
@@ -19,13 +19,7 @@
 export default {
   name: "mn-panel-item",
   props: {
-    label: {
-      type: String,
-      default() {
-        return "";
-      },
-    },
-    value: {
+    name: {
       type: String,
     },
     width: {
@@ -47,6 +41,17 @@ export default {
         width: this.width,
       };
     },
+  },
+  methods: {
+    handleClick() {
+      this.isActive = !this.isActive;
+      this.$emit("click", this.isActive, this.name);
+    },
+  },
+  data() {
+    return {
+      isActive: this.flag,
+    };
   },
 };
 </script>

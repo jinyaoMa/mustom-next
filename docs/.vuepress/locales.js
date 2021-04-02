@@ -88,9 +88,14 @@ module.exports = {
     settings: {
       icon: "fas fa-sliders-h",
       title: "设置",
+      language: "语言 / Language",
       autoplay: "自动播放",
       live2d: "Live2D Helper",
-      language: "Language"
+      theme: "主题",
+      wallpaper: "壁纸",
+      default: "默认",
+      dark: "黑暗",
+      locale: "中文"
     },
     search: {
       icon: "fas fa-search",
@@ -303,9 +308,14 @@ module.exports = {
     settings: {
       icon: "fas fa-sliders-h",
       title: "Settings",
+      language: "Language / 语言",
       autoplay: "Autoplay",
       live2d: "Live2D Helper",
-      language: "Language"
+      theme: "Theme",
+      wallpaper: "Wallpaper",
+      default: "Default",
+      dark: "Dark",
+      locale: "English"
     },
     search: {
       icon: "fas fa-search",
