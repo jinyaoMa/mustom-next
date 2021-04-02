@@ -65,20 +65,29 @@
             :active="getCurrentWallpaper() === wallpaper"
           ></mn-panel-piece>
         </mn-panel>
-        <mn-panel :caption="$localeConfig.settings.title" flow-down>
+        <mn-panel
+          v-if="
+            ($themeConfig.audioplayer && $themeConfig.audioplayer.enable) ||
+            ($themeConfig.live2dHelper && $themeConfig.live2dHelper.enable)
+          "
+          :caption="$localeConfig.settings.title"
+          flow-down
+        >
           <mn-panel-item
+            v-if="$themeConfig.audioplayer && $themeConfig.audioplayer.enable"
             name="autoplay"
-            width="280px"
+            width="240px"
             @click="handleItemClick"
-            :flag="isAutoplay"
+            :flag="autoplay"
           >
             {{ $localeConfig.settings.autoplay }}
           </mn-panel-item>
           <mn-panel-item
+            v-if="$themeConfig.live2dHelper && $themeConfig.live2dHelper.enable"
             name="live2d"
-            width="280px"
+            width="240px"
             @click="handleItemClick"
-            :flag="isLive2d"
+            :flag="live2d"
           >
             {{ $localeConfig.settings.live2d }}
           </mn-panel-item>
@@ -90,18 +99,32 @@
         scrollbar
         height="100%"
       >
+        <mn-panel :caption="$localeConfig.search.title" flow-down>
+          <Search></Search>
+        </mn-panel>
       </mn-container>
     </transition-group>
   </div>
 </template>
 
 <script>
+import Search from "../components/Search";
+
 export default {
   name: "Curtain",
   props: {
     which: {
       type: String,
     },
+    live2d: {
+      type: Boolean,
+    },
+    autoplay: {
+      type: Boolean,
+    },
+  },
+  components: {
+    Search,
   },
   methods: {
     getCurrentWallpaper() {
@@ -122,27 +145,27 @@ export default {
       this.$router.push(e.target.value);
     },
     handleThemeChange(name) {
-      document.querySelector(":root").className = name;
+      if (typeof this.$parent.$parent.setTheme === "function") {
+        this.$parent.$parent.setTheme(name, true);
+      }
     },
     handleWallpaperChange(name, image) {
       if (typeof this.$parent.$parent.setBackgroundImage === "function") {
-        this.$parent.$parent.setBackgroundImage(image);
+        this.$parent.$parent.setBackgroundImage(image, true);
       }
     },
     handleItemClick(flag, name) {
       console.log(flag, name);
       if (name === "autoplay") {
-        this.isAutoplay = flag;
+        if (typeof this.$parent.$parent.setAutoplay === "function") {
+          this.$parent.$parent.setAutoplay(flag, true);
+        }
       } else if (name === "live2d") {
-        this.isLive2d = flag;
+        if (typeof this.$parent.$parent.setLive2d === "function") {
+          this.$parent.$parent.setLive2d(flag, true);
+        }
       }
     },
-  },
-  data() {
-    return {
-      isAutoplay: false,
-      isLive2d: false,
-    };
   },
 };
 </script>
@@ -154,6 +177,7 @@ export default {
   left 0
   width 100%
   background-color var(--color-white)
+  z-index 999
 
 .customSelect
   position relative
@@ -168,7 +192,7 @@ export default {
     border-top-color transparent
     transform rotate(45deg)
   > select
-    min-width 280px
+    min-width 240px
     padding 1em
     padding-right 2em
     appearance none
@@ -178,4 +202,6 @@ export default {
 
 >>> .mn-container-inner
   padding 80px
+  @media (max-width 768px)
+    padding 40px
 </style>

@@ -108,6 +108,8 @@
       ></mn-going-to>
       <Audio
         v-if="$themeConfig.audioplayer && $themeConfig.audioplayer.enable"
+        :autoplay="currentAutoplay"
+        ref="audio"
       ></Audio>
       <transition name="curtion">
         <Curtain
@@ -116,6 +118,8 @@
             height: `calc(100vh - ${headerButtonWidth})`,
           }"
           :which="curtain"
+          :live2d="currentLive2d"
+          :autoplay="currentAutoplay"
         ></Curtain>
       </transition>
     </mn-container>
@@ -155,12 +159,54 @@ export default {
     },
   },
   methods: {
+    closeCurtain() {
+      this.curtain = "";
+    },
+    setLive2d(flag, save = false) {
+      this.currentLive2d = flag;
+      const widget = this.$root.$el.querySelector("#live2d-widget");
+      if (this.currentLive2d) {
+        widget && (widget.style.opacity = 1);
+      } else {
+        widget && (widget.style.opacity = 0);
+      }
+      if (save) {
+        this.state.live2d = flag;
+        this.$storage.set(this.state);
+      }
+    },
+    setAutoplay(flag, save = false) {
+      this.currentAutoplay = flag;
+      if (this.currentAutoplay && this.$refs.audio) {
+        this.$refs.audio.play();
+      }
+      if (save) {
+        this.state.autoplay = flag;
+        this.$storage.set(this.state);
+      }
+    },
+    setTheme(name, save = false) {
+      document.querySelector(":root").className = name;
+      if (save) {
+        this.state.theme = name;
+        this.$storage.set(this.state);
+      }
+    },
     getBackgroundImage() {
       return this.currentBackgroundImage;
     },
-    setBackgroundImage(image) {
-      this.$refs.scrollableContainer.$el.style.backgroundImage = image;
-      this.currentBackgroundImage = image;
+    setBackgroundImage(image, save = false) {
+      const waiting = window.setInterval(() => {
+        if (this.$refs.scrollableContainer) {
+          window.clearInterval(waiting);
+          this.$refs.scrollableContainer.$el.style.backgroundImage = image;
+          this.currentBackgroundImage = image;
+          if (save) {
+            this.state.wallpaper = image;
+            this.$storage.set(this.state);
+          }
+        }
+      }, 16);
     },
     handleCornerClick(target) {
       if (this.curtain === target) {
@@ -281,7 +327,35 @@ export default {
       scrollWaiter: null,
       curtain: "",
       currentBackgroundImage: "",
+      currentAutoplay: false,
+      currentLive2d: true,
+      state: null,
     };
+  },
+  created() {
+    this.state = this.$storage.get();
+    if (
+      !/^(zh)/i.test(
+        window.navigator.browserLanguage || window.navigator.language || "zh"
+      ) &&
+      this.$localePath === "/"
+    ) {
+      this.$router.replace($themeConfig.autoRediect);
+    }
+    if (this.state.theme) {
+      this.setTheme(this.state.theme);
+    }
+    if (this.state.wallpaper) {
+      this.setBackgroundImage(this.state.wallpaper);
+    }
+    if (this.state.autoplay) {
+      this.setAutoplay(this.state.autoplay);
+    }
+    if (typeof this.state.live2d === "undefined") {
+      this.setLive2d(true, true);
+    } else {
+      this.setLive2d(this.state.live2d);
+    }
   },
   mounted() {
     console.log(this);
@@ -309,4 +383,8 @@ export default {
 
 .scrollableContainer
   background-color var(--color-base)
+  background-attachment fixed
+  background-repeat no-repeat
+  background-position center center
+  background-size cover
 </style>

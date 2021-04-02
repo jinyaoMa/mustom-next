@@ -39,6 +39,6 @@ export default {
 
 <style lang="stylus" scoped>
 .Clustrmaps
-  margin 12px 10px 0
+  margin 12px 10px 10px
   overflow hidden
 </style>

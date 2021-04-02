@@ -176,6 +176,12 @@ export default {
         return "12px";
       },
     },
+    autoplay: {
+      type: Boolean,
+      default() {
+        return false;
+      },
+    },
   },
   computed: {
     customAudioStyle() {
@@ -239,6 +245,13 @@ export default {
             });
           }
         };
+        if (this.autoplay) {
+          this.audio.play().catch((e) => {
+            if (e.name === "NotAllowedError") {
+              this.isPlayed = false;
+            }
+          });
+        }
       }
     },
     audioSrc() {

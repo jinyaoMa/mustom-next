@@ -18,6 +18,9 @@ body
   opacity 0
   transform translateY(0)
 
+#live2d-widget
+  transition 0.2s
+
 .mn-hanger
   margin 36px 0
   background var(--color-white)
@@ -62,7 +65,7 @@ div[class*='language-']
     right 0
     padding 0 6px
     background-color var(--color-primary-0)
-    color var(--color-white)
+    color white
     border-radius 0 0 0 2px
     transition 0.6s
   &:hover:before
@@ -103,3 +106,7 @@ code[class*='language-'], pre[class*='language-']
         display none
 
 @import '../../packages/theme-default/dark.styl'
+
+:root.dark
+  .scrollableContainer
+    background-image none !important

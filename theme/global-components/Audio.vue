@@ -7,6 +7,8 @@
       :size="`calc(${width} - ${gap} * 2)`"
       vertical
       reverse
+      :autoplay="autoplay"
+      ref="audio"
     ></mn-audio>
   </div>
 </template>
@@ -27,12 +29,21 @@ export default {
         return "80px";
       },
     },
+    autoplay: {
+      type: Boolean,
+      default() {
+        return false;
+      },
+    },
   },
   methods: {
     setupPlaylist() {
       this.$http.get(this.$themeConfig.audioplayer.api).then((res) => {
         this.playlist = res.data;
       });
+    },
+    play() {
+      this.$refs.audio && this.$refs.audio.audioPlay();
     },
   },
   data() {
