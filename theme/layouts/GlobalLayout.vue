@@ -404,7 +404,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this);
     window.addEventListener("resize", this.resizeUpdate);
     this.resizeUpdate();
   },
