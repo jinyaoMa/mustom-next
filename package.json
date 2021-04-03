@@ -8,7 +8,11 @@
     "build:style-theme": "gulp build",
     "build:packages": "vue-cli-service build --target lib --name mustom-next --dest build/packages packages/index.js",
     "build:docs": "vuepress build docs",
-    "serve:docs": "vuepress dev docs"
+    "serve:docs": "vuepress dev docs",
+    "deploy": "deploy.sh",
+    "usenpm": "npmuser.sh npm",
+    "usegithub": "npmuser.sh github",
+    "publish": "npm publish --access=public"
   },
   "main": "build/packages/mustom-next.umd.min.js",
   "repository": {
@@ -36,7 +40,8 @@
     "gulp-autoprefixer": "^7.0.1",
     "gulp-clean-css": "^4.3.0",
     "gulp-stylus": "^2.7.0",
-    "svgs2font": "jinyaoMa/svgs2font#v1.0.7-mustom.next"
+    "svgs2font": "jinyaoMa/svgs2font#v1.0.7-mustom.next",
+    "vuepress-plugin-vue-demo": "^1.0.15"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",

@@ -367,6 +367,7 @@ export default {
     };
   },
   created() {
+    if (this.$isServer) return;
     this.state = this.$storage.get();
     if (
       this.$themeConfig.autoRediect.to &&

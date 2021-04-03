@@ -147,6 +147,7 @@ export default {
       return image;
     },
     getCurrentTheme() {
+      if (this.$isServer) return "default";
       let className = document.querySelector(":root").className;
       if (className === "") {
         className = "default";

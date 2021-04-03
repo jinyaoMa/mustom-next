@@ -37,6 +37,7 @@ export default {
   },
   methods: {
     initBusuanzi() {
+      if (this.$isServer) return;
       this.$jsonp(
         "//busuanzi.ibruce.info/busuanzi",
         {

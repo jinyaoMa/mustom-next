@@ -11,23 +11,25 @@ export default ({ Vue, options, router, siteData }) => {
   Vue.use(Packages);
   Vue.use(VueAxios, axios);
 
-  Object.defineProperties(Vue.prototype, {
-    $jsonp: {
-      get: function get() {
-        return jsonp;
+  if (typeof window != "undefined") {
+    Object.defineProperties(Vue.prototype, {
+      $jsonp: {
+        get: function get() {
+          return jsonp;
+        }
       }
-    }
-  });
-  Vue.$jsonp = jsonp;
+    });
+    Vue.$jsonp = jsonp;
 
-  Object.defineProperties(Vue.prototype, {
-    $storage: {
-      get: function get() {
-        return storage;
+    Object.defineProperties(Vue.prototype, {
+      $storage: {
+        get: function get() {
+          return storage;
+        }
       }
-    }
-  });
-  Vue.$storage = storage;
+    });
+    Vue.$storage = storage;
+  }
 
   Vue.mixin(mixins());
 

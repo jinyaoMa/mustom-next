@@ -1,5 +1,7 @@
 module.exports = (context) => {
   return {
+    base: "/",
+
     theme: require.resolve("../../theme"),
 
     locales: require("./locales"),
@@ -127,6 +129,13 @@ module.exports = (context) => {
         noGlobalSocialShare: true
       }
     },
+
+    plugins: [
+      [
+        // https://github.com/busyrat/vuepress-plugins/tree/master/packages/vue-demo
+        "vue-demo"
+      ]
+    ],
 
     markdown: {
       lineNumbers: true,

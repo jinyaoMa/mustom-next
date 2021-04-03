@@ -32,7 +32,10 @@
         <div class="divider"></div>
       </div>
       <Pagination class="pagination"></Pagination>
-      <SimplePagination class="simple-pagination"></SimplePagination>
+      <SimplePagination
+        v-if="!$isServer"
+        class="simple-pagination"
+      ></SimplePagination>
     </div>
   </mn-hanger>
 </template>
@@ -49,6 +52,7 @@ export default {
   },
   computed: {
     posts() {
+      if (this.$isServer) return [];
       return this.$pagination.pages.map((post) => {
         const categories = [];
         const cate_prefix = this.$localePath.replace(/\//g, "");

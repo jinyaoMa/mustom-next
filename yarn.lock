@@ -6724,7 +6724,7 @@ markdown-it-table-of-contents@^0.4.0:
   resolved "https://registry.yarnpkg.com/markdown-it-table-of-contents/-/markdown-it-table-of-contents-0.4.4.tgz#3dc7ce8b8fc17e5981c77cc398d1782319f37fbc"
   integrity sha512-TAIHTHPwa9+ltKvKPWulm/beozQU41Ab+FIefRaQV1NRnpzwcV9QOe6wXQS5WLivm5Q/nlo0rl6laGkMDZE7Gw==
 
-markdown-it@^8.4.1:
+markdown-it@^8.4.1, markdown-it@^8.4.2:
   version "8.4.2"
   resolved "https://registry.yarnpkg.com/markdown-it/-/markdown-it-8.4.2.tgz#386f98998dc15a37722aa7722084f4020bdd9b54"
   integrity sha512-GcRz3AWTqSUphY3vsUqQSFMbgR38a4Lh3GWlHRh/7MRwz8mcu9n2IO7HOh+bXHrR9kOPDl5RNCaEsrneb+xhHQ==
@@ -10781,6 +10781,14 @@ vuepress-plugin-social-share@^1.0.0:
   integrity sha512-BBYIPubR7J4IMrgC9djbcidA/XhgqPgz7EdGXLIQ620bEFo1d6ERUDAvTbeNbKiKz6kndvSkPPeN7UZlZvdyGg==
   dependencies:
     deepmerge "^4.2.2"
+
+vuepress-plugin-vue-demo@^1.0.15:
+  version "1.0.15"
+  resolved "https://registry.yarnpkg.com/vuepress-plugin-vue-demo/-/vuepress-plugin-vue-demo-1.0.15.tgz#43414f7361a474db3bd998804485ce2433c83044"
+  integrity sha512-CTG6I0HAUTW13SSd84c6/3XzEidwqX/yZ3tmKSHSIEndJOZpED/x1i9Yj1Rfg34AZ2OSz9UiPupenQp5ozp0+A==
+  dependencies:
+    markdown-it "^8.4.2"
+    markdown-it-container "^2.0.0"
 
 vuepress@^1.8.0:
   version "1.8.2"

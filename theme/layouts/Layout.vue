@@ -145,6 +145,7 @@ export default {
       }
     },
     currentPathReplace(str) {
+      if (this.$isServer) return "";
       return str.replace(
         /\{\s*currentPath\s*\}/gi,
         window.location.href.replace(/#.*$/, "")
