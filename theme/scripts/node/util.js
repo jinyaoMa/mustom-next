@@ -184,6 +184,13 @@ function getLive2d(themeConfig) {
   return null;
 }
 
+function getPwa(themeConfig) {
+  if (typeof themeConfig.pwa === "object" && themeConfig.pwa.enable) {
+    return themeConfig.pwa;
+  }
+  return null;
+}
+
 module.exports = {
   getDirectoriesByLocales,
   getfrontmattersByLocales,
@@ -193,5 +200,6 @@ module.exports = {
   getSocialShare,
   getPangu,
   generateDocsStructure,
-  getLive2d
+  getLive2d,
+  getPwa
 };

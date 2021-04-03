@@ -10,6 +10,54 @@ module.exports = (context) => {
         "linear-gradient(0deg, #ffffff, #ffffff)",
         "linear-gradient(120deg, #ff3300, #cc66ff, #00ccff)"
       ],
+      pwa: {
+        enable: true,
+        head: [
+          [
+            "link",
+            {
+              rel: "icon",
+              href: "/favicon.ico",
+              type: "image/x-icon"
+            }
+          ],
+          [
+            "link",
+            {
+              rel: "manifest",
+              href: "/manifest.json"
+            }
+          ],
+          [
+            "meta",
+            {
+              name: "theme-color",
+              content: "#ffffff"
+            }
+          ],
+          [
+            "meta",
+            {
+              name: "apple-mobile-web-app-capable",
+              content: "yes"
+            }
+          ],
+          [
+            "meta",
+            {
+              name: "apple-mobile-web-app-status-bar-style",
+              content: "#ffffff"
+            }
+          ],
+          [
+            "link",
+            {
+              rel: "apple-touch-icon",
+              href: "/assets/img/apple-touch-icon.png"
+            }
+          ]
+        ]
+      },
       live2dHelper: {
         enable: true,
         options: {

@@ -41,6 +41,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
     "@vuepress/plugin-blog": "jinyaoMa/vuepress-plugin-blog#1.9.4-mustom.next",
+    "@vuepress/plugin-pwa": "^1.8.2",
     "axios": "^0.21.1",
     "markdown-it-footnote": "^3.0.2",
     "vue-axios": "^3.2.4",

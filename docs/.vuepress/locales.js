@@ -7,6 +7,10 @@ module.exports = {
     archive: "博客",
     categories: "分类",
     tags: "标签",
+    pwa: {
+      message: "检测到可用的新内容。",
+      button: "更新缓存"
+    },
     icons: {
       arrow: {
         up: "fas fa-arrow-up",
@@ -227,6 +231,10 @@ module.exports = {
     archive: "Blog",
     categories: "Categories",
     tags: "Tags",
+    pwa: {
+      message: "New content is available.",
+      button: "Refresh"
+    },
     icons: {
       arrow: {
         up: "fas fa-arrow-up",

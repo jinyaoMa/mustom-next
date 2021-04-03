@@ -112,6 +112,19 @@ module.exports = (_, context) => {
     ]);
   }
 
+  const pwa = util.getPwa(themeConfig);
+  if (pwa) {
+    plugins.push([
+      // https://www.vuepress.cn/plugin/official/plugin-pwa.html
+      "@vuepress/pwa",
+      {
+        serviceWorker: true,
+        popupComponent: "CustomSWUpdatePopup"
+      }
+    ]);
+    siteConfig.head = [...siteConfig.head, ...pwa.head];
+  }
+
   const extendPageData = ($page) => {
     const {
       _filePath, // file's absolute path
