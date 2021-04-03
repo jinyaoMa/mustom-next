@@ -67,14 +67,19 @@
         </mn-panel>
         <mn-panel
           v-if="
-            ($themeConfig.audioplayer && $themeConfig.audioplayer.enable) ||
-            ($themeConfig.live2dHelper && $themeConfig.live2dHelper.enable)
+            !isMobile &&
+            (($themeConfig.audioplayer && $themeConfig.audioplayer.enable) ||
+              ($themeConfig.live2dHelper && $themeConfig.live2dHelper.enable))
           "
           :caption="$localeConfig.settings.title"
           flow-down
         >
           <mn-panel-item
-            v-if="$themeConfig.audioplayer && $themeConfig.audioplayer.enable"
+            v-if="
+              $themeConfig.audioplayer &&
+              $themeConfig.audioplayer.enable &&
+              !isMobile
+            "
             name="autoplay"
             width="240px"
             @click="handleItemClick"
@@ -83,7 +88,11 @@
             {{ $localeConfig.settings.autoplay }}
           </mn-panel-item>
           <mn-panel-item
-            v-if="$themeConfig.live2dHelper && $themeConfig.live2dHelper.enable"
+            v-if="
+              $themeConfig.live2dHelper &&
+              $themeConfig.live2dHelper.enable &&
+              !isMobile
+            "
             name="live2d"
             width="240px"
             @click="handleItemClick"
@@ -120,6 +129,9 @@ export default {
       type: Boolean,
     },
     autoplay: {
+      type: Boolean,
+    },
+    isMobile: {
       type: Boolean,
     },
   },

@@ -103,6 +103,22 @@ module.exports = (_, context) => {
     ]);
   }
 
+  const zooming = util.getZooming(themeConfig);
+  if (zooming) {
+    plugins.push([
+      // https://v1.vuepress.vuejs.org/plugin/official/plugin-medium-zoom.html
+      "vuepress-plugin-medium-zoom",
+      {
+        selector: ".post-body :not(a) > img",
+        // medium-zoom options here
+        // See: https://github.com/francoischalifour/medium-zoom#options
+        options: {
+          background: "#000000cc"
+        }
+      }
+    ]);
+  }
+
   const live2d = util.getLive2d(themeConfig);
   if (live2d) {
     plugins.push([
@@ -122,7 +138,11 @@ module.exports = (_, context) => {
         popupComponent: "CustomSWUpdatePopup"
       }
     ]);
-    siteConfig.head = [...siteConfig.head, ...pwa.head];
+    if (siteConfig.head instanceof Array) {
+      siteConfig.head = [...siteConfig.head, ...pwa.head];
+    } else {
+      siteConfig.head = pwa.head;
+    }
   }
 
   const extendPageData = ($page) => {

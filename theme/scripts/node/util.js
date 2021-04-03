@@ -191,6 +191,13 @@ function getPwa(themeConfig) {
   return null;
 }
 
+function getZooming(themeConfig) {
+  if (typeof themeConfig.zooming === "object" && themeConfig.zooming.enable) {
+    return themeConfig.zooming;
+  }
+  return null;
+}
+
 module.exports = {
   getDirectoriesByLocales,
   getfrontmattersByLocales,
@@ -201,5 +208,6 @@ module.exports = {
   getPangu,
   generateDocsStructure,
   getLive2d,
-  getPwa
+  getPwa,
+  getZooming
 };

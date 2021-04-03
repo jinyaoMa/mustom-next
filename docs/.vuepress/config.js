@@ -5,11 +5,17 @@ module.exports = (context) => {
     locales: require("./locales"),
 
     themeConfig: {
-      autoRediect: "/en/",
+      autoRediect: {
+        check: /^(zh)/i,
+        to: "/en/"
+      },
       wallpapers: [
         "linear-gradient(0deg, #ffffff, #ffffff)",
         "linear-gradient(120deg, #ff3300, #cc66ff, #00ccff)"
       ],
+      zooming: {
+        enable: true
+      },
       pwa: {
         enable: true,
         head: [
@@ -74,9 +80,6 @@ module.exports = (context) => {
             },
             mobile: {
               show: false
-            },
-            react: {
-              opacity: 1
             }
           }
         }

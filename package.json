@@ -48,6 +48,7 @@
     "vuepress": "^1.8.0",
     "vuepress-plugin-helper-live2d": "^1.0.2",
     "vuepress-plugin-mathjax": "^1.2.8",
+    "vuepress-plugin-medium-zoom": "^1.1.9",
     "vuepress-plugin-social-share": "^1.0.0"
   }
 }

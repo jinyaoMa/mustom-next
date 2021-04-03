@@ -100,6 +100,7 @@
         </mn-container>
       </mn-container>
       <mn-going-to
+        v-if="!isMobile"
         gap="15px"
         width="80px"
         :icons="[$localeConfig.icons.arrow.up, $localeConfig.icons.arrow.down]"
@@ -107,7 +108,11 @@
         @go-bottom="handleGoBottom"
       ></mn-going-to>
       <Audio
-        v-if="$themeConfig.audioplayer && $themeConfig.audioplayer.enable"
+        v-if="
+          $themeConfig.audioplayer &&
+          $themeConfig.audioplayer.enable &&
+          !isMobile
+        "
         :autoplay="currentAutoplay"
         ref="audio"
       ></Audio>
@@ -120,6 +125,7 @@
           :which="curtain"
           :live2d="currentLive2d"
           :autoplay="currentAutoplay"
+          :isMobile="isMobile"
         ></Curtain>
       </transition>
     </mn-container>
@@ -163,26 +169,41 @@ export default {
       this.curtain = "";
     },
     setLive2d(flag, save = false) {
-      this.currentLive2d = flag;
-      const widget = this.$root.$el.querySelector("#live2d-widget");
-      if (this.currentLive2d) {
-        widget && (widget.style.opacity = 1);
-      } else {
-        widget && (widget.style.opacity = 0);
-      }
-      if (save) {
-        this.state.live2d = flag;
-        this.$storage.set(this.state);
+      if (
+        this.$themeConfig.live2dHelper &&
+        this.$themeConfig.live2dHelper.enable
+      ) {
+        const waiting = window.setInterval(() => {
+          this.currentLive2d = flag;
+          const widget = this.$root.$el.querySelector("#live2d-widget");
+          if (widget) {
+            window.clearInterval(waiting);
+            if (this.currentLive2d) {
+              widget && (widget.style.opacity = 1);
+            } else {
+              widget && (widget.style.opacity = 0);
+            }
+            if (save) {
+              this.state.live2d = flag;
+              this.$storage.set(this.state);
+            }
+          }
+        }, 16);
       }
     },
     setAutoplay(flag, save = false) {
-      this.currentAutoplay = flag;
-      if (this.currentAutoplay && this.$refs.audio) {
-        this.$refs.audio.play();
-      }
-      if (save) {
-        this.state.autoplay = flag;
-        this.$storage.set(this.state);
+      if (
+        this.$themeConfig.audioplayer &&
+        this.$themeConfig.audioplayer.enable
+      ) {
+        this.currentAutoplay = flag;
+        if (this.currentAutoplay && this.$refs.audio) {
+          this.$refs.audio.play();
+        }
+        if (save) {
+          this.state.autoplay = flag;
+          this.$storage.set(this.state);
+        }
       }
     },
     setTheme(name, save = false) {
@@ -196,17 +217,22 @@ export default {
       return this.currentBackgroundImage;
     },
     setBackgroundImage(image, save = false) {
-      const waiting = window.setInterval(() => {
-        if (this.$refs.scrollableContainer) {
-          window.clearInterval(waiting);
-          this.$refs.scrollableContainer.$el.style.backgroundImage = image;
-          this.currentBackgroundImage = image;
-          if (save) {
-            this.state.wallpaper = image;
-            this.$storage.set(this.state);
+      if (
+        this.$themeConfig.wallpapers instanceof Array &&
+        this.$themeConfig.wallpapers.length > 0
+      ) {
+        const waiting = window.setInterval(() => {
+          if (this.$refs.scrollableContainer) {
+            window.clearInterval(waiting);
+            this.$refs.scrollableContainer.$el.style.backgroundImage = image;
+            this.currentBackgroundImage = image;
+            if (save) {
+              this.state.wallpaper = image;
+              this.$storage.set(this.state);
+            }
           }
-        }
-      }, 16);
+        }, 16);
+      }
     },
     handleCornerClick(target) {
       if (this.curtain === target) {
@@ -288,7 +314,14 @@ export default {
         }
       }
     },
+    initIsMobile() {
+      this.isMobile = /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i.test(
+        window.navigator.userAgent
+      );
+    },
     resizeUpdate() {
+      this.initIsMobile();
+
       if (window.innerWidth > 1366) {
         this.hasBodyGap = true;
         this.isLeftFixed = true;
@@ -318,6 +351,7 @@ export default {
   },
   data() {
     return {
+      isMobile: false,
       isLeftFixed: true,
       isRightFixed: true,
       hasBodyGap: true,
@@ -335,18 +369,29 @@ export default {
   created() {
     this.state = this.$storage.get();
     if (
-      !/^(zh)/i.test(
+      this.$themeConfig.autoRediect.to &&
+      this.$themeConfig.autoRediect.check &&
+      typeof this.$themeConfig.autoRediect.check.test === "function" &&
+      this.$localePath === "/" &&
+      this.$themeConfig.autoRediect.to != "/" &&
+      !this.$themeConfig.autoRediect.check.test(
         window.navigator.browserLanguage || window.navigator.language || "zh"
-      ) &&
-      this.$localePath === "/"
+      )
     ) {
-      this.$router.replace($themeConfig.autoRediect);
+      this.$router.replace(this.$themeConfig.autoRediect.to);
     }
     if (this.state.theme) {
       this.setTheme(this.state.theme);
+    } else {
+      this.setTheme("default");
     }
     if (this.state.wallpaper) {
       this.setBackgroundImage(this.state.wallpaper);
+    } else if (
+      this.$themeConfig.wallpapers instanceof Array &&
+      this.$themeConfig.wallpapers.length > 0
+    ) {
+      this.setBackgroundImage(this.$themeConfig.wallpapers[0]);
     }
     if (this.state.autoplay) {
       this.setAutoplay(this.state.autoplay);
