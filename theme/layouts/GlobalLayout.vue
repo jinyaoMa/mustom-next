@@ -370,16 +370,15 @@ export default {
     if (this.$isServer) return;
     this.state = this.$storage.get();
     if (
-      this.$themeConfig.autoRediect.to &&
-      this.$themeConfig.autoRediect.check &&
-      typeof this.$themeConfig.autoRediect.check.test === "function" &&
+      this.$themeConfig.autoRedirect.to &&
+      this.$themeConfig.autoRedirect.check &&
       this.$localePath === "/" &&
-      this.$themeConfig.autoRediect.to != "/" &&
-      !this.$themeConfig.autoRediect.check.test(
+      this.$themeConfig.autoRedirect.to != "/" &&
+      !new RegExp(this.$themeConfig.autoRedirect.check).test(
         window.navigator.browserLanguage || window.navigator.language || "zh"
       )
     ) {
-      this.$router.replace(this.$themeConfig.autoRediect.to);
+      this.$router.replace(this.$themeConfig.autoRedirect.to);
     }
     if (this.state.theme) {
       this.setTheme(this.state.theme);

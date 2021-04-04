@@ -7,8 +7,8 @@ module.exports = (context) => {
     locales: require("./locales"),
 
     themeConfig: {
-      autoRediect: {
-        check: /^(zh)/i,
+      autoRedirect: {
+        check: "zh",
         to: "/en/"
       },
       wallpapers: [
@@ -106,8 +106,8 @@ module.exports = (context) => {
         repo: "mustom-next",
         prefix: "[Site Comment]: ",
         labels: [":point_right:Site_Comment:point_left:"],
-        clientId: "2da9973c24e3d7e3430a",
-        clientSecret: "050434610d8f2b9a907fdb1f9b97cb672b2a7b8a",
+        clientId: "72048aa184ffd1de2d18",
+        clientSecret: "c44dc925c6c9618d5698df3f7c0c9a3aaf98bacd",
         locale: "zh"
       },
       socialShare: {
