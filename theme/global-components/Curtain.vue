@@ -168,7 +168,6 @@ export default {
       }
     },
     handleItemClick(flag, name) {
-      console.log(flag, name);
       if (name === "autoplay") {
         if (typeof this.$parent.$parent.setAutoplay === "function") {
           this.$parent.$parent.setAutoplay(flag, true);

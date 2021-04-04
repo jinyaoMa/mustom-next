@@ -4,6 +4,8 @@ const pangu = require("./scripts/node/pangu");
 module.exports = (_, context) => {
   const { themeConfig, siteConfig, isProd, sourceDir } = context;
 
+  siteConfig.evergreen = true;
+
   const locales = siteConfig.locales;
 
   const panguOptions = util.getPangu(themeConfig);
@@ -135,6 +137,7 @@ module.exports = (_, context) => {
       "@vuepress/pwa",
       {
         serviceWorker: true,
+        updatePopup: true,
         popupComponent: "CustomSWUpdatePopup"
       }
     ]);

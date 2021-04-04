@@ -1,6 +1,6 @@
 <template>
   <mn-hanger
-    id="Comment"
+    id="CustomComment"
     :caption="$localeConfig.comment.caption"
     :icon="$localeConfig.comment.icon"
     type="primary"
@@ -10,17 +10,17 @@
     disableSwitch
   >
     <div class="inner">
-      <CommentPlugin :title="$title" :options="options" />
+      <Comment :options="options" />
     </div>
   </mn-hanger>
 </template>
 
 <script>
-import { Comment } from "@vuepress/plugin-blog/lib/client/components";
+import Comment from "@vuepress/plugin-blog/lib/client/components/Comment";
 export default {
-  name: "Comment",
+  name: "CustomComment",
   components: {
-    CommentPlugin: Comment,
+    Comment,
   },
   computed: {
     options() {
@@ -53,7 +53,10 @@ export default {
   .vssue-new-comment
     .vssue-new-comment-input
       font-size 14px
+  .vssue-comment-avatar
+    border-radius 50%
+    overflow hidden
 
-#Comment
+#CustomComment
   margin-bottom 18px
 </style>

@@ -96,7 +96,7 @@ module.exports = (context) => {
       },
       sitemap: {
         enable: true,
-        hostname: "https://ma-jinyao.cn"
+        hostname: "https://k.ma-jinyao.cn"
       },
       comment: {
         enable: true,

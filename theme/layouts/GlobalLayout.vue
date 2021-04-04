@@ -48,15 +48,6 @@
                 <transition name="fade" mode="out-in" appear>
                   <component :is="layout" :key="layout" ref="page" />
                 </transition>
-                <transition name="fade" mode="out-in" appear>
-                  <Comment
-                    v-if="
-                      $themeConfig.comment &&
-                      $themeConfig.comment.enable &&
-                      $frontmatter.comment
-                    "
-                  ></Comment>
-                </transition>
               </mn-main>
               <mn-footer
                 v-if="isLeftFixed && isRightFixed"

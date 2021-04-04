@@ -1,43 +1,54 @@
 <template>
-  <mn-hanger
-    id="Archive"
-    :caption="$localeConfig.content.caption + ' - ' + $page.frontmatter.title"
-    :icon="$localeConfig.content.icon"
-    type="primary"
-    plain
-    round
-    shadow
-    disableSwitch
-  >
-    <div class="inner" ref="inner">
-      <div v-for="(post, i) in posts" :key="i">
-        <mn-post-card
-          :post-data="post"
-          :icons="[
-            $localeConfig.meta.date.icon,
-            $localeConfig.meta.updated.icon,
-            $localeConfig.meta.categories.icon,
-            $localeConfig.meta.more.icon,
-          ]"
-          :tooltips="[
-            $localeConfig.meta.date.text,
-            $localeConfig.meta.updated.text,
-            $localeConfig.meta.categories.text,
-          ]"
-          :textMore="$localeConfig.meta.more.text"
-          :horizontal="horizontal"
-          no-border
-          reverse
-        ></mn-post-card>
-        <div class="divider"></div>
+  <div>
+    <mn-hanger
+      id="Archive"
+      :caption="$localeConfig.content.caption + ' - ' + $page.frontmatter.title"
+      :icon="$localeConfig.content.icon"
+      type="primary"
+      plain
+      round
+      shadow
+      disableSwitch
+    >
+      <div class="inner" ref="inner">
+        <div v-for="(post, i) in posts" :key="i">
+          <mn-post-card
+            :post-data="post"
+            :icons="[
+              $localeConfig.meta.date.icon,
+              $localeConfig.meta.updated.icon,
+              $localeConfig.meta.categories.icon,
+              $localeConfig.meta.more.icon,
+            ]"
+            :tooltips="[
+              $localeConfig.meta.date.text,
+              $localeConfig.meta.updated.text,
+              $localeConfig.meta.categories.text,
+            ]"
+            :textMore="$localeConfig.meta.more.text"
+            :horizontal="horizontal"
+            no-border
+            reverse
+          ></mn-post-card>
+          <div class="divider"></div>
+        </div>
+        <Pagination class="pagination"></Pagination>
+        <SimplePagination
+          v-if="!$isServer"
+          class="simple-pagination"
+        ></SimplePagination>
       </div>
-      <Pagination class="pagination"></Pagination>
-      <SimplePagination
-        v-if="!$isServer"
-        class="simple-pagination"
-      ></SimplePagination>
-    </div>
-  </mn-hanger>
+    </mn-hanger>
+    <transition name="fade" mode="out-in" appear>
+      <CustomComment
+        v-if="
+          $themeConfig.comment &&
+          $themeConfig.comment.enable &&
+          $frontmatter.comment
+        "
+      ></CustomComment>
+    </transition>
+  </div>
 </template>
 
 <script>

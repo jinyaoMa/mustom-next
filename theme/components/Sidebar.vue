@@ -60,9 +60,6 @@ export default {
       return path === this.$route.path;
     },
   },
-  mounted() {
-    console.log(this);
-  },
 };
 </script>
 

@@ -1,121 +1,132 @@
 <template>
-  <mn-hanger
-    id="Post"
-    :caption="
-      $localeConfig.content.caption +
-      ' - ' +
-      ($page.title || $page.frontmatter.title)
-    "
-    :icon="$localeConfig.content.icon"
-    type="primary"
-    plain
-    round
-    shadow
-    disableSwitch
-  >
-    <div class="inner">
-      <div class="title">
-        {{ $page.title || $page.frontmatter.title }}
-      </div>
-      <div class="meta">
-        <div :title="$localeConfig.meta.date.text">
-          <mn-icon :name="$localeConfig.meta.date.icon"></mn-icon>
-          {{ getDate($page.frontmatter.date, $page.lastUpdated) }}
+  <div>
+    <mn-hanger
+      id="Post"
+      :caption="
+        $localeConfig.content.caption +
+        ' - ' +
+        ($page.title || $page.frontmatter.title)
+      "
+      :icon="$localeConfig.content.icon"
+      type="primary"
+      plain
+      round
+      shadow
+      disableSwitch
+    >
+      <div class="inner">
+        <div class="title">
+          {{ $page.title || $page.frontmatter.title }}
         </div>
-        <div :title="$localeConfig.meta.updated.text">
-          <mn-icon :name="$localeConfig.meta.updated.icon"></mn-icon>
-          {{ getDate($page.frontmatter.updated, $page.lastUpdated) }}
-        </div>
-        <div
-          v-if="$page.frontmatter.categories"
-          :title="$localeConfig.meta.categories.text"
-        >
-          <mn-icon :name="$localeConfig.meta.categories.icon"></mn-icon>
-          <span v-for="(item, i) in categories" :key="i">
-            <span v-if="i !== 0">, </span>
-            <router-link :to="item.path" :title="item.name">
-              {{ item.name }}
-            </router-link>
-          </span>
-        </div>
-        <div :title="$localeConfig.meta.word.text">
-          <mn-icon :name="$localeConfig.meta.word.icon"></mn-icon>
-          {{ addK($page.frontmatter.wordcount) }}
-        </div>
-        <div :title="$localeConfig.meta.time.text">
-          <mn-icon :name="$localeConfig.meta.time.icon"></mn-icon>
-          {{ min2Read($page.frontmatter.min2read) }}
-        </div>
-      </div>
-      <Content class="post-body" />
-      <div class="ending">
-        <div
-          class="divider"
-          v-if="$localeConfig.meta.ending.divider"
-          v-html="$localeConfig.meta.ending.divider"
-        ></div>
-        <div v-if="hasSocialShare" class="share">
-          <SocialShare />
-        </div>
-        <div v-if="hasAddition !== false" class="addition">
+        <div class="meta">
+          <div :title="$localeConfig.meta.date.text">
+            <mn-icon :name="$localeConfig.meta.date.icon"></mn-icon>
+            {{ getDate($page.frontmatter.date, $page.lastUpdated) }}
+          </div>
+          <div :title="$localeConfig.meta.updated.text">
+            <mn-icon :name="$localeConfig.meta.updated.icon"></mn-icon>
+            {{ getDate($page.frontmatter.updated, $page.lastUpdated) }}
+          </div>
           <div
-            v-for="(item, i) in addition"
-            :key="i"
-            v-html="currentPathReplace(item)"
+            v-if="$page.frontmatter.categories"
+            :title="$localeConfig.meta.categories.text"
+          >
+            <mn-icon :name="$localeConfig.meta.categories.icon"></mn-icon>
+            <span v-for="(item, i) in categories" :key="i">
+              <span v-if="i !== 0">, </span>
+              <router-link :to="item.path" :title="item.name">
+                {{ item.name }}
+              </router-link>
+            </span>
+          </div>
+          <div :title="$localeConfig.meta.word.text">
+            <mn-icon :name="$localeConfig.meta.word.icon"></mn-icon>
+            {{ addK($page.frontmatter.wordcount) }}
+          </div>
+          <div :title="$localeConfig.meta.time.text">
+            <mn-icon :name="$localeConfig.meta.time.icon"></mn-icon>
+            {{ min2Read($page.frontmatter.min2read) }}
+          </div>
+        </div>
+        <Content class="post-body" />
+        <div class="ending">
+          <div
+            class="divider"
+            v-if="$localeConfig.meta.ending.divider"
+            v-html="$localeConfig.meta.ending.divider"
           ></div>
-        </div>
-        <div class="tags" v-if="hasTags">
-          <router-link
-            v-for="(tag, i) in tags"
-            :key="i"
-            :to="$siteTags.map[tag].path"
-          >
-            # {{ tag }}
-          </router-link>
-        </div>
-        <div class="pn">
-          <div
-            class="prev"
-            :data-label="
-              prevIndex >= 0 ? $localeConfig.pagination.prev.post : ''
-            "
-          >
+          <div v-if="hasSocialShare" class="share">
+            <SocialShare />
+          </div>
+          <div v-if="hasAddition !== false" class="addition">
+            <div
+              v-for="(item, i) in addition"
+              :key="i"
+              v-html="currentPathReplace(item)"
+            ></div>
+          </div>
+          <div class="tags" v-if="hasTags">
             <router-link
-              v-if="prevIndex >= 0"
-              :to="getPage(prevIndex).path || ''"
-              :title="
-                $localeConfig.pagination.prev.post +
-                ': ' +
-                getPage(prevIndex).title
-              "
+              v-for="(tag, i) in tags"
+              :key="i"
+              :to="$siteTags.map[tag].path"
             >
-              {{ getPage(prevIndex).title }}
+              # {{ tag }}
             </router-link>
           </div>
-          <div
-            class="next"
-            :data-label="
-              nextIndex < $sitePosts.length
-                ? $localeConfig.pagination.next.post
-                : ''
-            "
-          >
-            <router-link
-              v-if="nextIndex < $sitePosts.length"
-              :to="getPage(nextIndex).path || ''"
-              :title="
-                $localeConfig.pagination.next.post +
-                ': ' +
-                getPage(nextIndex).title
+          <div class="pn">
+            <div
+              class="prev"
+              :data-label="
+                prevIndex >= 0 ? $localeConfig.pagination.prev.post : ''
               "
             >
-              {{ getPage(nextIndex).title }}
-            </router-link>
+              <router-link
+                v-if="prevIndex >= 0"
+                :to="getPage(prevIndex).path || ''"
+                :title="
+                  $localeConfig.pagination.prev.post +
+                  ': ' +
+                  getPage(prevIndex).title
+                "
+              >
+                {{ getPage(prevIndex).title }}
+              </router-link>
+            </div>
+            <div
+              class="next"
+              :data-label="
+                nextIndex < $sitePosts.length
+                  ? $localeConfig.pagination.next.post
+                  : ''
+              "
+            >
+              <router-link
+                v-if="nextIndex < $sitePosts.length"
+                :to="getPage(nextIndex).path || ''"
+                :title="
+                  $localeConfig.pagination.next.post +
+                  ': ' +
+                  getPage(nextIndex).title
+                "
+              >
+                {{ getPage(nextIndex).title }}
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </mn-hanger>
+    </mn-hanger>
+    <transition name="fade" mode="out-in" appear>
+      <CustomComment
+        v-if="
+          $themeConfig.comment &&
+          $themeConfig.comment.enable &&
+          $frontmatter.comment
+        "
+      ></CustomComment>
+    </transition>
+  </div>
 </template>
 
 <script>
