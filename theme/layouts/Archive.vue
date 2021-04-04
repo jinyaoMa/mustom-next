@@ -32,7 +32,7 @@
           ></mn-post-card>
           <div class="divider"></div>
         </div>
-        <Pagination class="pagination"></Pagination>
+        <Pagination v-if="!$isServer" class="pagination"></Pagination>
         <SimplePagination
           v-if="!$isServer"
           class="simple-pagination"
