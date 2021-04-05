@@ -1,5 +1,6 @@
 package-lock.json
 npmuser.sh
+.npmrc
 
 # Logs
 logs
