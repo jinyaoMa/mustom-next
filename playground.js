@@ -1,7 +1,10 @@
+const express = require("express");
+const app = express();
+const port = 8080;
 const path = require("path");
-const sourceDir = path.join(__dirname, "docs");
-console.log(sourceDir);
 
-console.log(
-  require("./theme/scripts/node/util").generateDocsStructure(sourceDir)
-);
+app.use(express.static(path.join(__dirname, "./docs/.vuepress/dist")));
+
+app.listen(port, () => {
+  console.log(`http://localhost:${port}`);
+});

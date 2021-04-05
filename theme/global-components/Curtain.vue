@@ -208,6 +208,7 @@ export default {
     padding 1em
     padding-right 2em
     appearance none
+    margin-bottom 40px
 
 >>> .mn-container
   position relative

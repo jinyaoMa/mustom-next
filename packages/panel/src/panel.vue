@@ -32,9 +32,7 @@ export default {
   computed: {
     innerStyle() {
       return {
-        gap: this.gap,
         paddingTop: this.gap,
-        paddingBottom: this.gap,
         flexDirection: this.flowDown ? "column" : "row",
       };
     },

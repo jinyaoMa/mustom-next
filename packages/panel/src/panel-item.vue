@@ -28,6 +28,12 @@ export default {
         return "auto";
       },
     },
+    gap: {
+      type: String,
+      default() {
+        return "40px";
+      },
+    },
     flag: {
       type: Boolean,
       default() {
@@ -39,6 +45,8 @@ export default {
     customStyle() {
       return {
         width: this.width,
+        marginRight: this.gap,
+        marginBottom: this.gap,
       };
     },
   },

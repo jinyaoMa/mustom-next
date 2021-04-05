@@ -185,7 +185,8 @@ export default {
     setAutoplay(flag, save = false) {
       if (
         this.$themeConfig.audioplayer &&
-        this.$themeConfig.audioplayer.enable
+        this.$themeConfig.audioplayer.enable &&
+        !this.isMobile
       ) {
         this.currentAutoplay = flag;
         if (this.currentAutoplay && this.$refs.audio) {
@@ -243,7 +244,10 @@ export default {
         this.$refs.blockLeft.scrollTopDelta(delta);
         this.$refs.blockRight.scrollTopDelta(delta);
 
-        if (this.layout === "Post" || this.layout === "Layout") {
+        if (
+          this.$refs.page &&
+          (this.layout === "Post" || this.layout === "Layout")
+        ) {
           window.clearTimeout(this.scrollWaiter);
           this.scrollWaiter = window.setTimeout(() => {
             let notDetected = true;
@@ -342,7 +346,7 @@ export default {
   },
   data() {
     return {
-      isMobile: false,
+      isMobile: true,
       isLeftFixed: true,
       isRightFixed: true,
       hasBodyGap: true,

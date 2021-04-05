@@ -35,6 +35,12 @@ export default {
         return "80px";
       },
     },
+    gap: {
+      type: String,
+      default() {
+        return "40px";
+      },
+    },
     active: {
       type: Boolean,
       default() {
@@ -48,6 +54,8 @@ export default {
         width: this.width,
         height: this.height,
         backgroundImage: this.image,
+        marginRight: this.gap,
+        marginBottom: this.gap,
       };
     },
   },

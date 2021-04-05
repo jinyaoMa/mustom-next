@@ -19,7 +19,7 @@ module.exports = (context) => {
         enable: true
       },
       pwa: {
-        enable: true,
+        enable: false,
         head: [
           [
             "link",
@@ -67,6 +67,7 @@ module.exports = (context) => {
         ]
       },
       live2dHelper: {
+        // https://github.com/JoeyBling/vuepress-plugin-helper-live2d
         enable: true,
         options: {
           log: false,

@@ -2,16 +2,23 @@ import "@vuepress/theme-default/styles/index.styl";
 import "@fortawesome/fontawesome-free/css/all.css";
 import mixins from "./mixins";
 import Packages from "../packages";
-import axios from "axios";
-import VueAxios from "vue-axios";
+import ajax from "./scripts/client/ajax";
 import jsonp from "./scripts/client/jsonp";
 import storage from "./scripts/client/storage";
 
 export default ({ Vue, options, router, siteData }) => {
   Vue.use(Packages);
-  Vue.use(VueAxios, axios);
 
   if (typeof window != "undefined") {
+    Object.defineProperties(Vue.prototype, {
+      $ajax: {
+        get: function get() {
+          return ajax;
+        }
+      }
+    });
+    Vue.$ajax = ajax;
+
     Object.defineProperties(Vue.prototype, {
       $jsonp: {
         get: function get() {

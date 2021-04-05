@@ -2,7 +2,7 @@
   <div id="Audio">
     <mn-audio
       class="audio"
-      v-if="playlist.length"
+      v-if="playlist.length > 0"
       :playlist="playlist"
       :size="`calc(${width} - ${gap} * 2)`"
       vertical
@@ -38,8 +38,15 @@ export default {
   },
   methods: {
     setupPlaylist() {
-      this.$http.get(this.$themeConfig.audioplayer.api).then((res) => {
-        this.playlist = res.data;
+      const that = this;
+      this.$ajax({
+        url: that.$themeConfig.audioplayer.api,
+        dataType: "json",
+        success(result) {
+          if (result instanceof Array && result.length > 0) {
+            that.playlist = result;
+          }
+        },
       });
     },
     play() {
