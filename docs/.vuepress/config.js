@@ -11,6 +11,7 @@ module.exports = (context) => {
         check: "zh",
         to: "/en/"
       },
+      limit: 5,
       wallpapers: [
         "linear-gradient(0deg, #ffffff, #ffffff)",
         "linear-gradient(120deg, #ff3300, #cc66ff, #00ccff)"

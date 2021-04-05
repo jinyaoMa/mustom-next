@@ -11,32 +11,41 @@
       disableSwitch
     >
       <div class="inner" ref="inner">
-        <div v-for="(post, i) in posts" :key="i">
-          <mn-post-card
-            :post-data="post"
-            :icons="[
-              $localeConfig.meta.date.icon,
-              $localeConfig.meta.updated.icon,
-              $localeConfig.meta.categories.icon,
-              $localeConfig.meta.more.icon,
-            ]"
-            :tooltips="[
-              $localeConfig.meta.date.text,
-              $localeConfig.meta.updated.text,
-              $localeConfig.meta.categories.text,
-            ]"
-            :textMore="$localeConfig.meta.more.text"
-            :horizontal="horizontal"
-            no-border
-            reverse
-          ></mn-post-card>
-          <div class="divider"></div>
-        </div>
-        <Pagination v-if="!$isServer" class="pagination"></Pagination>
-        <SimplePagination
-          v-if="!$isServer"
-          class="simple-pagination"
-        ></SimplePagination>
+        <transition-group name="fade" mode="out-in" appear>
+          <div v-for="(post, i) in posts.slice(0, offset)" :key="i">
+            <mn-post-card
+              :post-data="post"
+              :icons="[
+                $localeConfig.meta.date.icon,
+                $localeConfig.meta.updated.icon,
+                $localeConfig.meta.categories.icon,
+                $localeConfig.meta.more.icon,
+              ]"
+              :tooltips="[
+                $localeConfig.meta.date.text,
+                $localeConfig.meta.updated.text,
+                $localeConfig.meta.categories.text,
+              ]"
+              :textMore="$localeConfig.meta.more.text"
+              :horizontal="horizontal"
+              no-border
+              reverse
+            />
+            <div class="divider"></div>
+          </div>
+          <div :key="posts.length" class="more">
+            <mn-button
+              v-if="hasMore"
+              @click="incrementOffset"
+              v-html="$localeConfig.pagination.more.post"
+            ></mn-button>
+            <mn-button
+              v-else
+              v-html="$localeConfig.pagination.none.post"
+              class="none"
+            ></mn-button>
+          </div>
+        </transition-group>
       </div>
     </mn-hanger>
     <transition name="fade" mode="out-in" appear>
@@ -52,19 +61,17 @@
 </template>
 
 <script>
-import Pagination from "@vuepress/plugin-blog/lib/client/components/Pagination";
-import SimplePagination from "@vuepress/plugin-blog/lib/client/components/SimplePagination";
-
 export default {
   name: "Archive",
-  components: {
-    Pagination,
-    SimplePagination,
-  },
   computed: {
+    hasMore() {
+      return this.offset < this.posts.length;
+    },
+    offset() {
+      return parseInt(this.$themeConfig.limit) + this.increment;
+    },
     posts() {
-      if (this.$isServer) return [];
-      return this.$pagination.pages.map((post) => {
+      return this.$sitePosts.map((post) => {
         const categories = [];
         const cate_prefix = this.$localePath.replace(/\//g, "");
         if (
@@ -93,6 +100,9 @@ export default {
     },
   },
   methods: {
+    incrementOffset() {
+      this.increment += parseInt(this.$themeConfig.limit) || 3;
+    },
     setCate(cates, map, key, parent = "") {
       if (typeof key === "string") {
         const _parent = parent === "" ? key : `${parent},${key}`;
@@ -116,6 +126,7 @@ export default {
   data() {
     return {
       horizontal: true,
+      increment: 0,
     };
   },
   mounted() {
@@ -147,35 +158,13 @@ export default {
   margin 20px -20px
   border-top 4px dashed var(--color-primary-8)
 
->>> .pagination
-  margin 0 auto
-  @media (max-width 1024px)
-    display none
-  li:not(.disabled) > a, li:not(.disabled) > span
-    color var(--color-primary-0)
-    &:hover, &:focus
-      background-color var(--color-border-extra-light)
-  > li.active
-    > a, > span
-      color var(--color-white)
-      background-color var(--color-primary-1)
-      &:hover, &:focus
-        background-color var(--color-primary-1)
-        border-color var(--color-primary-1)
-
->>> .simple-pagination
-  display none
-  line-height 1
-  a
-    color var(--color-primary-0)
-    border-color var(--color-primary-0)
-    &:hover, &:focus
-      color var(--color-white)
-      background-color var(--color-primary-0)
-    &:last-child
-      margin-right 0
-  @media (max-width 1024px)
-    display inline-block
+.more
+  text-align center
+  .none
+    cursor not-allowed
+    color var(--color-text-placeholder) !important
+    background var(--color-border-extra-light) !important
+    border-color var(--color-border-light) !important
 
 >>> .mn-post-card-except
   img

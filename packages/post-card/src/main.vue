@@ -7,7 +7,6 @@
       :title="postData.title"
     >
       <img
-        :style="coverStyle"
         :src="postData.cover"
         @load="handleImgLoad"
         @error="handleImgError"
@@ -70,6 +69,17 @@ export default {
       /**
        * { date, updated, excerpt, categories, cover, title, path }
        */
+      default() {
+        return {
+          data: "",
+          updated: "",
+          excerpt: "",
+          categories: [],
+          cover: "",
+          title: "",
+          path: "",
+        };
+      },
     },
     noBorder: {
       type: Boolean,
@@ -121,9 +131,6 @@ export default {
         vertical: !this.horizontal,
         reverse: this.reverse,
       };
-    },
-    coverStyle() {
-      return {};
     },
   },
   methods: {

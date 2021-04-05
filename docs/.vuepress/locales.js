@@ -64,6 +64,14 @@ module.exports = {
       next: {
         page: "下一页",
         post: "旧文章"
+      },
+      more: {
+        page: "查看更多页面",
+        post: "查看更多文章"
+      },
+      none: {
+        page: "没有更多页面了~",
+        post: "没有更多文章了~"
       }
     },
     unit: {
@@ -288,6 +296,14 @@ module.exports = {
       next: {
         page: "Next",
         post: "Older"
+      },
+      more: {
+        page: "MORE PAGES",
+        post: "MORE POSTS"
+      },
+      none: {
+        page: "ENDED",
+        post: "ENDED"
       }
     },
     unit: {

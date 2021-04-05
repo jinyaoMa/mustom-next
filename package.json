@@ -1,6 +1,6 @@
 {
   "name": "@jinyaoma/mustom-next",
-  "version": "0.0.1-20210404.2035",
+  "version": "0.0.1-20210405.0039",
   "description": "",
   "scripts": {
     "playground": "node playground.js",
