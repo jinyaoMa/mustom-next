@@ -20,7 +20,7 @@ module.exports = (context) => {
         enable: true
       },
       pwa: {
-        enable: false,
+        enable: true,
         head: [
           [
             "link",
