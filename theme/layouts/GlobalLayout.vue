@@ -347,8 +347,8 @@ export default {
   data() {
     return {
       isMobile: true,
-      isLeftFixed: true,
-      isRightFixed: true,
+      isLeftFixed: false,
+      isRightFixed: false,
       hasBodyGap: true,
       asideWidth: "280px",
       gap: "32px",
