@@ -345,18 +345,11 @@ export default {
     },
   },
   data() {
-    let isMobile = true;
-
-    if (!this.$isServer) {
-      isMobile = /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i.test(
-        window.navigator.userAgent
-      );
-    }
     return {
-      isMobile,
-      isLeftFixed: !isMobile,
-      isRightFixed: !isMobile,
-      hasBodyGap: !isMobile,
+      isMobile: true,
+      isLeftFixed: true,
+      isRightFixed: true,
+      hasBodyGap: false,
       asideWidth: "280px",
       gap: "32px",
       centerWidth: "100%",
@@ -406,7 +399,7 @@ export default {
   },
   mounted() {
     window.addEventListener("resize", this.resizeUpdate);
-    window.setTimeout(this.resizeUpdate, 16);
+    this.resizeUpdate();
   },
   destroyed() {
     window.removeEventListener("resize", this.resizeUpdate);
